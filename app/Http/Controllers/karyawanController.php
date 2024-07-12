@@ -22,6 +22,7 @@ class KaryawanController extends Controller
     public function search(Request $request) 
     {
         $pegawai = $this->pegawaiServices->searchPegawai($request);
+        dd($pegawai);
         if ($request->has('ajax')) return $pegawai;
         return view('employee.management_user._table', compact('pegawai'));
     }
