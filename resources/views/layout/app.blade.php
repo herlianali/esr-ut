@@ -332,7 +332,7 @@
             </li>
             @endif
             @if($menu === '4')
-              <li {{ \Route::is('employee.user.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user.index') }}"><i class="fas fa-user-cog"></i> <span>Management User</span></a></li>
+              <li {{ \Route::is('employee.user.*') || \Route::is('employee.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user.index') }}"><i class="fas fa-user-cog"></i> <span>Management User</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-user-tie"></i> <span>Pengawas</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Management Projects</span></a></li>
               
@@ -377,9 +377,17 @@
   <!-- Page Specific JS File -->
   <script src="{{ asset('stisla/assets/js/page/index.js') }}"></script>
   <script src="{{ asset('stisla/assets/js/page/bootstrap-modal.js') }}"></script>
+  <script>
+    let getFormData = ($form) => {
+        let unindexed_array = $form.serializeArray();
+        let indexed_array = {};
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+  </script>
   @stack('js')
-
-  
   <!-- Template JS File -->
   <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
   <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>

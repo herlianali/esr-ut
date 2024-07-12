@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Service
+class Services
 {
 
     public function searchFilter($params, $model, $filters)

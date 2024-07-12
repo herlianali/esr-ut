@@ -22,18 +22,19 @@
         <div class="card">
             <div class="card-header">
                 <h4>List Pegawai</h4>
-                <div class="card-header-form">
-                    <form>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <div class="input-group-btn">
-                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                <div class="card-header-form" id="pegawai_search">
+                    <form id="search_form">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nik" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </div>
             </div>
-            <div class="card-body p-0" id="fungsi_pegawai_table"></div>
+            <div class="card-body p-0" id="pegawai_table"></div>
         </div>
     </div>
 </div>
@@ -71,8 +72,26 @@
 
 @push('js')
 <script>
-    init_form_element();
+    // init_form_element();
 
-    $fungsi_
+    $pegawai_data = $('#pegawai_data');
+    $pegawai_search = $('#pegawai_search');
+    $pegawai_search.hide();
+    toggle_search = () => {
+        $pegawai_search.toggle();
+    }
+
+    $search_form = $('#search_form');
+    $pegawai_table = $('#pegawai_table');
+    search_pegawai = (page = 1) => {
+        let data = getFormData($search_form)
+        $.post("{{ route('employee.karyawan.search') }}", data, (result) => {
+            $pegawai_table.html(result);
+        }).fail((xhr) => {
+            $pegawai_table.html(xhr.responseText);
+        })
+    }
+
+    search_pegawai();
 </script>
 @endpush
