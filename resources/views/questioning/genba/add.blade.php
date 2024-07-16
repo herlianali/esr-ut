@@ -33,11 +33,11 @@
             {{-- <form action=""> --}}
                 <section>
                     <div class="row normalTopPadding">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Tanggal Pelaksanaan Genba</label>
                             <input type="text" class="form-control datetimepicker">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Area Genba</label>
                             <select class="form-control select2">
                                 <option value="1">office</option>
@@ -48,13 +48,13 @@
                                 <option value="6">mess</option>
                         </select>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Lokasi Pelaksanaan</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Nama Pengawas</label>
                             <select class="form-control select2">
                                 <option value="1">HERI PRIYO MAHARGYO</option>
@@ -87,17 +87,17 @@
                     </div>
                 </section>
                 <section class="hide">
-                    <div class="row normalTopPadding">
-                        <div class="row col-md-12 pl-4">
+                    {{-- <div class="row normalTopPadding"> --}}
+                        <div class="row">
                             <h5>Laporan Genba TINDAKAN Tidak Aman (TTA)</h5>
                             <h5>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</h5>
                         </div>
-                        <div class="row col-md-12">
-                            <div class="form-group col-md-4">
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Deskripsi Temuan /Deviasi TINDAKAN Tidak Aman</label>
                                 <input type="text" class="form-control">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Kategori Temuan /Deviasi TINDAKAN Tidak Aman</label>
                                 <select class="form-control select2">
                                     <option value="1">Prosedur</option>
@@ -109,22 +109,22 @@
                                     <option value="7">Kesehatan</option>
                             </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas TINDAKAN Tidak Aman</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
-                    </div>
+                    {{-- </div> --}}
                     <div class="row">
                         
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label for="" class="section-title">Foto Temuan TINDAKAN Tidak Aman (jika ada)</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Apa follow up yang sudah anda lakukan atas TINDAKAN Tidak Aman ?</label>
                             <select class="form-control select2">
                                 <option value="1">Personal Contact</option>
@@ -137,22 +137,22 @@
                     </div>
                     <hr>
                     <div class="text-right">
-                        <button class="btn btn-primary mr-1 back-button" >back</button>
+                        <button class="btn btn-danger mr-1 back-button" >Back</button>
                         <button class="btn btn-primary mr-1 next-button" >next</button>
                     </div>
                 </section>
                 <section class="hide">
                     <div class="row normalTopPadding">
-                        <div class="row col-md-12 pl-4">
+                        <div class="row col-md-12 pl-4 col-sm-12 col-12">
                             <h5>Laporan Genba KONDISI Tidak Aman (KTA)</h5>
                             <h5>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</h5>
                         </div>
                         <div class="row col-md-12">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 col-sm-12 col-12">
                                 <label class="section-title">Deskripsi Temuan /Deviasi KONDISI Tidak Aman</label>
                                 <input type="text" class="form-control">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 col-sm-12 col-12">
                                 <label class="section-title">Kategori Temuan /Deviasi KONDISI Tidak Aman</label>
                                 <select class="form-control select2">
                                     <option value="1">Prosedur</option>
@@ -167,18 +167,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas KONDISI Tidak Aman</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label for="" class="section-title">Foto Temuan KONDISI Tidak Aman</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Apa follow up yang sudah anda lakukan KONDISI Tidak Aman ?</label>
                             <select class="form-control select2">
                                 <option value="1">Personal Contact</option>
@@ -190,7 +190,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label class="section-title">Keikutsertaan Genba Management</label>
                             <select class="form-control select2">
                                 <option value="1">Genba Internal UT</option>
@@ -199,7 +199,7 @@
                                 <option value="4">Genba Bersama Customer</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label for="" class="section-title">Dokumentasi Keikutsertaan Genba (additional)</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile">
@@ -208,9 +208,9 @@
                         </div>
                     </div>
                     <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" >Back</button>
+                        <button class="btn btn-danger mr-1 back-button">Back</button>
                         <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <button class="btn btn-secondary" type="reset">Reset</button>
+                        {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
                     </div>
                 </section>
                 
@@ -233,6 +233,15 @@
                 if($next.length>0) {  // check condition first and then hide current section and show next
                     section.addClass('hide');
                     $next.removeClass('hide');
+                }
+            });
+            $('.back-button').on('click', function (e) {
+                var section = $(this).closest("section");
+                var $previous = section.prev();
+                console.log($previous)
+                if($previous.length>0) {  // check condition first and then hide current section and show previous
+                    section.addClass('hide');
+                    $previous.removeClass('hide');
                 }
             });
         });

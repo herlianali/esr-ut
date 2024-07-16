@@ -317,6 +317,9 @@
 @endsection
 
 @push('js')
+<script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script>
 <script>
     $(function(){
 
