@@ -15,7 +15,7 @@ class PegawaiServices extends Services
 
     public function getOnse($value, $column = 'id')
     {
-        return $this->pegawai->where($column, $valur)->first();
+        return $this->pegawai->where($column, $value)->first();
     }
 
     public function searchPegawai($params)

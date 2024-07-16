@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::get('/', [App\Http\Controllers\Sistem\AuthController::class, 'login'])->name('login');
+Route::get('logout', [App\Http\Controllers\Sistem\AuthController::class, 'logout'])->name('logout');
+Route::post('login_process', [App\Http\Controllers\Sistem\AuthController::class, 'login_proses'])->name('login_proses');
 Route::get('dashboard', [App\Http\Controllers\DashController::class, 'index'])->name('dashboard');
 Route::get('dash/{id}', [App\Http\Controllers\DashController::class, 'dash1'])->name('dash.show');
 Route::get('reportDash', [App\Http\Controllers\DashController::class, 'dash2'])->name('reportDash');
@@ -13,8 +15,8 @@ Route::get('surat', [App\Http\Controllers\SuratController::class, 'index'])->nam
 
 Route::get('dash2', function () { return view('layout.app2'); });
 
-Route::name('inventaris')->prefix('esr_corner.inventaris')->group(__DIR__.'/inventaris.php');
-Route::name('surat')->prefix('esr_corner.surat')->group(__DIR__.'/surat.php');
+Route::name('inventaris')->prefix('inventaris')->group(__DIR__.'/inventaris.php');
+Route::name('surat')->prefix('surat')->group(__DIR__.'/surat.php');
 Route::name('employee')->prefix('employee')->group(__DIR__.'/employee.php');
 
 Route::get('genba', function () { return view('questioning.genba.index'); });
@@ -28,6 +30,7 @@ Route::get('bbsq_non_service/add', function () { return view('questioning.bbsq_n
 
 Route::get('green_card', function () { return view('questioning.green_card.index'); });
 Route::get('green_card/add', function () { return view('questioning.green_card.add'); })->name('green_card.add');
+Route::get('green_card/show', function () { return view('questioning.green_card.detail'); })->name('green_card.show');
 
 Route::get('safety_talk', function () { return view('questioning.safety_talk.index'); });
 Route::get('safety_talk/add', function () { return view('questioning.safety_talk.add'); })->name('safety_talk.add');

@@ -231,7 +231,8 @@
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, User ESR</div></a>
+            {{-- <div class="d-sm-none d-lg-inline-block">Hi, User ESR</div></a> --}}
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -244,7 +245,7 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -261,6 +262,7 @@
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>
+            <li ><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-home"></i> <span>Home </span></a></li>
             @yield('menu')
             
             @if( !$menu === '1' )
@@ -269,19 +271,45 @@
               <li ><a class="nav-link" href=""><i class="fas fa-envelope-open-text"></i> <span>BBSQ </span></a></li>
             @endif
             @if( $menu === '1') 
-              <li {{ \Route::is('green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('green_card.add') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
-              <li {{ \Route::is('genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('genba.add') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
-              <li {{ \Route::is('bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('bbsq_service.add') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
-              <li {{ \Route::is('bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('bbsq_non_service.add') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
-              <li {{ \Route::is('personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('personal_contact.add') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
-              <li {{ \Route::is('safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('safety_talk.add') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
-              <li {{ \Route::is('jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('jsa.add') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-users"></i> <span>SCML</span></a></li>
+              @if(auth()->user()->user_level_id !== 2) 
+                <li {{ \Route::is('green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('green_card.add') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
+                <li {{ \Route::is('genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('genba.add') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
+                <li {{ \Route::is('bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('bbsq_service.add') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2) 
+                <li {{ \Route::is('bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('bbsq_non_service.add') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
+                <li {{ \Route::is('personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('personal_contact.add') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
+                <li {{ \Route::is('safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('safety_talk.add') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li {{ \Route::is('jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('jsa.add') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
+              @endif
+              @if(auth()->user()->user_level_id !== 2)
+                <li ><a class="nav-link" href=""><i class="fas fa-users"></i> <span>SCML</span></a></li>
+              @endif
             @endif
             @if( $menu === '2') 
             <li class="dropdown ">
@@ -333,7 +361,8 @@
             @endif
             @if($menu === '4')
               <li {{ \Route::is('employee.user.*') || \Route::is('employee.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user.index') }}"><i class="fas fa-user-cog"></i> <span>Management User</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-user-tie"></i> <span>Pengawas</span></a></li>
+              <li {{ \Route::is('employee.fitur.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.fitur.index') }}"><i class="fab fa-elementor"></i> <span>Management Menu</span></a></li>
+              <li ><a class="nav-link" href=""><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Management Projects</span></a></li>
               
             @endif
@@ -378,6 +407,17 @@
   <script src="{{ asset('stisla/assets/js/page/index.js') }}"></script>
   <script src="{{ asset('stisla/assets/js/page/bootstrap-modal.js') }}"></script>
   <script>
+    // let init_form_element = () => {
+    //     $(".select2").select2();
+    //     $('.datepicker').datepicker({
+    //         format: 'dd-mm-yyyy',
+    //         autoclose: true
+    //     });
+    //     $(".summernote").summernote({
+    //         height: 300,
+    //     });
+    //     $('.dropify').dropify();
+    // }
     let getFormData = ($form) => {
         let unindexed_array = $form.serializeArray();
         let indexed_array = {};
@@ -385,6 +425,21 @@
             indexed_array[n['name']] = n['value'];
         });
         return indexed_array;
+    }
+    function add_commas(nStr) {
+        nStr += '';
+        let x = nStr.split('.');
+        let x1 = x[0];
+        let x2 = x.length > 1 ? '.' + x[1] : '';
+        let rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
+    function remove_commas(nStr) {
+        nStr = nStr.replace(/\./g,'');
+        return nStr;
     }
   </script>
   @stack('js')

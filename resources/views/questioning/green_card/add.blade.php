@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @push('css')
+<link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
 <style>
     .hide {
         display: none;
@@ -79,8 +80,8 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                {{-- <button class="btn btn-primary mr-1 next-button" >next</button> --}}
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                                {{-- <button class="btn btn-primary mr-1 next-button" >Next</button> --}}
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">    
@@ -141,8 +142,8 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -160,10 +161,10 @@
                                     <input type="text" class="form-control">
                                     <small class="form-text text-muted">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                {{-- <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
                                     <input type="text" class="form-control">
-                                </div>
+                                </div> --}}
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Dept / Sektor Ditemukannya Bahaya</label>
                                     <select class="form-control select2">
@@ -206,8 +207,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kategori Temuan</label>
-                                    <div class="row">
-                                        <div class="form-check ml-3 pr-2">
+                                    {{-- <div class="row"> --}}
+                                        <div class="form-check">
                                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                             <label class="form-check-label" for="exampleRadios1">
                                                 KTA (Kondisi Tidak Aman)
@@ -219,13 +220,13 @@
                                                 TTA (Tindakan Tidak Aman)
                                             </label>
                                         </div>
-                                    </div>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -261,8 +262,8 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -303,8 +304,8 @@
                             </div>
                             <hr>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                <button class="btn btn-secondary " type="reset">Reset</button>
+                                <button class="btn btn-primary mr-1" onclick="">Submit</button>
+                                <button class="btn btn-secondary " onclick="">Reset</button>
                             </div>
                         </section>
                     {{-- </form> --}}
@@ -318,6 +319,7 @@
 @push('js')
 <script>
     $(function(){
+
         $('.next-button').on('click', function (e) {
             var section = $(this).closest("section");
             var $next = section.next();
@@ -327,6 +329,17 @@
                 $next.removeClass('hide');
             }
         });
+
+        $('.back-button').on('click', function (e) {
+            var section = $(this).closest("section");
+            var $previous = section.prev();
+            console.log($previous)
+            if($previous.length>0) {  // check condition first and then hide current section and show previous
+                section.addClass('hide');
+                $previous.removeClass('hide');
+            }
+        });
+        
     });
 </script>
 @endpush

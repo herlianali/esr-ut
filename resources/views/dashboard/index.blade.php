@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row d-flex justify-content-center">
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6 mx-auto">
             <div class="card">
                 <div class="card body text-center pt-2">
                     <a href="{{ route('dash.show', 1) }}">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
             <div class="card">
                 <div class="card body text-center pt-2">
                     <a href="{{ route('dash.show', 2) }}">
@@ -28,9 +28,19 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+            <div class="card">
+                <div class="card body text-center pt-2">
+                    <a href="{{ route('dash.show', 1) }}">
+                        <img src="{{ asset('img/dash_menu_7.png') }}" class="img-fluid"  alt="">
+                        <h2>Health Corner</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {{-- </div>
+    <div class="row d-flex justify-content-center"> --}}
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
             <div class="card">
                 <div class="card body text-center pt-2">
                     <a href="{{ route('reportDash') }}">
@@ -40,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
             <div class="card">
                 <div class="card body text-center pt-2">
                     <a href="{{ route('dash.show', 4) }}">
@@ -50,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-6">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
             <div class="card">
                 <div class="card body text-center pt-2">
                     <a href="{{ route('dash.show', 5) }}">
@@ -60,6 +70,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 @endsection
     

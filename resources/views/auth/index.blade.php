@@ -41,8 +41,21 @@
               <div class="card-header"><h4>Login</h4></div>
 
               <div class="card-body">
-                {{-- <form method="POST" action="{{ route() }}" class="needs-validation" novalidate=""> --}}
-                <form method="GET" action="{{ route('dashboard') }}" class="needs-validation" novalidate="">
+                <form method="POST" action="{{ route('login_proses') }}" class="needs-validation" novalidate="">
+                {{-- <form method="GET" action="{{ route('dashboard') }}" class="needs-validation" novalidate=""> --}}
+                  @csrf
+                  @if ($errors->any())
+                      <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                          <ul class="mb-0 pl-0">
+                              @foreach ($errors->all() as $error)
+                                  <li style="list-style: none;">{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                      </div>
+                  @endif
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
