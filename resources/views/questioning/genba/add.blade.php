@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
     <style>
         .hide {
             display: none;
@@ -221,8 +220,6 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script>
     <script>
         $(function(){

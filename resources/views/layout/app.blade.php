@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="{{ asset('stisla/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('stisla/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('stisla/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/select2/dist/css/select2.min.css') }}">
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
@@ -293,33 +295,33 @@
                 <li {{ \Route::is('jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('jsa.add') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
+                <li {{ \Route::is('p5m.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('p5m.add') }}"><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
+                <li {{ \Route::is('inspeksi_sarana.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('inspeksi_sarana.add') }}"><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
+                <li {{ \Route::is('audit_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('audit_apd.add') }}"><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
+                <li {{ \Route::is('inspeksi_tools.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('inspeksi_tools.add') }}"><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
+                <li {{ \Route::is('housekeeping.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('housekeeping.add') }}"><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
-                <li ><a class="nav-link" href=""><i class="fas fa-users"></i> <span>SCML</span></a></li>
+                <li {{ \Route::is('scml.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('scml.add') }}"><i class="fas fa-users"></i> <span>SCML</span></a></li>
               @endif
             @endif
             @if( $menu === '2') 
-            <li class="dropdown ">
+            <li class="dropdown {{ \Route::is('esr_corner.*') ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-md"></i><span>SAPA ESR</span></a>
               <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="">Monitoring COF</a></li>
-                <li ><a class="nav-link" href="">Monitoring Lapangan</a></li>
-                <li ><a class="nav-link" href="">Monitoring PERMIT</a></li>
-                <li ><a class="nav-link" href="" style="margin-top: 18px; margin-bottom: 18px">Rekap Link & Email Support</a></li>
-                <li ><a class="nav-link" href="">Monitoring Program SDA</a></li>
+                <li {{ \Route::is('esr_corner.monitoring_cof.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_cof.index') }}">Monitoring COF</a></li>
+                <li {{ \Route::is('esr_corner.monitoring_laporan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_laporan.index') }}">Monitoring Lapangan</a></li>
+                <li {{ \Route::is('esr_corner.monitoring_permit.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_permit.index') }}">Monitoring PERMIT</a></li>
+                <li {{ \Route::is('esr_corner.rekap_link.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.rekap_link.index') }}" style="margin-top: 18px; margin-bottom: 18px">Rekap Link & Email Support</a></li>
+                <li {{ \Route::is('esr_corner.monitoring_program.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_program.index') }}">Monitoring Program SDA</a></li>
               </ul>
             </li>
             <li class="dropdown ">
@@ -402,21 +404,24 @@
   <script src="{{ asset('stisla/assets/modules/chart.min.js')}}"></script>
   <script src="{{ asset('stisla/assets/modules/owlcarousel2/dist/owl.carousel.min.js')}}"></script>
   <script src="{{ asset('stisla/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
+  <script src="{{ asset('stisla/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
+  <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+  <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
   
   <!-- Page Specific JS File -->
   <script src="{{ asset('stisla/assets/js/page/index.js') }}"></script>
   <script src="{{ asset('stisla/assets/js/page/bootstrap-modal.js') }}"></script>
   <script>
     // let init_form_element = () => {
-    //     $(".select2").select2();
-    //     $('.datepicker').datepicker({
-    //         format: 'dd-mm-yyyy',
-    //         autoclose: true
-    //     });
-    //     $(".summernote").summernote({
-    //         height: 300,
-    //     });
-    //     $('.dropify').dropify();
+        // $(".select2").select2();
+        // $('.datepicker').datepicker({
+        //     format: 'dd-mm-yyyy',
+        //     autoclose: true
+        // });
+        // $(".summernote").summernote({
+        //     height: 300,
+        // });
+        // $('.dropify').dropify();
     // }
     let getFormData = ($form) => {
         let unindexed_array = $form.serializeArray();

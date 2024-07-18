@@ -86,19 +86,21 @@
                         </section>
                         <section class="hide">    
                             <div class="row">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Non Pengawas / All Karyawan</label>
                                     <input type="text" class="form-control">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Nama Lengkap</label>
                                     <input type="text" class="form-control">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">NRP</label>
                                     <input type="text" class="form-control">
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Perusahaan</label>
                                     <select class="form-control select2">
                                         <option value="1">BP</option>
@@ -114,7 +116,9 @@
                                         <option value="11">OTHER</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Dept / Sektor</label>
                                     <select class="form-control select2">
                                         <option value="1">ADM</option>
@@ -161,10 +165,6 @@
                                     <input type="text" class="form-control">
                                     <small class="form-text text-muted">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
                                 </div>
-                                {{-- <div class="form-group col-md-6 col-sm-12">
-                                    <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
-                                    <input type="text" class="form-control">
-                                </div> --}}
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Dept / Sektor Ditemukannya Bahaya</label>
                                     <select class="form-control select2">
@@ -252,7 +252,7 @@
                                     <small class="form-text text-muted">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
-                                    <label class="section-title">KTA Lanjut 2</label>
+                                    <label class="section-title pb-4">KTA Lanjut 2</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
@@ -319,15 +319,16 @@
 @push('js')
 <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
 <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script>
+{{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
 <script>
     $(function(){
+        // init_form_element()
 
         $('.next-button').on('click', function (e) {
             var section = $(this).closest("section");
             var $next = section.next();
             console.log($next)
-            if($next.length>0) {  // check condition first and then hide current section and show next
+            if($next.length > 0) {  // check condition first and then hide current section and show next
                 section.addClass('hide');
                 $next.removeClass('hide');
             }
@@ -337,7 +338,7 @@
             var section = $(this).closest("section");
             var $previous = section.prev();
             console.log($previous)
-            if($previous.length>0) {  // check condition first and then hide current section and show previous
+            if($previous.length > 0) {  // check condition first and then hide current section and show previous
                 section.addClass('hide');
                 $previous.removeClass('hide');
             }

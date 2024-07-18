@@ -26,3 +26,8 @@ body {
     white-space: nowrap;
     width: 5%;
 }
+
+/* Select2 */
+.select2-container {
+    width: 100%!important;
+}

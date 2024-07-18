@@ -4,7 +4,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Email</th>
+                <th>Email / Username</th>
                 <th>User Level</th>
                 <th>Foto</th>
                 <th>Action</th>

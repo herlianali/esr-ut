@@ -57,4 +57,5 @@ class UserServices extends Services
         foreach ($this->searchUser([]) as $value) $result[$value->id] = $value->nama;
         return $result;
     }
+
 }

@@ -1,8 +1,11 @@
 @extends('layout.app')
 
 @push('css')
-    @php($menu = '4')
 @endpush
+
+@section('menu')
+  @php($menu = '4')
+@endsection
 
 @section('content')
 <div class="section-header">
@@ -15,11 +18,12 @@
 <div class="card">
     <div class="card-header">
         <h4>Data User</h4>
-        <a href="#" onclick="add_data()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
+        <a id="add_data" onclick="add_data()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
 
     </div>
     <div class="card-body">
-        <div class="card">
+        <div class="card" id="user_info"></div>
+        <div class="card" id="user_data">
             <div class="card-header">
                 <h4>List Users</h4>
                 <div class="card-header-form" id="users_search">
@@ -75,7 +79,6 @@
     // init_form_element();
     $user_data = $('#user_data');
 
-
     let selected_page = 1;
     $search_form = $('#search_form');
     $user_table = $('#user_table');
@@ -100,6 +103,20 @@
       search_user();
     })
     
+    $user_info = $('#user_info');
+    $user_info.hide();
+    add_data = () => {
+      let data = { token: '{{ csrf_token() }}'};
+      $.get("{{ route('employee.user.create') }}", data, (result) => {
+        $('#add_data').hide();
+        $user_data.hide();
+        $user_info.html(result);
+        $user_info.show();
+      }).fail((xhr) => {
+        $user_info.html(xhr.responseText);
+        $user_info.show();
+      });
+    }
 
   </script>
 @endpush
