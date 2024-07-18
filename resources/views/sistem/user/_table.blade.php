@@ -24,7 +24,7 @@
                     <td>
                         <div class="row">
                             <a href="{{ route('employee.user.show', $item->id) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
-                            <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
+                            <button id="edit" onclick="edit_user({{ $item->id}})" class="btn btn-sm m-1 btn-success">Edit</button>
                             <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
                         </div>
                     </td>

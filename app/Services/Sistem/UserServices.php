@@ -5,11 +5,12 @@ namespace App\Services\Sistem;
 use App\Models\User;
 use App\Services\Services;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserServices extends Services 
 {
     protected $user;
-    public function __constract(User $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -21,25 +22,39 @@ class UserServices extends Services
 
     public function searchUser($params)
     {
-        $user = new User;
+        $user = $this->user;
         
-        $nama = $params['nama'] ?? '';
-        if ($nama !== '') $user = $user->where('nama', 'like', "%$nama%");
-
-        $email = $params['email'] ?? '';
-        if ($email !== '') $user = $user->where('email', 'like', "%$email%");
-
+        if (isset($params['nama']) && $params['nama'] !== '') {
+            $user = $user->where('nama', 'like', "%{$params['nama']}%");
+        }
+    
+        if (isset($params['email']) && $params['email'] !== '') {
+            $user = $user->where('email', 'like', "%{$params['email']}%");
+        }
+        
         return $this->searchResponse($params, $user);
     }
 
-    public function saveUser(Request $request)
+    public function createUser($params)
     {
-        $id = $request->input('id') ?? '';
-        if ($id == '') {
-            $user = $this->user->create($request->all());
-        } else {
-            $user = $this->user->find($id);
-            $user->update($request->all());
+        $params = $this->cleanDate($params, ['tanggal_lahir']);
+        $params = $this->strToInt($params, ['user_level_id']);
+        if (!empty($params['password'])) $params['password'] = Hash::make($params['password']);
+        $user = $this->user->create($params);
+        // if (!empty($params['role'])) $this->assignUserRole($params['role'], $user);
+        return $user;
+    }
+
+    public function updateUser($params, $id)
+    {
+        $params = $this->cleanDate($params, ['tanggal_lahir']);
+        if (($params['password'] ?? '') === '') unset($params['password']);
+        else $params['password'] = Hash::make($params['password']);
+
+        $user = $this->user->find($params);
+        if ($user) {
+            $user->update($params);
+        //     if (!empty($params['role'])) $this->assignUserRole($params['role'], $user);
         }
         return $user;
     }

@@ -88,6 +88,7 @@
       else selected_page = page;
       
       let data = getFormData($search_form);
+      console.log(data);
       data.paginate = 10;
       $.post("{{ route('employee.user.search') }}?page=" + selected_page, data, (result) => {
         $user_table.html(result);
@@ -110,6 +111,17 @@
       $.get("{{ route('employee.user.create') }}", data, (result) => {
         $('#add_data').hide();
         $user_data.hide();
+        $user_info.html(result);
+        $user_info.show();
+      }).fail((xhr) => {
+        $user_info.html(xhr.responseText);
+        $user_info.show();
+      });
+    }
+
+    edit_user = (id) => {
+      let data = {_token: '{{ csrf_token() }}', id};
+      $.post("{{ route('employee.user.edit) }}", data, (result) => {
         $user_info.html(result);
         $user_info.show();
       }).fail((xhr) => {

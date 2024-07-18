@@ -16,6 +16,7 @@ class Services
 
     public function searchResponse($params, $model)
     {
+        // dd($params);
         $with = $params['with'] ?? '';
         if ($with !== '') $model = $model->with($with);
         $limit = $params['limit'] ?? '';
@@ -38,6 +39,14 @@ class Services
     {
         foreach ($columns as $column) {
             if (!empty($params[$column])) $params[$column] = unformat_number($params[$column]);
+        }
+        return $params;
+    }
+
+    public function strToInt($params, $columns = [])
+    {
+        foreach ($columns as $column) {
+            if (!empty($params[$column])) $params[$column] = (int)$params[$column]; 
         }
         return $params;
     }
