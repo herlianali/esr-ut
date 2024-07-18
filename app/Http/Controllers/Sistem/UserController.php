@@ -15,11 +15,11 @@ class UserController extends Controller
     public function __construct(UserServices $user, UserLevelServices $userLevel)
     {
         // $this->middleware('auth', 'fitur_program');
-        // view()->share([
+        view()->share([
             // 'user_level' => $userLevel->listUserLevel()
-            // 'user_level' => $userLevel->searchUserLevel(new Request())
-            //     ->pluck('nama', 'id')->toArray()
-        // ]);
+            'user_level' => $userLevel->searchUserLevel(new Request())
+                ->pluck('nama', 'id')->toArray()
+        ]);
         $this->user = $user;
         $this->userLevel = $userLevel;
     }
@@ -41,8 +41,8 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $levelUser = UserLevel::all();
-        dd($levelUser);
+        // $levelUser = $this->userLevel->searchUserLevel($request->all())->pluck('nama', 'id')->toArray();
+        // dd($levelUser);
         $users = $this->user->searchUser($request->all());
         if ($request->has('ajax')) return $users;
         return view('sistem.user._table', compact('users'));

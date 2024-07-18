@@ -8,44 +8,44 @@ use Illuminate\Http\Request;
 
 class UserLevelServices extends Services 
 {
-    protected $user;
-    public function __constract(UserLevel $user)
+    protected $userLevel;
+    public function __constract(UserLevel $userLevel)
     {
-        $this->user = $user;
+        $this->userLevel = $userLevel;
     }
 
     public function getOne($value, $column = 'id')
     {
-        return $this->user->where($column, $value)->first();
+        return $this->userLevel->where($column, $value)->first();
     }
 
     public function searchUserLevel($params)
     {
-        $user = $this->user;
+        $userLevel = new UserLevel;
 
         $nama = $params['nama'] ?? '';
-        if ($nama !== '') $user = $user->where('nama', $nama);
+        if ($nama !== '') $userLevel = $userLevel->where('nama', $nama);
 
-        return $this->searchUserLevel($params, $user);
+        return $this->searchResponse($params, $userLevel);
     }
 
     public function saveUserLevel(Request $request)
     {
         $id = $request->input('id') ?? '';
         if ($id == '') {
-            $user = $this->user->create($request->all());
+            $userLevel = $this->userLevel->create($request->all());
         } else {
-            $user = $this->user->find($id);
-            $user->update($request->all());
+            $userLevel = $this->userLevel->find($id);
+            $userLevel->update($request->all());
         }
-        return $user;
+        return $userLevel;
     }
 
     public function deleteUserLevel($id)
     {
-        $user = $this->user->find($id);
-        if ($user) $user->delete();
-        return $user;
+        $userLevel = $this->userLevel->find($id);
+        if ($userLevel) $userLevel->delete();
+        return $userLevel;
     }
 
     public function listUserLevel()
