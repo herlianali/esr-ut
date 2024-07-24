@@ -177,7 +177,7 @@
                             <input type="text" class="form-control" required>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label for="" class="section-title">Foto Temuan KONDISI Tidak Aman<span class="text-danger">*</span></label>
+                            <label for="" class="section-title pb-md-4">Foto Temuan KONDISI Tidak Aman<span class="text-danger">*</span></label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile" required>
                                 <label class="custom-file-label" for="customFile">Choose file</label>
@@ -196,11 +196,11 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Keikutsertaan Genba Management</label>
+                            <label class="section-title pb-md-4">Keikutsertaan Genba Management</label>
                             <input type="text" class="form-control" required>
                         </div>
-                        <div class="form-group col-md-6 col-sm-12 col-12">
-                            <label class="section-title">Penyelenggara Genba<span class="text-danger">*</span></label>
+                        <div class="form-group col-md-4 col-sm-12 col-12">
+                            <label class="section-title pb-md-4">Penyelenggara Genba<span class="text-danger">*</span></label>
                             <select class="form-control select2">
                                 <option value="1">Genba Internal UT</option>
                                 <option value="2">Genba Intrenal Mitra Kerja</option>
@@ -208,7 +208,7 @@
                                 <option value="4">Genba Bersama Customer</option>
                           </select>
                         </div>
-                        <div class="form-group col-md-6 col-sm-12 col-12">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label for="" class="section-title">Dokumentasi Keikutsertaan Genba (additional)</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customFile">

@@ -92,7 +92,9 @@
                             <tr>
                                 <td class="pr-0 col-1">13. </td>
                                 <td class="">Foto Temuan KONDISI Tidak Aman (jika ada)</td>
-                                <td class="">: <img src="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" class="img-thumbnail" alt="" width="30%"> </td>
+                                <td class=""> :
+                                    <img data-bs-toggle="modal" data-bs-target="imageDetai" src="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" class="img-thumbnail" data-image="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" alt="" width="30%"> 
+                                </td>
                             </tr>
                             <tr>
                                 <td class="pr-0 col-1">14. </td>
@@ -121,14 +123,40 @@
         {{-- </div> --}}
         <div class="card-footer">
             <div class="row justify-content-between">
-                <div class="gallery-item" data-image="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" data-title="Image 5" href="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" title="Image 5" style="background-image: url(&quot;https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg&quot;);"></div>
                 <button class="btn btn-danger mr-1 Edit-button">Ubah</button>
                 <button class="btn btn-primary mr-1" type="submit">Selesai</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="imageDetai" tabindex="-1" aria-labelledby="imageDetaiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageDetaiLabel">Detail Gambar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="https://asset.kompas.com/crops/NU3pvp4GxO5fXT_0BPcBOhcRJTo=/0x0:0x0/750x500/data/photo/2021/02/16/602b8988235ec.jpg" class="img-thumbnail" alt=""> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+  </div>
 @endsection
 
 @push('js')
+<script>
+    var myModal = document.getElementById('#imageDetai')
+    var myInput = document.getElementById('#imageDetai')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+
+</script>
 @endpush
