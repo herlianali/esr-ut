@@ -17,6 +17,8 @@ class UserController extends Controller
         // $this->middleware('auth', 'fitur_program');
         $this->userServices = $userServices;
         view()->share([
+            'title' => 'User',
+            'active_route' => 'employee.user.index',
             'user_level' => $userLevel->searchUserLevel(new Request())
                 ->pluck('nama', 'id')->toArray()
         ]);
@@ -35,13 +37,14 @@ class UserController extends Controller
     public function show($id)
     {
         $getOne = $this->userServices->getOne($id);
-        dd($getOne);
+
     }
 
     public function edit($id)
     {
+        $create = 0;
         $user = $this->userServices->getOne($id);
-        return view('sistem.user._info', compact('user'));
+        return view('sistem.user._info', compact('user', 'create'));
     }
     
     public function store(Request $request)
@@ -57,7 +60,6 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $users = $this->userServices->searchUser($request->all());
-        if ($request->has('ajax')) return $users;
         return view('sistem.user._table', compact('users'));
     }
 

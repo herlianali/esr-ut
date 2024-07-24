@@ -6,23 +6,22 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Pegawai</h1>
+    <h1>Pengawas</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Employee</a></div>
-        <div class="breadcrumb-item">Pegawai</div>
+        <div class="breadcrumb-item">Pengawas</div>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        <h4>Data Pegawasi</h4>
+        <h4>Data Pengawas</h4>
         <a href="#" onclick="add_data()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
-
     </div>
     <div class="card-body">
-        <div class="card">
+        <div class="card" id="card_pengawas">
             <div class="card-header">
-                <h4>List Pegawai</h4>
-                <div class="card-header-form" id="pegawai_search">
+                <h4>List Pengawas</h4>
+                <div class="card-header-form" id="pengawas_search">
                     <form id="search_form">
                         @csrf
                         <div class="input-group">
@@ -34,8 +33,9 @@
                     </form>
                 </div>
             </div>
-            <div class="card-body p-0" id="pegawai_table"></div>
+            <div class="card-body p-0" id="pengawas_table"></div>
         </div>
+        <div class="card" id="pengawas_info"></div>
     </div>
 </div>
 <form class="modal-part" id="edit_form">
@@ -71,27 +71,37 @@
 @endsection
 
 @push('js')
-<script>
-    // init_form_element();
+  <script>
+      // init_form_element();
 
-    $pegawai_data = $('#pegawai_data');
-    $pegawai_search = $('#pegawai_search');
-    $pegawai_search.hide();
-    toggle_search = () => {
-        $pegawai_search.toggle();
-    }
+      let $seach_form = $('search_form'),
+          $pengawas_table = $('pengawas_table'),
+          $pengawas_info = $('pengawas_info'),
+          $card_pengawas = $('card_pengawas'),
+          _token = '{{ csrf_token() }}';
+      
+      let init_pengawas = () => {
+          $pengawas_info.html('');
+          $card_pengawas.show();
+          search_pengawas();
+      }
 
-    $search_form = $('#search_form');
-    $pegawai_table = $('#pegawai_table');
-    search_pegawai = (page = 1) => {
-        let data = getFormData($search_form)
-        $.post("{{ route('employee.karyawan.search') }}", data, (result) => {
-            $pegawai_table.html(result);
-        }).fail((xhr) => {
-            $pegawai_table.html(xhr.responseText);
-        })
-    }
+      $seach_form.submit((e) => {
+          e.preventDefault();
+          search_pengawas();
+      });
 
-    search_pegawai();
-</script>
+      search_pengawas = () => {
+          $pengawas_table.html('Loading ...');
+          let data = getFormData($seach_form);
+          $.post("{{ route('employee.karyawan.search') }}", data, (result) => {
+              $pengawas_table.html(result);
+          }).fail((xhr) => {
+              $pengawas_table.html(xhr.responseText);
+          });
+      }
+
+      search_pengawas();
+
+  </script>
 @endpush

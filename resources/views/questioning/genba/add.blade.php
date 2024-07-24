@@ -33,29 +33,29 @@
                 <section>
                     <div class="row normalTopPadding">
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Tanggal Pelaksanaan Genba</label>
-                            <input type="text" class="form-control datetimepicker">
+                            <label class="section-title">Tanggal Pelaksanaan Genba <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control datetimepicker" name="tanggal" required>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Area Genba</label>
-                            <select class="form-control select2">
-                                <option value="1">office</option>
-                                <option value="2">workshop</option>
-                                <option value="3">field</option>
-                                <option value="4">warehouse</option>
-                                <option value="5">catering</option>
-                                <option value="6">mess</option>
+                            <label class="section-title">Area Genba <span class="text-danger">*</span></label>
+                            <select class="form-control select2" name="area" required>
+                                <option value="office">office</option>
+                                <option value="workshop">workshop</option>
+                                <option value="field">field</option>
+                                <option value="warehouse">warehouse</option>
+                                <option value="catering">catering</option>
+                                <option value="mess">mess</option>
                         </select>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Lokasi Pelaksanaan</label>
-                            <input type="text" class="form-control">
+                            <label class="section-title">Lokasi Pelaksanaan <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="lokasi" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Nama Pengawas</label>
-                            <select class="form-control select2">
+                            <label class="section-title">Nama Pengawas<span class="text-danger">*</span></label>
+                            <select class="form-control select2" name="pengawas" required>
                                 <option value="1">HERI PRIYO MAHARGYO</option>
                                 <option value="2">RONIE PERMANA</option>
                                 <option value="3">AGUS HARIYADI</option>
@@ -82,23 +82,27 @@
                     <hr>
                     <div class="text-right">
                         {{-- <button class="btn btn-primary mr-1 next-button" >next</button> --}}
-                        <button class="btn btn-primary mr-1 next-button" >next</button>
+                        <button class="btn btn-primary mr-1 next-button" >Selanjutnya</button>
                     </div>
                 </section>
                 <section class="hide">
                     {{-- <div class="row normalTopPadding"> --}}
                         <div class="row">
-                            <h5>Laporan Genba TINDAKAN Tidak Aman (TTA)</h5>
-                            <h5>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</h5>
+                            <div class="text-center col-sm-12 col-xs-12">
+                                <h3>Laporan Genba TINDAKAN Tidak Aman (TTA)</h3>
+                            </div>
+                            <div class="text-center col-sm-12 col-xs-12">
+                                <span>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</span>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4 col-sm-12 col-12">
-                                <label class="section-title">Deskripsi Temuan /Deviasi TINDAKAN Tidak Aman</label>
-                                <input type="text" class="form-control">
+                                <label class="section-title">Deskripsi Temuan / Deviasi TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-12">
-                                <label class="section-title">Kategori Temuan /Deviasi TINDAKAN Tidak Aman</label>
-                                <select class="form-control select2">
+                                <label class="section-title">Kategori Temuan / Deviasi TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
+                                <select class="form-control select2" required>
                                     <option value="1">Prosedur</option>
                                     <option value="2">APD / Alat Kesehatan</option>
                                     <option value="3">Alat & Peralatan Kerja</option>
@@ -109,8 +113,8 @@
                             </select>
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-12">
-                                <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas TINDAKAN Tidak Aman</label>
-                                <input type="text" class="form-control">
+                                <label class="section-title">Usulan Tindakan / Rekomendasi Perbaikan atas TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
                             </div>
                         </div>
                     {{-- </div> --}}
@@ -124,8 +128,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Apa follow up yang sudah anda lakukan atas TINDAKAN Tidak Aman ?</label>
-                            <select class="form-control select2">
+                            <label class="section-title">Apa follow up yang sudah anda lakukan atas TINDAKAN Tidak Aman ?<span class="text-danger">*</span></label>
+                            <select class="form-control select2" required>
                                 <option value="1">Personal Contact</option>
                                 <option value="2">Sanksi Surat Peringatan</option>
                                 <option value="3">Sanksi Pelubangan sesuai SPDK</option>
@@ -135,50 +139,52 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="text-right">
-                        <button class="btn btn-danger mr-1 back-button" >Back</button>
-                        <button class="btn btn-primary mr-1 next-button" >next</button>
+                    <div class="row justify-content-between">
+                        <button class="btn btn-danger mr-1 back-button" >Kembali</button>
+                        <button class="btn btn-primary mr-1 next-button" >Selanjutnya</button>
                     </div>
                 </section>
                 <section class="hide">
                     <div class="row normalTopPadding">
-                        <div class="row col-md-12 pl-4 col-sm-12 col-12">
-                            <h5>Laporan Genba KONDISI Tidak Aman (KTA)</h5>
-                            <h5>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</h5>
+                        <div class="text-center col-sm-12 col-xs-12">
+                            <h3>Laporan Genba KONDISI Tidak Aman (KTA)</h3>
                         </div>
-                        <div class="row col-md-12">
-                            <div class="form-group col-md-6 col-sm-12 col-12">
-                                <label class="section-title">Deskripsi Temuan /Deviasi KONDISI Tidak Aman</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-6 col-sm-12 col-12">
-                                <label class="section-title">Kategori Temuan /Deviasi KONDISI Tidak Aman</label>
-                                <select class="form-control select2">
-                                    <option value="1">Prosedur</option>
-                                    <option value="2">APD / Alat Kesehatan</option>
-                                    <option value="3">Alat & Peralatan Kerja</option>
-                                    <option value="4">Fasilitas</option>
-                                    <option value="5">House Keeping</option>
-                                    <option value="6">Lingkungan</option>
-                                    <option value="7">Kesehatan</option>
-                              </select>
-                            </div>
+                        <div class="text-center col-sm-12 col-xs-12">
+                            <span>Setiap laporan harus dapat mengidentifikasi deviasi baik KTA maupun TTA</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
+                            <label class="section-title">Deskripsi Temuan /Deviasi KONDISI Tidak Aman<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12 col-12">
+                            <label class="section-title">Kategori Temuan /Deviasi KONDISI Tidak Aman<span class="text-danger">*</span></label>
+                            <select class="form-control select2" required>
+                                <option value="1">Prosedur</option>
+                                <option value="2">APD / Alat Kesehatan</option>
+                                <option value="3">Alat & Peralatan Kerja</option>
+                                <option value="4">Fasilitas</option>
+                                <option value="5">House Keeping</option>
+                                <option value="6">Lingkungan</option>
+                                <option value="7">Kesehatan</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas KONDISI Tidak Aman</label>
-                            <input type="text" class="form-control">
+                            <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas KONDISI Tidak Aman<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" required>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label for="" class="section-title">Foto Temuan KONDISI Tidak Aman</label>
+                            <label for="" class="section-title">Foto Temuan KONDISI Tidak Aman<span class="text-danger">*</span></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
+                                <input type="file" class="custom-file-input" id="customFile" required>
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Apa follow up yang sudah anda lakukan KONDISI Tidak Aman ?</label>
+                            <label class="section-title">Apa follow up yang sudah anda lakukan KONDISI Tidak Aman ?<span class="text-danger">*</span></label>
                             <select class="form-control select2">
                                 <option value="1">Personal Contact</option>
                                 <option value="2">Sanksi Surat Peringatan</option>
@@ -189,8 +195,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6 col-sm-12 col-12">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Keikutsertaan Genba Management</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-12 col-12">
+                            <label class="section-title">Penyelenggara Genba<span class="text-danger">*</span></label>
                             <select class="form-control select2">
                                 <option value="1">Genba Internal UT</option>
                                 <option value="2">Genba Intrenal Mitra Kerja</option>
@@ -206,10 +216,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-danger mr-1 back-button">Back</button>
-                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
+                    <div class="card-footer">
+                        <div class="row justify-content-between">
+                            <button class="btn btn-danger back-button">Kembali</button>
+                            <button class="btn btn-success" type="submit" onclick="add_data()">Simpan</button>
+                            {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
+                        </div>
                     </div>
                 </section>
                 
@@ -242,5 +254,14 @@
                 }
             });
         });
+        let add_data = () => {
+            let url = "{{ route('genba.show') }}";
+
+            // $.get(url, (result) => {
+                window.location.href = url;
+            // }).fail((xhr) => {
+                
+            // });
+        }
     </script>
 @endpush

@@ -18,12 +18,13 @@
 <div class="card">
     <div class="card-header">
         <h4>Data User</h4>
-        <a id="add_data" onclick="add_data()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
+        <a id="add_data" onclick="info_user()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
+        <a id="discard_data" onclick="discard_info_user()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-arrow-alt-circle-left"style='font-size:30px; padding-top:5px'></i></a>
 
     </div>
     <div class="card-body">
         <div class="card" id="user_info"></div>
-        <div class="card" id="user_data">
+        <div class="card" id="card_user">
             <div class="card-header">
                 <h4>List Users</h4>
                 <div class="card-header-form" id="users_search">
@@ -75,60 +76,90 @@
 @endsection
 
 @push('js')
-  <script>
-    // init_form_element();
-    $user_data = $('#user_data');
+    <script>
+        // init_form_element();
 
-    let selected_page = 1;
-    $search_form = $('#search_form');
-    $user_table = $('#user_table');
-    search_user = (page = 1) => {
-      if (page.toString() === '+1') selected_page++;
-      else if (page.toString() === '-1') selected_page--;
-      else selected_page = page;
-      
-      let data = getFormData($search_form);
-      console.log(data);
-      data.paginate = 10;
-      $.post("{{ route('employee.user.search') }}?page=" + selected_page, data, (result) => {
-        $user_table.html(result);
-      }).fail((xhr) => {
-        $user_table.html(xhr.responseText);
-      });
-    }
+        let $search_form = $('#search_form'),
+            $user_table = $('#user_table'),
+            $user_info = $('#user_info'),
+            $card_user = $('#card_user'),
+            $discard_data = $('#discard_data'),
+            _token = '{{ csrf_token() }}';
+        
+        $discard_data.hide();
+        
+        let init_user = () => {
+            $user_info.html('');
+            $card_user.show();
+            $discard_data.hide();
+            search_user();
+        }
 
-    search_user();
+        let info_user = (id = '') => {
+            let url = "{{ route($active_route) }}";
+            url += (id === '' ? '/create' : ('/' + id + '/edit'));
 
-    $search_form.submit((e) => {
-      e.preventDefault();
-      search_user();
-    })
-    
-    $user_info = $('#user_info');
-    $user_info.hide();
-    add_data = () => {
-      let data = { token: '{{ csrf_token() }}'};
-      $.get("{{ route('employee.user.create') }}", data, (result) => {
-        $('#add_data').hide();
-        $user_data.hide();
-        $user_info.html(result);
-        $user_info.show();
-      }).fail((xhr) => {
-        $user_info.html(xhr.responseText);
-        $user_info.show();
-      });
-    }
+            $.get(url, (result) => {
+                $user_info.html(result);
+                $card_user.hide();
+                $discard_data.show();
+                $('#add_data').hide();
+            }).fail((xhr) => {
+                $user_table.html(xhr.responseText);
+            });
+        }
 
-    edit_user = (id) => {
-      let data = {_token: '{{ csrf_token() }}', id};
-      $.post("{{ route('employee.user.edit) }}", data, (result) => {
-        $user_info.html(result);
-        $user_info.show();
-      }).fail((xhr) => {
-        $user_info.html(xhr.responseText);
-        $user_info.show();
-      });
-    }
+        let discard_info_user = () => {
+            $user_info.html('');
+            $discard_data.hide();
+            $('#add_data').show();
+            $card_user.show();
+        }
 
-  </script>
+        let init_form_user = (id = '') =>{
+            let $form_user = $('#form_user'),
+                $button_submit_user = $('#button_submit_user');
+                $form_user.submit((e) => {
+                    e.preventDefault();
+
+                    let data = getFormData($form_user);
+                    let url = '{{ route($active_route) }}';
+                    if (id !== '') {
+                        url += ('/' + id);
+                        data._method = 'put';
+                    }
+                    $.post(url, data, () => {
+                        init_user();
+                    }).fail((xhr) => {
+                        error_handle(xhr.responseText);
+                        console.log(xhr.responseText);
+                    })
+                })
+        }
+
+        $search_form.submit((e) => {
+            e.preventDefault();
+            search_user();
+        });
+
+        let select_page = 1;
+        $search_form = $('#search_form')
+        search_user = (page = 1) => {
+            $user_table.html('Loading ...');
+            if (page.toString() === '+1') select_page++;
+            else if (page.toString() === '-1') select_page--;
+            else select_page = page;
+
+            let data = getFormData($search_form);
+            data.paginate = 10;
+            $.post("{{ route('employee.user.search') }}?page=" + select_page, data, (result) => {
+                $user_table.html(result);
+            }).fail((xhr) => {
+                $user_table.html(xhr.responseText);
+            });
+        }
+        
+        search_user();
+
+    </script>
 @endpush

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-striped table-fit">
+    <table class="table table-striped table-md">
         <thead>
             <tr>
                 <th>No</th>
@@ -11,7 +11,14 @@
             </tr>
         </thead>
         <tbody>
-            @php($no = 1)
+            @if (method_exists($users, 'links'))
+                @php
+                    $users = $users ?? null;
+                    $no = (($users->currentPage()-1) * $users->perPage()) + 1
+                @endphp
+            @else
+                @php($no = 1)
+            @endif
             @foreach ($users as $item)
                 <tr>
                     <td>{{ $no++ }}</td>
@@ -24,7 +31,7 @@
                     <td>
                         <div class="row">
                             <a href="{{ route('employee.user.show', $item->id) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
-                            <button id="edit" onclick="edit_user({{ $item->id}})" class="btn btn-sm m-1 btn-success">Edit</button>
+                            <button id="edit" onclick="info_user({{ $item->id}})" class="btn btn-sm m-1 btn-success">Edit</button>
                             <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
                         </div>
                     </td>
@@ -33,3 +40,6 @@
         </tbody>
     </table>
 </div>
+@if(method_exists($users, 'links'))
+    {{ $users->links('vendor.pagination.custom', ['function' => 'search_user']) }}
+@endif

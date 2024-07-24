@@ -19,9 +19,11 @@ Route::name('inventaris')->prefix('inventaris')->group(__DIR__.'/inventaris.php'
 Route::name('surat')->prefix('surat')->group(__DIR__.'/surat.php');
 Route::name('employee')->prefix('employee')->group(__DIR__.'/employee.php');
 Route::name('esr_corner')->prefix('esr_corner')->group(__DIR__.'/esr_corner.php');
+Route::name('mobile')->prefix('mobile')->group(__DIR__.'/mobile.php');
 
 Route::get('genba', function () { return view('questioning.genba.index'); });
 Route::get('genba/add', function () { return view('questioning.genba.add'); })->name('genba.add');
+Route::get('genba/show', function () { return view('questioning.genba.detail'); })->name('genba.show');
 
 Route::get('bbsq_service', function () { return view('questioning.bbsq_service.index'); });
 Route::get('bbsq_service/add', function () { return view('questioning.bbsq_service.add'); })->name('bbsq_service.add');

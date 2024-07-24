@@ -22,12 +22,6 @@
     </div>
 </div>
 <div class="card">
-    {{-- <div class="card-header">
-        <a href="{{ url()->previous() }}" class="btn btn-icon">
-            <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
-        </a>
-        <h4>Permohonan Surat</h4>
-    </div> --}}
     <div class="card-body">
         <div class="card">
             <div class="card-header">
@@ -36,7 +30,7 @@
             <div class="card-body p-0">
                 <div class="container-fluid">
                     {{-- <form action="" method=""> --}}
-                        <section>
+                        <section id="setion_awal">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tanggal Laporan</label>
@@ -146,8 +140,10 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                <div class="row justify-content-between">
+                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                </div>
                             </div>
                         </section>
                         <section class="hide">
@@ -225,8 +221,10 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                <div class="row justify-content-between">
+                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                </div>
                             </div>
                         </section>
                         <section class="hide">
@@ -262,8 +260,10 @@
                             </div>
                             <hr>
                             <div class="text-right">
-                                <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                <div class="row justify-content-between">
+                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                </div>
                             </div>
                         </section>
                         <section class="hide">
@@ -303,9 +303,11 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="card-footer text-right">
-                                <button class="btn btn-primary mr-1" onclick="">Submit</button>
-                                <button class="btn btn-secondary " onclick="">Reset</button>
+                            <div class="card-footer">
+                                <div class="row justify-content-between">
+                                    <button class="btn btn-danger " onclick="">Kembali</button>
+                                    <button class="btn btn-success mr-1" onclick="add_data()">Simpan</button>
+                                </div>
                             </div>
                         </section>
                     {{-- </form> --}}
@@ -317,33 +319,45 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-<script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-{{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
-<script>
-    $(function(){
-        // init_form_element()
+    <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    {{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
+    <script>
+        $(function(){
+            // init_form_element()
 
-        $('.next-button').on('click', function (e) {
-            var section = $(this).closest("section");
-            var $next = section.next();
-            console.log($next)
-            if($next.length > 0) {  // check condition first and then hide current section and show next
-                section.addClass('hide');
-                $next.removeClass('hide');
-            }
+            $('.next-button').on('click', function (e) {
+                var section = $(this).closest("section");
+                var $next = section.next();
+                if($next.length > 0) {
+                    section.addClass('hide');
+                    $next.removeClass('hide');
+                }
+            });
+
+            $('.back-button').on('click', function (e) {
+                var section = $(this).closest("section");
+                var $previous = section.prev();
+                if($previous.length > 0) {
+                    section.addClass('hide');
+                    $previous.removeClass('hide');
+                }
+            });
+
+            $('.batal-button').on('click', function (e) {
+                ;
+            });
+
         });
 
-        $('.back-button').on('click', function (e) {
-            var section = $(this).closest("section");
-            var $previous = section.prev();
-            console.log($previous)
-            if($previous.length > 0) {  // check condition first and then hide current section and show previous
-                section.addClass('hide');
-                $previous.removeClass('hide');
-            }
-        });
-        
-    });
-</script>
+        let add_data = () => {
+            let url = "{{ route('green_card.show') }}";
+
+            // $.get(url, (result) => {
+                window.location.href = url;
+            // }).fail((xhr) => {
+                
+            // });
+        }
+    </script>
 @endpush
