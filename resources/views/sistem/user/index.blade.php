@@ -77,9 +77,8 @@
 @endsection
 
 @push('js')
-
     <script>
-        // init_form_element();
+        init_form_element();
 
         let $search_form = $('#search_form'),
             $user_table = $('#user_table'),

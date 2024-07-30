@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tanggal Laporan</label>
-                                    <input type="text" class="form-control datetimepicker">
+                                    <input type="date" class="form-control datepicker">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kelompok Jabatan</label>
@@ -136,8 +136,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
+                                    <small class="form-text text-muted mt-0">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
                                     <input type="text" class="form-control">
-                                    <small class="form-text text-muted">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Dept / Sektor Ditemukannya Bahaya</label>
@@ -164,8 +164,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan atau Kondisi Bahaya Yang Ditemukan</label>
+                                    <small class="form-text text-muted mt-0">Jelaskan temuan TTA dan KTA yang anda temukan.</small>
                                     <input type="text" class="form-control">
-                                    <small class="form-text text-muted">Jelaskan temuan TTA dan KTA yang anda temukan.</small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Kategori Deviasi</label>
@@ -213,6 +213,7 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah KTA (Kondisi tidak aman) yang ditemukan, ada kontribusi dari TTA (Tindakan tidak aman) ?</label>
+                                    <small class="form-text text-muted mt-0">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
@@ -225,7 +226,6 @@
                                             Tidak
                                         </label>
                                     </div>
-                                    <small class="form-text text-muted">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title pb-4">KTA Lanjut 2</label>
@@ -252,19 +252,20 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Usulan Tindakan Perbaikan Dari TTA/KTA yang ditemukan !</label>
+                                    <small class="form-text text-muted mt-0">Tuliskan usulan atau saran tindakan perbaikan yang diperlukan untuk menangani kondisi atau tindakan bahaya yang ditemukan.</small>
                                     <input type="text" class="form-control">
-                                    <small class="form-text text-muted">Tuliskan usulan atau saran tindakan perbaikan yang diperlukan untuk menangani kondisi atau tindakan bahaya yang ditemukan.</small>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="" class="section-title">Foto Temuan (additional)</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
+                                        <small class="form-text text-muted mt-0">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah usulan tindakan perbaikan atas temuan telah dilakukan perbaikan sendiri ?</label>
+                                    <small class="form-text text-muted mt-0">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
@@ -277,7 +278,6 @@
                                             Tidak, karena bukan kompetensi saya/ bukan area kerja saya (dept lain atau cusomer)
                                         </label>
                                     </div>
-                                    <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                 </div>
                             </div>
                             <hr>
@@ -297,9 +297,6 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('public/stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    {{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
     <script>
         $(function(){
             // init_form_element()

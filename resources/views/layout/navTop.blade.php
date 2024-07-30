@@ -3,7 +3,7 @@
 <head>
   <!-- PWA  -->
   <meta name="theme-color" content="#6777ef"/>
-  <link rel="apple-touch-icon" href="{{ asset('public/logo.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('public/img/logo.png') }}">
   <link rel="manifest" href="{{ asset('public/manifest.json') }}">
 
   <meta charset="UTF-8">
@@ -290,7 +290,7 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>

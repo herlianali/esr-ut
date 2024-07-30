@@ -3,7 +3,7 @@
 <head>
   <!-- PWA  -->
   <meta name="theme-color" content="#6777ef"/>
-  <link rel="apple-touch-icon" href="{{ asset('public/logo.png') }}">
+  <link rel="apple-touch-icon" href="{{ asset('public/img/logo.png') }}">
   <link rel="manifest" href="{{ asset('public/manifest.json') }}">
 
   <meta charset="UTF-8">
@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
   <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/select2/dist/css/select2.min.css') }}">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/components.css') }}">
@@ -30,13 +31,18 @@
         display: none;
     }
     .fixed-top {
-      position: fixed;
-      left: -10px;
+        position: fixed;
+        left: -10px;
+    }
+
+    .fixed-bottom {
+        position: absolute;
+        bottom: 10px;
     }
     .custom-table {
-      font-family: Arial, Helvetica, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
     }
 
     .custom-table td, .custom-table th {
@@ -54,6 +60,9 @@
       text-align: left;
       background-color: #04AA6D;
       color: white;
+    }
+    .ui-datepicker { 
+      z-index: 10000 !important; 
     }
   </style>
   @stack('css')
@@ -413,7 +422,6 @@
       <div class="main-content">
         <section class="section">
             @yield('content')
-          
         </section>
       </div>
       <footer class="main-footer">
@@ -428,7 +436,7 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('public/stisla/assets/modules/jquery.min.js')}}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{{ asset('public/stisla/assets/modules/popper.js')}}"></script>
   <script src="{{ asset('public/stisla/assets/modules/tooltip.js')}}"></script>
   <script src="{{ asset('public/stisla/assets/modules/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -444,22 +452,30 @@
   <script src="{{ asset('public/stisla/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
   <script src="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
   <script src="{{ asset('public/stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <!-- Page Specific JS File -->
   <script src="{{ asset('public/stisla/assets/js/page/index.js') }}"></script>
   <script src="{{ asset('public/stisla/assets/js/page/bootstrap-modal.js') }}"></script>
   <script>
-    // let init_form_element = () => {
-        // $(".select2").select2();
-        // $('.datepicker').datepicker({
-        //     format: 'dd-mm-yyyy',
-        //     autoclose: true
-        // });
-        // $(".summernote").summernote({
-        //     height: 300,
-        // });
-        // $('.dropify').dropify();
-    // }
+    let init_form_element = () => {
+        $('.datepicker').datepicker({
+            days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            today: "Today",
+            clear: "Clear",
+            format: 'dd-mm-yyyy',
+            titleFormat: "MM yyyy",
+            weekStart: 0,
+        });
+        $(".select2").select2();
+          // $(".summernote").summernote({
+          //     height: 300,
+          // });
+          // $('.dropify').dropify();
+    }
     let getFormData = ($form) => {
         let unindexed_array = $form.serializeArray();
         let indexed_array = {};

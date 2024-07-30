@@ -26,7 +26,7 @@
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->user_level->nama }}</td>
                     <td>
-                        <img src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" width="35" data-toggle="tooltip" alt="{{ $item->nama }}">
+                        <img src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle" width="35" data-toggle="tooltip" alt="{{ $item->nama }}">
                     </td>
                     <td>
                         <div class="row">

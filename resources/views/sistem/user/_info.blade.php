@@ -57,7 +57,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label class="section-title">Tanggal Lahir</label>
-                <input type="text" class="form-control datepicker" name="tanggal_lahir" value="{{ $user->pegawai->tanggal_lahir ?? '' }}">
+                <input type="date" class="form-control datepicker" id="datepicker" name="tanggal_lahir" value="{{ $user->pegawai->tanggal_lahir ?? '' }}">
             </div>
             <div class="form-group col-md-4">
                 <label class="section-title">Pengawas</label>
@@ -78,7 +78,7 @@
     </div>
 </form>
 
-<script>
-    init_form_user({{ $user->id ?? '' }})
 
+<script>    
+    init_form_user({{ $user->id ?? '' }})
 </script>

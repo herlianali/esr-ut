@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('green_card', function (Blueprint $table) {
             $table->id();
-            $table->datetimes('tanggal');
+            $table->date('tanggal');
             $table->string('jabatan');
             $table->string('pengawas');
             $table->string('nama_pengawas');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nrp');
             $table->string('perusahaan');
             $table->string('sektor');
-            $table->string('laporn_bahaya');
+            $table->text('laporan_bahaya');
             $table->string('lokasi_bahaya');
             $table->string('detail_lokasi');
             $table->string('sektor_bahaya');
