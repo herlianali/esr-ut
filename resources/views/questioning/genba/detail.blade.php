@@ -11,7 +11,7 @@
 <div class="section-header">
     <h1>Genba</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Questioning</a></div>
+        <div class="breadcrumb-item active"><a href="javascript:void(0)">Questioning</a></div>
         <div class="breadcrumb-item">Genba</div>
     </div>
 </div>

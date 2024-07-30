@@ -51,7 +51,7 @@ class UserServices extends Services
         if (($params['password'] ?? '') === '') unset($params['password']);
         else $params['password'] = Hash::make($params['password']);
 
-        $user = $this->user->find($params);
+        $user = $this->user->find($id);
         if ($user) {
             $user->update($params);
         //     if (!empty($params['role'])) $this->assignUserRole($params['role'], $user);

@@ -11,11 +11,22 @@ class Pegawai extends Model
 
     protected $table = 'karyawan';
     protected $fillable = [
+        'user_id',
+        'status_karyawan_id',
         'nik',
-        'nama',
+        'no_ktp',
+        'nama_lengkap',
+        'nama_panggilan',
         'jenis_kelamin',
-        'foto',
+        'tanggal_lahir',
+        'tempat_lahir',
         'alamat',
-        'status'
+        'npwp',
+        'nama_bank',
+        'no_rekening',
+        'mulai_bekerja',
+        'foto',
+        'status',
+        'is_pengawas'
     ];
 }

@@ -21,12 +21,6 @@
     </div>
 </div>
 <div class="card">
-    {{-- <div class="card-header">
-        <a href="{{ url()->previous() }}" class="btn btn-icon">
-            <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
-        </a>
-        <h4>Permohonan Surat</h4>
-    </div> --}}
     <div class="card-body">
         <div class="card">
             <div class="card-header">
@@ -66,11 +60,11 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Lokasi Pelaksanaan Inspeksi / Sidak Sarana</label>
+                            <label class="section-title">Lokasi Pelaksanaan Inspeksi / Sidak Sarana</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Nomor Lambang Unit Yang Dilakukan Inspeksi / Sidak Sarana</label>
+                            <label class="section-title">Nomor Lambang Unit Yang Dilakukan Inspeksi / Sidak Sarana</label>
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-12 col-sm-12">
@@ -78,226 +72,126 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>A. Kondisi Kendaraan</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Normal
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Normal
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Roda</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Sabuk Pengaman</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Kaca-kaca</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi lampu-lampu (depan, belakang, rem, sen, rotary, back alarm, dll)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Terdapat rambu-rambu atau sistem peringatan yang memadai</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem 4 WD</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem rem</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem kemudi</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi radio komunikasi</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem rem</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelengkapan isi kotak P3K</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan APAR</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan Buggy whip</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan kunci-kunci</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan safety cone / segitiga</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi fisik kendaraan</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi box (untuk mobil box)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                </div>
+                            <h5>A. Kondisi Kendaraan</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table" >
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-center">YA</th>
+                                            <th class="text-center">TIDAK</th>
+                                            <th class="text-center" style="width: 1%; white-space: nowrap;">N/A</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Kondisi Roda</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Kondisi Sabuk Pengaman</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Kondisi Kaca-kaca</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Kondisi lampu-lampu (depan, belakang, rem, sen, rotary, back alarm, dll)</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5.</td>
+                                            <td>Kondisi sistem 4 WD</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6.</td>
+                                            <td>Kondisi sistem rem</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7.</td>
+                                            <td>Kondisi sistem kemudi</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8.</td>
+                                            <td>Kondisi radio komunikasi</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>9.</td>
+                                            <td>Ketersediaan dan kelengkapan isi kotak P3K</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10.</td>
+                                            <td>Ketersediaan dan kelayakan APAR</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>11.</td>
+                                            <td>Ketersediaan dan kelayakan buggy whip</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>12.</td>
+                                            <td>Ketersediaan dan kelayakan kunci kunci</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>13.</td>
+                                            <td>Ketersediaan dan kelayakan safety cone / segitiga</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>14.</td>
+                                            <td>Kondisi fisik kendaraan</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>15.</td>
+                                            <td>Kondisi box (untuk mobil box)</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="form-group col-md-12 col-sm-12">
@@ -306,82 +200,56 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>B. Driver dan Penumpang</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa KIMPER yang sesuai (driver)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa Mine Permit (penumpang)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa APD lengkap</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Menggunakan sabuk pengaman</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi kebugaran driver</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                </div>
+                            <h5>B. Driver dan Penumpang</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table" >
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-center">YA</th>
+                                            <th class="text-center">TIDAK</th>
+                                            <th class="text-center" style="width: 1%; white-space: nowrap;">N/A</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Memiliki dan membawa KIMPER yang sesuai (driver)</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Memiliki dan membawa Mine Permit (penumpang)</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Memiliki dan membawa APD lengkap</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Menggunakan sabuk pengaman</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5.</td>
+                                            <td>Kondisi kebugaran driver</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="form-group col-md-12 col-sm-12">
@@ -390,70 +258,49 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>C. Prosedur & Standar</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">P2H telah dilaksanakan dan disyahkan</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa formulir JSA</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa pad lock dan danger tag</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa dokumen kelengkapan kerja lainnya (job card, form sosialisasi JSA, dll)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                </div>
+                            <h5>C. Prosedur & Standar</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped custom-table" >
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-center">YA</th>
+                                            <th class="text-center">TIDAK</th>
+                                            <th class="text-center" style="width: 1%; white-space: nowrap;">N/A</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>P2H telah dilaksanakan dan disyahkan</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Membawa formulir JSA</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Membawa pad lock dan danger tag</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Membawa dokumen kelengkapan kerja lainnya (job card, form sosialisasi JSA, dll)</td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                            <td class="text-center"><input type="radio" ></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="form-group col-md-12 col-sm-12">
@@ -482,9 +329,11 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <button class="btn btn-secondary " type="reset">Reset</button>
+                    <div class="card-footer">
+                        <div class="row justify-content-between">
+                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                            <button class="btn btn-secondary " type="reset">Reset</button>
+                        </div>
                     </div>
                 </div>
             </div>

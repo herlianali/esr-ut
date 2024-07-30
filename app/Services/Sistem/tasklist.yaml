@@ -1,0 +1,5 @@
+tasklist
+1. alur pembuatan user isi_data_karyawan->user_data(auto_generate)
+2. fixing sistem for select input LIST || get_database => use LIST model static 
+3. pembuatan migration model controller menu questioning
+4. don't migrat if schema table not fix

@@ -76,8 +76,8 @@
     
 @push('js')
   <!-- JS Libraies -->
-  <script src="{{ asset('stisla/assets/modules/chart.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/chart.min.js') }}"></script>
 
   <!-- Page Specific JS File -->
-  <script src="{{ asset('stisla/assets/js/page/modules-chartjs.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/page/modules-chartjs.js') }}"></script>
 @endpush

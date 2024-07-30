@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Sistem;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\UserLevel;
+use App\Services\PegawaiServices;
 use App\Services\Sistem\UserLevelServices;
 use App\Services\Sistem\UserServices;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $userServices;
-    public function __construct(UserServices $userServices, UserLevelServices $userLevel)
+    protected $userServices, $pegawaiServices;
+    public function __construct(
+            UserServices $userServices, 
+            UserLevelServices $userLevel,
+            PegawaiServices $pegawaiServices
+        )
     {
+        $this->pegawaiServices = $pegawaiServices;
         // $this->middleware('auth', 'fitur_program');
         $this->userServices = $userServices;
         view()->share([
@@ -37,13 +41,13 @@ class UserController extends Controller
     public function show($id)
     {
         $getOne = $this->userServices->getOne($id);
-
     }
 
     public function edit($id)
     {
         $create = 0;
         $user = $this->userServices->getOne($id);
+        // $pegawai = $this->pegawaiServices->checkAllUser($id);
         return view('sistem.user._info', compact('user', 'create'));
     }
     
@@ -54,7 +58,9 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $this->userServices->updateUser($request, $id);
+        $request->merge(['user_id' => $id]);
+        $this->pegawaiServices->savePegawai($request);
+        return $this->userServices->updateUser($request->all(), $id);
     }
 
     public function search(Request $request)

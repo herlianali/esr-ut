@@ -13,7 +13,7 @@
             <a href="{{ route('dash.show', 1) }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_1.png') }}" class="img-fluid"  alt="">
+                        <img src="{{ asset('public/img/dash_menu_1.png') }}" class="img-fluid"  alt="">
                         <h2>Questioning</h2>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
             <a href="{{ route('dash.show', 2) }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_2.png') }}" class="img-fluid"  alt="">
+                        <img src="{{ asset('public/img/dash_menu_2.png') }}" class="img-fluid"  alt="">
                         <h2 class="pt-3">ESR Corner</h2>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
             <a href="{{ route('dash.show', 1) }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_7.png') }}" class="img-fluid"  alt="">
+                        <img src="{{ asset('public/img/dash_menu_7.png') }}" class="img-fluid"  alt="">
                         <h2>Health Corner</h2>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
             <a href="{{ route('reportDash') }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_3.png') }}" class="img-fluid"  alt="">
+                        <img src="{{ asset('public/img/dash_menu_3.png') }}" class="img-fluid"  alt="">
                         <h2 class="pt-2">Report</h2>
                     </div>
                 </div>
@@ -53,8 +53,8 @@
             <a href="{{ route('dash.show', 4) }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_4.png') }}" class="img-fluid"  alt="">
-                        <h2>Employee</h2>
+                        <img src="{{ asset('public/img/dash_menu_4.png') }}" class="img-fluid"  alt="">
+                        <h2>Settings</h2>
                     </div>
                 </div>
             </a>
@@ -63,7 +63,7 @@
             <a href="{{ route('dash.show', 5) }}">
                 <div class="card">
                     <div class="card body text-center pt-2">
-                        <img src="{{ asset('img/dash_menu_5.png') }}" class="img-fluid"  alt="">
+                        <img src="{{ asset('public/img/dash_menu_5.png') }}" class="img-fluid"  alt="">
                         <h2 class="pt-3">AZAM</h2>
                     </div>
                 </div>

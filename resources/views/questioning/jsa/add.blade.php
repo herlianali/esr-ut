@@ -71,7 +71,7 @@
                         <hr>
                         <div class="text-right">
                             {{-- <button class="btn btn-primary mr-1 next-button" >next</button> --}}
-                            <button class="btn btn-primary mr-1 next-button" >next</button>
+                            <button class="btn btn-primary mr-1 next-button" >Next</button>
                         </div>
                     </section>
                     <section class="hide" id="section_2">
@@ -113,9 +113,9 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="text-right">
-                            <button class="btn btn-danger mr-1 next-button" >back</button>
-                            <button class="btn btn-primary mr-1 next-button" >next</button>
+                        <div class="row justify-content-between">
+                            <button class="btn btn-danger mr-1 back-button" >Back</button>
+                            <button class="btn btn-primary mr-1 next-button" >Next</button>
                         </div>
                     </section>
                     <section class="hide" id="section_3">
@@ -156,9 +156,11 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="card-footer text-right">
-                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                            <button class="btn btn-secondary " type="reset">Reset</button>
+                        <div class="card-footer">
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger back-button" onclick="">Kembali</button>
+                                <button class="btn btn-success mr-1" onclick="add_data()">Simpan</button>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -175,9 +177,23 @@
             var section = $(this).closest("section");
             var $next = section.next();
             console.log($next)
-            if($next.length>0) {  // check condition first and then hide current section and show next
+            if($next.length>0) {
                 section.addClass('hide');
                 $next.removeClass('hide');
+                $('html, body').animate({
+                    scrollTop: $('.section-header').offset().top
+                }, 500);
+            }
+        });
+        $('.back-button').on('click', function (e) {
+            var section = $(this).closest("section");
+            var $previous = section.prev();
+            if($previous.length > 0) {
+                section.addClass('hide');
+                $previous.removeClass('hide');
+                $('html, body').animate({
+                    scrollTop: $('.section-header').offset().top
+                }, 500);
             }
         });
     });

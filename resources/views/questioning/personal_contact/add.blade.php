@@ -20,7 +20,7 @@
         <div class="breadcrumb-item">Personal Contact</div>
     </div>
 </div>
-<div class="card">
+<div class="card" >
     <div class="card-body">
         <div class="card">
             <div class="card-header">
@@ -156,9 +156,9 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -173,8 +173,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
-                                    <input type="text" class="form-control">
                                     <small class="form-text text-muted">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
@@ -205,8 +205,8 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan atau Kondisi Bahaya Yang Ditemukan</label>
-                                    <input type="text" class="form-control">
                                     <small class="form-text text-muted">Jelaskan temuan TTA dan KTA yang anda temukan.</small>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Kategori Deviasi</label>
@@ -223,7 +223,7 @@
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kategori Temuan</label>
                                     <div class="row">
-                                        <div class="form-check ml-3 pr-2">
+                                        <div class="form-check  ">
                                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                             <label class="form-check-label" for="exampleRadios1">
                                                 KTA (Kondisi Tidak Aman)
@@ -239,9 +239,9 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -252,6 +252,7 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah KTA (Kondisi tidak aman) yang ditemukan, ada kontribusi dari TTA (Tindakan tidak aman) ?</label>
+                                    <small class="form-text text-muted">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
@@ -264,7 +265,6 @@
                                             Tidak
                                         </label>
                                     </div>
-                                    <small class="form-text text-muted">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">KTA Lanjut 2</label>
@@ -276,9 +276,9 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="text-right">
-                                <button class="btn btn-danger mr-1 next-button" >back</button>
-                                <button class="btn btn-primary mr-1 next-button" >next</button>
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -289,19 +289,20 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Usulan Tindakan Perbaikan Dari TTA/KTA yang ditemukan !</label>
-                                    <input type="text" class="form-control">
                                     <small class="form-text text-muted">Tuliskan usulan atau saran tindakan perbaikan yang diperlukan untuk menangani kondisi atau tindakan bahaya yang ditemukan.</small>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="" class="section-title">Foto Temuan (additional)</label>
                                     <div class="custom-file">
+                                        <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                         <input type="file" class="custom-file-input" id="customFile">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah usulan tindakan perbaikan atas temuan telah dilakukan perbaikan sendiri ?</label>
+                                    <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
@@ -314,13 +315,14 @@
                                             Tidak, karena bukan kompetensi saya/ bukan area kerja saya (dept lain atau cusomer)
                                         </label>
                                     </div>
-                                    <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                 </div>
                             </div>
                             <hr>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                <button class="btn btn-secondary " type="reset">Reset</button>
+                                <div class="row justify-content-between">
+                                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                    <button class="btn btn-secondary " type="reset">Reset</button>
+                                </div>
                             </div>
                         </section>
                     {{-- </form> --}}
@@ -337,10 +339,23 @@
         $('.next-button').on('click', function (e) {
             var section = $(this).closest("section");
             var $next = section.next();
-            console.log($next)
-            if($next.length>0) {  // check condition first and then hide current section and show next
+            if($next.length > 0) {
                 section.addClass('hide');
                 $next.removeClass('hide');
+                $('html, body').animate({
+                    scrollTop: $('.section-header').offset().top
+                }, 500);
+            }
+        });
+        $('.back-button').on('click', function (e) {
+            var section = $(this).closest("section");
+            var $previous = section.prev();
+            if($previous.length > 0) {
+                section.addClass('hide');
+                $previous.removeClass('hide');
+                $('html, body').animate({
+                    scrollTop: $('.section-header').offset().top
+                }, 500);
             }
         });
     });

@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class PegawaiServices extends Services 
 {
     protected $pegawai;
-    public function __constract(Pegawai $pegawai)
+    public function __construct(Pegawai $pegawai)
     {
         $this->pegawai = $pegawai;
     }
 
-    public function getOnse($value, $column = 'id')
+    public function getOne($value, $column = 'id')
     {
         return $this->pegawai->where($column, $value)->first();
     }
@@ -21,21 +21,30 @@ class PegawaiServices extends Services
     public function searchPegawai($params)
     {
         $pegawai = $this->pegawai;
-
+        
         $nik = $params['nik'] ?? '';
         if ($nik !== '') $pegawai = $pegawai->where('nik', $nik);
 
-        return $this->searchPegawai($params, $pegawai);
+        $nama_lengkap = $params['nama_lengkap'] ?? '';
+        if ($nama_lengkap !== '') $pegawai = $pegawai->where('nama_lengkap', $nama_lengkap);
+
+        $is_pengawas = $params['is_pengawas'] ?? '';
+        if ($is_pengawas !== '') $pegawai = $pegawai->where('is_pengawas', $is_pengawas);
+
+        return $this->searchResponse($params, $pegawai);
     }
 
     public function savePegawai(Request $request)
     {
-        $id = $request->input('id') ?? '';
+        $pegawai = New Pegawai();
+        $request->merge(['is_pengawas' => (int)$request->pengawas]);
+        $params = $request->except(['nama', 'password', 'email', 'user_level_id']);
+        $id = $params['id_pegawai'] ?? '';
         if ($id == '') {
-            $pegawai = $this->pegawai->create($request->all());
+            $pegawai = $pegawai->create($params);
         } else {
-            $pegawai = $this->pegawai->find($id);
-            $pegawai->update($request->all());
+            $pegawai = $pegawai->find($id);
+            $pegawai->update($params);
         }
         return $pegawai;
     }
@@ -51,6 +60,13 @@ class PegawaiServices extends Services
     {
         $result = [];
         foreach ($this->searchPegawai([]) as $value) $result[$value->id] = $value->nama;
+        return $result;
+    }
+
+    public function listPengawas()
+    {
+        $result = [];
+        foreach ($this->searchPegawai(['is_pengawas' => 0]) as $value) $result[$value->id] = $value->nama_lengkap;
         return $result;
     }
 }

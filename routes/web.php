@@ -20,6 +20,7 @@ Route::name('surat')->prefix('surat')->group(__DIR__.'/surat.php');
 Route::name('employee')->prefix('employee')->group(__DIR__.'/employee.php');
 Route::name('esr_corner')->prefix('esr_corner')->group(__DIR__.'/esr_corner.php');
 Route::name('mobile')->prefix('mobile')->group(__DIR__.'/mobile.php');
+Route::name('questioning')->prefix('questioning')->group(__DIR__.'/questioning.php');
 
 Route::get('genba', function () { return view('questioning.genba.index'); });
 Route::get('genba/add', function () { return view('questioning.genba.add'); })->name('genba.add');
@@ -30,10 +31,6 @@ Route::get('bbsq_service/add', function () { return view('questioning.bbsq_servi
 
 Route::get('bbsq_non_service', function () { return view('questioning.bbsq_non_service.index'); });
 Route::get('bbsq_non_service/add', function () { return view('questioning.bbsq_non_service.add'); })->name('bbsq_non_service.add');
-
-Route::get('green_card', function () { return view('questioning.green_card.index'); });
-Route::get('green_card/add', function () { return view('questioning.green_card.add'); })->name('green_card.add');
-Route::get('green_card/show', function () { return view('questioning.green_card.detail'); })->name('green_card.show');
 
 Route::get('safety_talk', function () { return view('questioning.safety_talk.index'); });
 Route::get('safety_talk/add', function () { return view('questioning.safety_talk.add'); })->name('safety_talk.add');

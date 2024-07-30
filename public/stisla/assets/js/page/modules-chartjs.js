@@ -86,6 +86,8 @@ var myChart = new Chart(ctx, {
   }
 });
 
+var input_chart = document.createElement("canvas");
+input_chart.id="myChart3";
 var ctx = document.getElementById("myChart3").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'doughnut',

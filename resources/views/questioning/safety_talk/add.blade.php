@@ -14,23 +14,17 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Green Card</h1>
+    <h1>Safety Talk</h1>
     <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Form Questioning</a></div>
-        <div class="breadcrumb-item">Green Card</div>
+        <div class="breadcrumb-item">Safety Talk</div>
     </div>
 </div>
 <div class="card">
-    {{-- <div class="card-header">
-        <a href="{{ url()->previous() }}" class="btn btn-icon">
-            <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
-        </a>
-        <h4>Permohonan Surat</h4>
-    </div> --}}
     <div class="card-body">
         <div class="card">
             <div class="card-header">
-                <h4>Green Card Form</h4>
+                <h4>Safety Talk Form</h4>
             </div>
             <div class="card-body p-0">
                 <div class="container-fluid">
@@ -128,10 +122,12 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <button class="btn btn-secondary " type="reset">Reset</button>
-                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row justify-content-between">
+                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                    <button class="btn btn-secondary " type="reset">Reset</button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+<link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
 <style>
     .hide {
         display: none;
@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+
 <div class="section-header">
     <h1>Green Card</h1>
     <div class="section-header-breadcrumb">
@@ -48,28 +49,7 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Nama Pengawas</label>
-                                    <select class="form-control select2">
-                                        <option value="1">HERI PRIYO MAHARGYO</option>
-                                        <option value="2">RONIE PERMANA</option>
-                                        <option value="3">AGUS HARIYADI</option>
-                                        <option value="4">HARYONO</option>
-                                        <option value="5">WISNU PURA WIJAYANTO</option>
-                                        <option value="6">ARIWANSA</option>
-                                        <option value="7">SYAMSUL PURNOMO</option>
-                                        <option value="8">JAIMAN</option>
-                                        <option value="9">DENI EKO MUKTI</option>
-                                        <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                        <option value="11">BAGYO SETYANTO</option>
-                                        <option value="12">GANJAR WICAKSONO</option>
-                                        <option value="13">NANO</option>
-                                        <option value="14">SUKRISNO</option>
-                                        <option value="15">AGUNG KRISMANTO</option>
-                                        <option value="16">EKO AGUS PRIBADI</option>
-                                        <option value="17">WAHYU HADI SAFRUDIN</option>
-                                        <option value="18">ADI SETIADI</option>
-                                        <option value="19">TRI MARJUKI</option>
-                                        <option value="20">ALDI SATRIO</option>
-                                    </select>
+                                    <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas"  />
                                 </div>
                             </div>
                             <hr>
@@ -139,11 +119,9 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="text-right">
-                                <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
-                                </div>
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger mr-1 back-button" >Back</button>
+                                <button class="btn btn-primary mr-1 next-button" >Next</button>
                             </div>
                         </section>
                         <section class="hide">
@@ -319,8 +297,8 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('public/stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     {{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
     <script>
         $(function(){
@@ -332,6 +310,9 @@
                 if($next.length > 0) {
                     section.addClass('hide');
                     $next.removeClass('hide');
+                    $('html, body').animate({
+                        scrollTop: $('.section-header').offset().top
+                    }, 500);
                 }
             });
 
@@ -341,6 +322,9 @@
                 if($previous.length > 0) {
                     section.addClass('hide');
                     $previous.removeClass('hide');
+                    $('html, body').animate({
+                        scrollTop: $('.section-header').offset().top
+                    }, 500);
                 }
             });
 
@@ -351,7 +335,7 @@
         });
 
         let add_data = () => {
-            let url = "{{ route('green_card.show') }}";
+            let url = "{{ route('questioning.green_card.show', 1) }}";
 
             // $.get(url, (result) => {
                 window.location.href = url;

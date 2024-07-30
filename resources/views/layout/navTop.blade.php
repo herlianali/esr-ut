@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- PWA  -->
+  <meta name="theme-color" content="#6777ef"/>
+  <link rel="apple-touch-icon" href="{{ asset('public/logo.png') }}">
+  <link rel="manifest" href="{{ asset('public/manifest.json') }}">
+
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
+  <title>Menu</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
+  <style>
+    .fixed-top {
+      position: fixed;
+      top: 0;
+      left: -10px;
+    }
+    #custom-table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #custom-table td, #custom-table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #custom-table tr:nth-child(even){background-color: #f2f2f2;}
+
+    #custom-table tr:hover {background-color: #ddd;}
+
+    #custom-table th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+  </style>
   @stack('css')
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/components.css') }}">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -242,7 +276,7 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -340,13 +374,13 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('stisla/assets/modules/jquery.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/popper.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/tooltip.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/moment.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/tooltip.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/moment.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/stisla.js') }}"></script>
   
   <!-- JS Libraies -->
   @stack('js')
@@ -354,7 +388,23 @@
   <!-- Page Specific JS File -->
   
   <!-- Template JS File -->
-  <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/custom.js') }}"></script>
+  <script src="{{ asset('public/sw.js') }}"></script>
+  <script>
+    console.log(navigator)
+      if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("sw.js").then(
+            function (reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+            },
+            (error) => {
+              console.error("Service worker registration failed: ${error}");
+            },
+          );
+      }else{
+        console.error("Service worker are not supported.");
+      }
+  </script>
 </body>
 </html>

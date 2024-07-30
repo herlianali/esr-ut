@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @push('css')
-
 @endpush
 
 @section('menu')
@@ -10,25 +9,26 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Users</h1>
+    <h1>Questioning</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Employee</a></div>
-        <div class="breadcrumb-item">Users</div>
+        <div class="breadcrumb-item active">Employee</div>
+        <div class="breadcrumb-item"><a href="#">Sistem</a></div>
+        <div class="breadcrumb-item">Questioning Options</div>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        <h4>Data User</h4>
-        <a id="add_data" onclick="info_user()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
-        <a id="discard_data" onclick="discard_info_user()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-arrow-alt-circle-left"style='font-size:30px; padding-top:5px'></i></a>
+        <h4>Data Questioning</h4>
+        <a id="add_data" onclick="info_questioning()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
+        <a id="discard_data" onclick="discard_info_questioning()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-arrow-alt-circle-left"style='font-size:30px; padding-top:5px'></i></a>
 
     </div>
     <div class="card-body">
-        <div class="card" id="user_info"></div>
-        <div class="card" id="card_user">
+        <div class="card" id="questioning_info"></div>
+        <div class="card" id="card_questioning">
             <div class="card-header">
-                <h4>List Users</h4>
-                <div class="card-header-form" id="users_search">
+                <h4>List Questioning</h4>
+                <div class="card-header-form" id="questionings_search">
                     <form id="search_form">
                         @csrf
                         <div class="input-group">
@@ -40,7 +40,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card-body p-0" id="user_table"></div>
+            <div class="card-body p-0" id="questioning_table"></div>
         </div>
     </div>
 </div>
@@ -77,61 +77,60 @@
 @endsection
 
 @push('js')
-
     <script>
         // init_form_element();
 
         let $search_form = $('#search_form'),
-            $user_table = $('#user_table'),
-            $user_info = $('#user_info'),
-            $card_user = $('#card_user'),
+            $questioning_table = $('#questioning_table'),
+            $questioning_info = $('#questioning_info'),
+            $card_questioning = $('#card_questioning'),
             $discard_data = $('#discard_data'),
             _token = '{{ csrf_token() }}';
         
         $discard_data.hide();
         
-        let init_user = () => {
-            $user_info.html('');
-            $card_user.show();
+        let init_questioning = () => {
+            $questioning_info.html('');
+            $card_questioning.show();
             $discard_data.hide();
-            search_user();
+            search_questioning();
         }
 
-        let info_user = (id = '') => {
+        let info_questioning = (id = '') => {
             let url = "{{ route($active_route) }}";
             url += (id === '' ? '/create' : ('/' + id + '/edit'));
 
             $.get(url, (result) => {
-                $user_info.html(result);
-                $card_user.hide();
+                $questioning_info.html(result);
+                $card_questioning.hide();
                 $discard_data.show();
                 $('#add_data').hide();
             }).fail((xhr) => {
-                $user_table.html(xhr.responseText);
+                $questioning_table.html(xhr.responseText);
             });
         }
 
-        let discard_info_user = () => {
-            $user_info.html('');
+        let discard_info_questioning = () => {
+            $questioning_info.html('');
             $discard_data.hide();
             $('#add_data').show();
-            $card_user.show();
+            $card_questioning.show();
         }
 
-        let init_form_user = (id = '') =>{
-            let $form_user = $('#form_user'),
-                $button_submit_user = $('#button_submit_user');
-                $form_user.submit((e) => {
+        let init_form_questioning = (id = '') =>{
+            let $form_questioning = $('#form_questioning'),
+                $button_submit_questioning = $('#button_submit_questioning');
+                $form_questioning.submit((e) => {
                     e.preventDefault();
 
-                    let data = getFormData($form_user);
+                    let data = getFormData($form_questioning);
                     let url = '{{ route($active_route) }}';
                     if (id !== '') {
                         url += ('/' + id);
                         data._method = 'put';
                     }
                     $.post(url, data, () => {
-                        init_user();
+                        init_questioning();
                     }).fail((xhr) => {
                         error_handle(xhr.responseText);
                         console.log(xhr.responseText);
@@ -141,27 +140,27 @@
 
         $search_form.submit((e) => {
             e.preventDefault();
-            search_user();
+            search_questioning();
         });
 
         let select_page = 1;
         $search_form = $('#search_form')
-        search_user = (page = 1) => {
-            $user_table.html('Loading ...');
+        search_questioning = (page = 1) => {
+            $questioning_table.html('Loading ...');
             if (page.toString() === '+1') select_page++;
             else if (page.toString() === '-1') select_page--;
             else select_page = page;
 
             let data = getFormData($search_form);
             data.paginate = 10;
-            $.post("{{ route('employee.user.search') }}?page=" + select_page, data, (result) => {
-                $user_table.html(result);
+            $.post("{{ route('employee.questioning.search') }}?page=" + select_page, data, (result) => {
+                $questioning_table.html(result);
             }).fail((xhr) => {
-                $user_table.html(xhr.responseText);
+                $questioning_table.html(xhr.responseText);
             });
         }
         
-        search_user();
+        search_questioning();
 
     </script>
 @endpush

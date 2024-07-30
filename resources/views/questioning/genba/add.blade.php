@@ -55,28 +55,7 @@
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Nama Pengawas<span class="text-danger">*</span></label>
-                            <select class="form-control select2" name="pengawas" required>
-                                <option value="1">HERI PRIYO MAHARGYO</option>
-                                <option value="2">RONIE PERMANA</option>
-                                <option value="3">AGUS HARIYADI</option>
-                                <option value="4">HARYONO</option>
-                                <option value="5">WISNU PURA WIJAYANTO</option>
-                                <option value="6">ARIWANSA</option>
-                                <option value="7">SYAMSUL PURNOMO</option>
-                                <option value="8">JAIMAN</option>
-                                <option value="9">DENI EKO MUKTI</option>
-                                <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                <option value="11">BAGYO SETYANTO</option>
-                                <option value="12">GANJAR WICAKSONO</option>
-                                <option value="13">NANO</option>
-                                <option value="14">SUKRISNO</option>
-                                <option value="15">AGUNG KRISMANTO</option>
-                                <option value="16">EKO AGUS PRIBADI</option>
-                                <option value="17">WAHYU HADI SAFRUDIN</option>
-                                <option value="18">ADI SETIADI</option>
-                                <option value="19">TRI MARJUKI</option>
-                                <option value="20">ALDI SATRIO</option>
-                            </select>
+                            <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas"  />
                         </div>
                     </div>
                     <hr>
@@ -242,6 +221,9 @@
                 if($next.length>0) {  // check condition first and then hide current section and show next
                     section.addClass('hide');
                     $next.removeClass('hide');
+                    $('html, body').animate({
+                        scrollTop: $('.section-header').offset().top
+                    }, 500);
                 }
             });
             $('.back-button').on('click', function (e) {
@@ -251,6 +233,9 @@
                 if($previous.length>0) {  // check condition first and then hide current section and show previous
                     section.addClass('hide');
                     $previous.removeClass('hide');
+                    $('html, body').animate({
+                        scrollTop: $('.section-header').offset().top
+                    }, 500);
                 }
             });
         });
