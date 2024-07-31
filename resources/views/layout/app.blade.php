@@ -61,9 +61,6 @@
       background-color: #04AA6D;
       color: white;
     }
-    .ui-datepicker { 
-      z-index: 10000 !important; 
-    }
   </style>
   @stack('css')
   <!-- Start GA -->
@@ -81,7 +78,7 @@
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       {{-- <div class="navbar-bg"></div> --}}
-      <nav class="navbar navbar-expand-lg main-navbar bg-primary fixed-top ">
+      <nav class="navbar navbar-expand-lg main-navbar bg-warning fixed-top ">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg "><i class="fas fa-bars"></i></a></li>
@@ -281,7 +278,7 @@
             {{-- <div class="d-sm-none d-lg-inline-block">Hi, User ESR</div></a> --}}
             <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              <div class="dropdown-title">{{ auth()->user()->nama }} - {{ auth()->user()->user_level->nama }}</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
@@ -319,22 +316,22 @@
             @endif
             @if( $menu === '1') 
               @if(auth()->user()->user_level_id !== 2) 
-                <li {{ \Route::is('green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.green_card.create') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
+                <li {{ \Route::is('questioning.green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.green_card.create') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
               @endif
               @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
-                <li {{ \Route::is('genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('genba.add') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
+                <li {{ \Route::is('questioning.genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.genba.create') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
               @endif
               @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
-                <li {{ \Route::is('bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('bbsq_service.add') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
+                <li {{ \Route::is('questioning.bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.bbsq_service.create') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2) 
-                <li {{ \Route::is('bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('bbsq_non_service.add') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
+                <li {{ \Route::is('questioning.bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.bbsq_non_service.create') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
               @endif
               @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
-                <li {{ \Route::is('personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('personal_contact.add') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
+                <li {{ \Route::is('questioning.personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.personal_contact.create') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
               @endif
               @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
-                <li {{ \Route::is('safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('safety_talk.add') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
+                <li {{ \Route::is('questioning.safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.safety_talk.create') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
               @endif
               @if(auth()->user()->user_level_id !== 2)
                 <li {{ \Route::is('jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('jsa.add') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
@@ -410,7 +407,7 @@
               <li {{ \Route::is('employee.user.*') || \Route::is('employee.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user.index') }}"><i class="fas fa-user-cog"></i> <span>Management User</span></a></li>
               
               <li {{ \Route::is('employee.fitur.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.fitur.index') }}"><i class="fab fa-elementor"></i> <span>Management Menu</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
+              <li {{ \Route::is('employee.user_level.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user_level.index') }}"><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Management Projects</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Questioning Options Setting</span></a></li>
             @endif
@@ -451,7 +448,6 @@
   <script src="{{ asset('public/stisla/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
   <script src="{{ asset('public/stisla/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
   <script src="{{ asset('public/stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-  <script src="{{ asset('public/stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <!-- Page Specific JS File -->
   <script src="{{ asset('public/stisla/assets/js/page/index.js') }}"></script>
@@ -459,17 +455,11 @@
   <script>
     let init_form_element = () => {
         $('.datepicker').datepicker({
-            days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            daysMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             today: "Today",
             clear: "Clear",
             format: 'dd-mm-yyyy',
-            titleFormat: "MM yyyy",
             weekStart: 0,
-        });
+        }).datepicker("setDate",'now');
         $(".select2").select2();
           // $(".summernote").summernote({
           //     height: 300,

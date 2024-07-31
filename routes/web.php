@@ -22,21 +22,21 @@ Route::name('esr_corner')->prefix('esr_corner')->group(__DIR__.'/esr_corner.php'
 Route::name('mobile')->prefix('mobile')->group(__DIR__.'/mobile.php');
 Route::name('questioning')->prefix('questioning')->group(__DIR__.'/questioning.php');
 
-Route::get('genba', function () { return view('questioning.genba.index'); });
-Route::get('genba/add', function () { return view('questioning.genba.add'); })->name('genba.add');
-Route::get('genba/show', function () { return view('questioning.genba.detail'); })->name('genba.show');
+// Route::get('genba', function () { return view('questioning.genba.index'); });
+// Route::get('genba/add', function () { return view('questioning.genba.add'); })->name('genba.add');
+// Route::get('genba/show', function () { return view('questioning.genba.detail'); })->name('genba.show');
 
-Route::get('bbsq_service', function () { return view('questioning.bbsq_service.index'); });
-Route::get('bbsq_service/add', function () { return view('questioning.bbsq_service.add'); })->name('bbsq_service.add');
+// Route::get('bbsq_service', function () { return view('questioning.bbsq_service.index'); });
+// Route::get('bbsq_service/add', function () { return view('questioning.bbsq_service.add'); })->name('bbsq_service.add');
 
-Route::get('bbsq_non_service', function () { return view('questioning.bbsq_non_service.index'); });
-Route::get('bbsq_non_service/add', function () { return view('questioning.bbsq_non_service.add'); })->name('bbsq_non_service.add');
+// Route::get('bbsq_non_service', function () { return view('questioning.bbsq_non_service.index'); });
+// Route::get('bbsq_non_service/add', function () { return view('questioning.bbsq_non_service.add'); })->name('bbsq_non_service.add');
 
-Route::get('safety_talk', function () { return view('questioning.safety_talk.index'); });
-Route::get('safety_talk/add', function () { return view('questioning.safety_talk.add'); })->name('safety_talk.add');
+// Route::get('safety_talk', function () { return view('questioning.safety_talk.index'); });
+// Route::get('safety_talk/add', function () { return view('questioning.safety_talk.add'); })->name('safety_talk.add');
 
-Route::get('personal_contact', function () { return view('questioning.personal_contact.index'); });
-Route::get('personal_contact/add', function () { return view('questioning.personal_contact.add'); })->name('personal_contact.add');
+// Route::get('personal_contact', function () { return view('questioning.personal_contact.index'); });
+// Route::get('personal_contact/add', function () { return view('questioning.personal_contact.add'); })->name('personal_contact.add');
 
 Route::get('jsa', function () { return view('questioning.jsa.index'); });
 Route::get('jsa/add', function () { return view('questioning.jsa.add'); })->name('jsa.add');

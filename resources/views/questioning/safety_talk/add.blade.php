@@ -24,6 +24,9 @@
     <div class="card-body">
         <div class="card">
             <div class="card-header">
+                <a href="{{ url()->previous() }}" class="btn btn-icon">
+                    <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
+                </a>
                 <h4>Safety Talk Form</h4>
             </div>
             <div class="card-body p-0">
@@ -31,11 +34,12 @@
                     <div class="row">
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="section-title">Tanggal Pelaksanaan Safety Talk</label>
-                            <input type="text" class="form-control datetimepicker">
+                            <input type="text" class="form-control datepicker">
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="section-title">Nama Pengawas</label>
-                            <select class="form-control select2">
+                            <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas" :value="auth()->user()->pegawai->id ?? ''" />
+                            {{-- <select class="form-control select2">
                                 <option value="1">HERI PRIYO MAHARGYO</option>
                                 <option value="2">RONIE PERMANA</option>
                                 <option value="3">AGUS HARIYADI</option>
@@ -56,7 +60,7 @@
                                 <option value="18">ADI SETIADI</option>
                                 <option value="19">TRI MARJUKI</option>
                                 <option value="20">ALDI SATRIO</option>
-                            </select>
+                            </select> --}}
                         </div>
                         <div class="form-group col-md-6 col-sm-12">
                             <label class="section-title">Lokasi Pelaksanaan Safety Talk</label>
@@ -112,7 +116,7 @@
                                     Mandiri Mitra Kerja
                                 </label>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="" class="section-title">Dokumentasi (additional)</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile">
@@ -126,8 +130,8 @@
             </div>
             <div class="card-footer">
                 <div class="row justify-content-between">
-                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                    <button class="btn btn-secondary " type="reset">Reset</button>
+                    <button class="btn btn-secondary mr-1" type="reset">Reset</button>
+                    <button class="btn btn-success " type="submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -136,4 +140,7 @@
 @endsection
 
 @push('js')
+<script>
+    init_form_element();
+</script>
 @endpush

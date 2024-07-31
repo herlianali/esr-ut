@@ -66,7 +66,7 @@ class PegawaiServices extends Services
     public function listPengawas()
     {
         $result = [];
-        foreach ($this->searchPegawai(['is_pengawas' => 0]) as $value) $result[$value->id] = $value->nama_lengkap;
+        foreach ($this->searchPegawai(['is_pengawas' => 1]) as $value) $result[$value->id] = $value->nama_lengkap;
         return $result;
     }
 }

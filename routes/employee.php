@@ -27,4 +27,14 @@ Route::name('.')->group(function () {
         Route::resource('/', App\Http\Controllers\Sistem\QuestioningOptionController::class)->parameter('', 'id');
         Route::post('search', [\App\Http\Controllers\Sistem\QuestioningOptionController::class, 'search'])->name('search');
     });
+
+    Route::prefix('hak_akses')->name('hak_akses.')->group(function () {
+        Route::resource('/', App\Http\Controllers\Sistem\HakAksesController::class)->parameter('', 'id');
+        Route::post('search', [App\Http\Controllers\Sistem\HakAksesController::class, 'search'])->name('search');
+    });
+
+    Route::prefix('user_level')->name('user_level.')->group(function () {
+        Route::resource('/', App\Http\Controllers\Sistem\UserLevelController::class)->parameter('', 'id');
+        Route::post('search', [App\Http\Controllers\Sistem\UserLevelController::class, 'search'])->name('search');
+    });
 });

@@ -29,4 +29,9 @@ class Pegawai extends Model
         'status',
         'is_pengawas'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

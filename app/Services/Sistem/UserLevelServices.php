@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserLevelServices extends Services 
 {
     protected $userLevel;
-    public function __constract(UserLevel $userLevel)
+    public function __construct(UserLevel $userLevel)
     {
         $this->userLevel = $userLevel;
     }
@@ -21,23 +21,25 @@ class UserLevelServices extends Services
 
     public function searchUserLevel($params)
     {
-        $userLevel = new UserLevel;
+        $userLevel = $this->userLevel;
 
-        $nama = $params['nama'] ?? '';
-        if ($nama !== '') $userLevel = $userLevel->where('nama', $nama);
-
+        if (isset($params['nama']) && $params['nama'] !== '') {
+            $userLevel = $userLevel->where('nama', 'like', "%{$params['nama']}%");
+        }
+        
         return $this->searchResponse($params, $userLevel);
     }
 
-    public function saveUserLevel(Request $request)
+    public function createUserLevel($params)
     {
-        $id = $request->input('id') ?? '';
-        if ($id == '') {
-            $userLevel = $this->userLevel->create($request->all());
-        } else {
-            $userLevel = $this->userLevel->find($id);
-            $userLevel->update($request->all());
-        }
+        return $this->userLevel->create($params);
+    }
+
+    public function updateUserLevel($params, $id)
+    {
+
+        $userLevel = $this->userLevel->find($id);
+        if ($userLevel) $userLevel->update($params);
         return $userLevel;
     }
 

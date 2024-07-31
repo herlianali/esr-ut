@@ -34,7 +34,7 @@
                     <div class="row normalTopPadding">
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Tanggal Pelaksanaan Genba <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control datetimepicker" name="tanggal" required>
+                            <input type="text" class="form-control datepicker" name="tanggal" required>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Area Genba <span class="text-danger">*</span></label>
@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Nama Pengawas<span class="text-danger">*</span></label>
-                            <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas"  />
+                            <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas" :value="auth()->user()->pegawai->id ?? ''" />
                         </div>
                     </div>
                     <hr>
@@ -213,6 +213,8 @@
 @push('js')
     <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script>
     <script>
+        init_form_element()
+
         $(function(){
             $('.next-button').on('click', function (e) {
                 var section = $(this).closest("section");
@@ -240,7 +242,7 @@
             });
         });
         let add_data = () => {
-            let url = "{{ route('genba.show') }}";
+            let url = "{{ route('questioning.genba.show',1) }}";
 
             // $.get(url, (result) => {
                 window.location.href = url;

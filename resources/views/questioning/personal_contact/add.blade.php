@@ -24,6 +24,9 @@
     <div class="card-body">
         <div class="card">
             <div class="card-header">
+                <a href="{{ url()->previous() }}" class="btn btn-icon">
+                    <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
+                </a>
                 <h4>Personal Contact Form</h4>
             </div>
             <div class="card-body p-0">
@@ -33,10 +36,12 @@
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tanggal Laporan Personal Contact</label>
-                                    <input type="text" class="form-control datetimepicker">
+                                    <input type="text" class="form-control datepicker">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Nama Pengawas Yang Melakukan Personal Contact</label>
+                                    <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas" :value="auth()->user()->pegawai->id ?? ''" />
+{{--                                     
                                     <select class="form-control select2">
                                         <option value="1">HERI PRIYO MAHARGYO</option>
                                         <option value="2">RONIE PERMANA</option>
@@ -58,7 +63,7 @@
                                         <option value="18">ADI SETIADI</option>
                                         <option value="19">TRI MARJUKI</option>
                                         <option value="20">ALDI SATRIO</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Nama Karyawan Yang Dilakukan Personal Contact</label>
@@ -335,6 +340,8 @@
 
 @push('js')
 <script>
+    init_form_element();
+
     $(function(){
         $('.next-button').on('click', function (e) {
             var section = $(this).closest("section");

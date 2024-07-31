@@ -16,7 +16,6 @@ class Services
 
     public function searchResponse($params, $model)
     {
-        // dd($params);
         $with = $params['with'] ?? '';
         if ($with !== '') $model = $model->with($with);
         $limit = $params['limit'] ?? '';
@@ -31,7 +30,7 @@ class Services
         $first = $params['first'] ?? '';
         if ($first !== '') return $model->first();
         $paginate = $params['paginate'] ?? '';
-        if ($paginate !== '') return $model->paginate($paginate);
+        if ($paginate !== '') return $model->paginate(10);
         return $model->get();
     }
 

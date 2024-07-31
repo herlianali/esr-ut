@@ -19,7 +19,7 @@
             <x-select class="select2" name="user_level_id" :default="'-- Pilih User Level --'" :options="$user_level" :value=" $user->user_level_id ?? '' " />
         </div>
     </div>
-    @if (!empty($user))    
+    {{-- @if (!empty($user))     --}}
         <h5>Data Lengkap Karyawan / Pegawai</h5>
         <div class="row" id="data_karyawan">
             <input type="hidden" name="id_pegawai" value="{{ $user->pegawai->id ?? '' }}">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    {{-- @endif --}}
     <div class="card-footer text-right">
         <button class="btn btn-success mr-1" id="button_submit_user" type="submit">Submit</button>
         <button class="btn btn-secondary" type="reset">Reset</button>

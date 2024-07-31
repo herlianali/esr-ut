@@ -63,8 +63,8 @@
 <body class="layout-3">
   <div id="app">
     <div class="main-wrapper ">
-      <div class="navbar-bg"></div>
-      <nav class="navbar navbar-expand-lg main-navbar">
+      <div class="navbar-bg bg-warning"></div>
+      <nav class="navbar navbar-expand-lg main-navbar bg-warning">
         <a href="index.html" class="navbar-brand sidebar-gone-hide">13 PW UT Digital</a>
         {{-- <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a> --}}
         {{-- <div class="nav-collapse">
@@ -279,7 +279,7 @@
             <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              <div class="dropdown-title">{{ auth()->user()->nama }} - {{ auth()->user()->user_level->nama }}</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>

@@ -26,57 +26,68 @@
     <div class="card-body">
         <div class="card">
             <div class="card-header">
+                <a href="{{ url()->previous() }}" class="btn btn-icon">
+                    <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
+                </a>
                 <h4>Green Card Form</h4>
             </div>
             <div class="card-body p-0">
                 <div class="container-fluid">
-                    {{-- <form action="" method=""> --}}
+                    <form id="greencard_form">
                         <section id="setion_awal">
+                            @php($pengawas = \Illuminate\Support\Facades\Auth::user()->pegawai->is_pengawas ?? '')
+                            @php($user_id = \Illuminate\Support\Facades\Auth::user()->id)
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tanggal Laporan</label>
-                                    <input type="date" class="form-control datepicker">
+                                    <input type="text" class="form-control datepicker" name="tanggal">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kelompok Jabatan</label>
-                                    <input type="text" class="form-control">
+                                    <select class="form-control select2" name="jabatan" @if($user_id != 1) disabled @endif>
+                                        <option value="1" @if($pengawas == 1) selected="selected" @endif>Pengawas/ Target 13 PW</option>
+                                        <option value="2" @if($pengawas == 0 || $pengawas == '') selected="selected" @endif>Non Pengawas/ All Karyawan</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label class="section-title">Pengawas / Target 13 PW</label>
-                                    <input type="text" class="form-control">
+                            @if ($pengawas == 1 || $user_id == 1)
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label class="section-title">Pengawas / Target 13 PW</label>
+                                        <input type="text" class="form-control" name="pengawas">
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label class="section-title">Nama Pengawas</label>
+                                        <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas" :value="auth()->user()->pegawai->id ?? ''" />
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label class="section-title">Nama Pengawas</label>
-                                    <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options="$list_pengawas"  />
-                                </div>
-                            </div>
+                            @endif
                             <hr>
                             <div class="text-right">
-                                {{-- <button class="btn btn-primary mr-1 next-button" >Next</button> --}}
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                {{-- <a class="btn btn-primary mr-1 next-button text-white" >Next</a> --}}
+                                <a class="btn btn-primary mr-1 next-button text-white" >Next</a>
                             </div>
                         </section>
+                        @if ($pengawas == 0 || $pengawas == '' || $user_id == 1)
                         <section class="hide">    
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Non Pengawas / All Karyawan</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="non_pengawas">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Nama Lengkap</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="nama_lengkap">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">NRP</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="nrp">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Perusahaan</label>
-                                    <select class="form-control select2">
+                                    <select class="form-control select2" name="perusahaan">
                                         <option value="1">BP</option>
                                         <option value="2">HMU</option>
                                         <option value="3">KAMAJU</option>
@@ -94,7 +105,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Dept / Sektor</label>
-                                    <select class="form-control select2">
+                                    <select class="form-control select2" name="sektor">
                                         <option value="1">ADM</option>
                                         <option value="2">ADVISOR</option>
                                         <option value="3">PART ADARO</option>
@@ -120,28 +131,29 @@
                             </div>
                             <hr>
                             <div class="row justify-content-between">
-                                <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                <a class="btn btn-danger mr-1 back-button text-white" >Back</a>
+                                <a class="btn btn-primary mr-1 next-button text-white" >Next</a>
                             </div>
                         </section>
+                        @endif
                         <section class="hide">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Laporan Bahaya</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="laporan_bahaya">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Lokasi Ditemukannya Bahaya</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="lokasi_bahaya">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
                                     <small class="form-text text-muted mt-0">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="detail_lokasi">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Dept / Sektor Ditemukannya Bahaya</label>
-                                    <select class="form-control select2">
+                                    <select class="form-control select2" name="sektor_bahaya">
                                         <option value="1">ADM</option>
                                         <option value="2">PART ADARO</option>
                                         <option value="3">PART TJG</option>
@@ -165,11 +177,11 @@
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan atau Kondisi Bahaya Yang Ditemukan</label>
                                     <small class="form-text text-muted mt-0">Jelaskan temuan TTA dan KTA yang anda temukan.</small>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="tindakan">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Kategori Deviasi</label>
-                                    <select class="form-control select2">
+                                    <select class="form-control select2" name="kategori_deviasi">
                                         <option value="1">Prosedur</option>
                                         <option value="2">APD / Alat Keselamatan</option>
                                         <option value="3">Alat & Peralatan Kerja</option>
@@ -183,13 +195,13 @@
                                     <label class="section-title">Kategori Temuan</label>
                                     {{-- <div class="row"> --}}
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
+                                            <input class="form-check-input" type="radio" name="kategori_temuan" id="exampleRadios1" checked="">
                                             <label class="form-check-label" for="exampleRadios1">
                                                 KTA (Kondisi Tidak Aman)
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
+                                            <input class="form-check-input" type="radio" name="kategori_temuan" id="exampleRadios2" checked="">
                                             <label class="form-check-label" for="exampleRadios2">
                                                 TTA (Tindakan Tidak Aman)
                                             </label>
@@ -200,8 +212,8 @@
                             <hr>
                             <div class="text-right">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                    <a class="btn btn-danger mr-1 back-button text-white" >Back</a>
+                                    <a class="btn btn-primary mr-1 next-button text-white" >Next</a>
                                 </div>
                             </div>
                         </section>
@@ -209,19 +221,19 @@
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">KTA Lanjut 1</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="kta_lanjut1">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah KTA (Kondisi tidak aman) yang ditemukan, ada kontribusi dari TTA (Tindakan tidak aman) ?</label>
                                     <small class="form-text text-muted mt-0">Contoh temuan housekeeping yang tidak rapi (KTA) disebabkan oleh tindakan karyawan yang tidak menyimpan perlengkapan dan peralatan dengan baik (TTA)</small>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
+                                        <input class="form-check-input" type="radio" name="kontribusi" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
                                             YA
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
+                                        <input class="form-check-input" type="radio" name="kontribusi" id="exampleRadios2" checked="">
                                         <label class="form-check-label" for="exampleRadios2">
                                             Tidak
                                         </label>
@@ -229,18 +241,18 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title pb-4">KTA Lanjut 2</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="kta_lanjut2">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Jelaskan TTA yang berkontribusi terhadap adanya temuan KTA tersebut !</label>
-                                    <input type="text" class="form-control">
+                                    <textarea class="form-control" name="penjelasan"></textarea>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                    <a class="btn btn-danger mr-1 back-button text-white" >Back</a>
+                                    <a class="btn btn-primary mr-1 next-button text-white" >Next</a>
                                 </div>
                             </div>
                         </section>
@@ -248,17 +260,17 @@
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan Perbaikan</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="tindakan_perbaikan">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Usulan Tindakan Perbaikan Dari TTA/KTA yang ditemukan !</label>
                                     <small class="form-text text-muted mt-0">Tuliskan usulan atau saran tindakan perbaikan yang diperlukan untuk menangani kondisi atau tindakan bahaya yang ditemukan.</small>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="usulan_tindakan">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="" class="section-title">Foto Temuan (additional)</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <input type="file" class="custom-file-input" id="customFile" name="foto">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                         <small class="form-text text-muted mt-0">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     </div>
@@ -267,13 +279,13 @@
                                     <label class="section-title">Apakah usulan tindakan perbaikan atas temuan telah dilakukan perbaikan sendiri ?</label>
                                     <small class="form-text text-muted mt-0">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
+                                        <input class="form-check-input" type="radio" name="is_perbaikan" id="exampleRadios1" checked="">
                                         <label class="form-check-label" for="exampleRadios1">
                                             YA
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
+                                        <input class="form-check-input" type="radio" name="is_perbaikan" id="exampleRadios2" checked="">
                                         <label class="form-check-label" for="exampleRadios2">
                                             Tidak, karena bukan kompetensi saya/ bukan area kerja saya (dept lain atau cusomer)
                                         </label>
@@ -283,12 +295,12 @@
                             <hr>
                             <div class="card-footer">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger " onclick="">Kembali</button>
-                                    <button class="btn btn-success mr-1" onclick="add_data()">Simpan</button>
+                                    <a class="btn btn-danger " onclick="">Kembali</a>
+                                    <a class="btn btn-success mr-1" onclick="init_form_greencard()">Simpan</a>
                                 </div>
                             </div>
                         </section>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -299,7 +311,7 @@
 @push('js')
     <script>
         $(function(){
-            // init_form_element()
+            init_form_element()
 
             $('.next-button').on('click', function (e) {
                 var section = $(this).closest("section");
@@ -330,6 +342,27 @@
             });
 
         });
+
+        let init_form_greencard = (id = '') =>{
+            let $form_greencard = $('#form_greencard'),
+                $button_submit_greencard = $('#button_submit_greencard');
+                $form_greencard.submit((e) => {
+                    e.preventDefault();
+
+                    let data = getFormData($form_greencard);
+                    let url = '{{ route($active_route) }}';
+                    if (id !== '') {
+                        url += ('/' + id);
+                        data._method = 'put';
+                    }
+                    $.post(url, data, () => {
+                        console.log('berhasil mengirim data');
+                    }).fail((xhr) => {
+                        error_handle(xhr.responseText);
+                        console.log(xhr.responseText);
+                    })
+                })
+        }
 
         let add_data = () => {
             let url = "{{ route('questioning.green_card.show', 1) }}";
