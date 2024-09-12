@@ -77,7 +77,6 @@
 
 @push('js')
     <script>
-        // init_form_element();
 
         let $search_form = $('#search_form'),
             $user_table = $('#user_table'),
@@ -92,6 +91,7 @@
             $user_info.html('');
             $card_user.show();
             $discard_data.hide();
+            $('#add_data').show();
             search_user();
         }
 
@@ -121,20 +121,40 @@
                 $button_submit_user = $('#button_submit_user');
                 $form_user.submit((e) => {
                     e.preventDefault();
-
-                    let data = getFormData($form_user);
+                    let dataForm = new FormData($form_user.get(0));
                     let url = '{{ route($active_route) }}';
                     if (id !== '') {
                         url += ('/' + id);
-                        data._method = 'put';
+                        dataForm.append('_method', 'PUT');
                     }
-                    $.post(url, data, () => {
-                        init_user();
-                    }).fail((xhr) => {
-                        error_handle(xhr.responseText);
-                        console.log(xhr.responseText);
-                    })
-                })
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: dataForm,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Data Safety Talk has been saved.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                init_user(  );
+                            });
+                        },
+                        error: (xhr) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: xhr.responseText
+                            });
+                        }
+                    });
+                });
         }
 
         $search_form.submit((e) => {
@@ -152,7 +172,7 @@
 
             let data = getFormData($search_form);
             data.paginate = 10;
-            $.post("{{ route('employee.user.search') }}?page=" + select_page, data, (result) => {
+            $.post("{{ route('sistem.user.search') }}?page=" + select_page, data, (result) => {
                 $user_table.html(result);
             }).fail((xhr) => {
                 $user_table.html(xhr.responseText);
@@ -160,6 +180,15 @@
         }
         
         search_user();
+
+        let init_form_pengawas = ( id = '' ) => {
+            if (id == '1') {
+                $('#data_pengawas').show();
+            } else {
+                $('#data_pengawas').hide();
+            }
+        }
+
 
     </script>
 @endpush

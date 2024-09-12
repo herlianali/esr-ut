@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 class PegawaiServices extends Services 
 {
     protected $pegawai;
-    public function __constract(Pegawai $pegawai)
+    public function __construct(Pegawai $pegawai)
     {
         $this->pegawai = $pegawai;
     }
 
-    public function getOnse($value, $column = 'id')
+    public function getOne($value, $column = 'id')
     {
         return $this->pegawai->where($column, $value)->first();
     }
@@ -28,15 +28,15 @@ class PegawaiServices extends Services
         return $this->searchPegawai($params, $pegawai);
     }
 
-    public function savePegawai(Request $request)
+    public function createPegawai($params)
     {
-        $id = $request->input('id') ?? '';
-        if ($id == '') {
-            $pegawai = $this->pegawai->create($request->all());
-        } else {
-            $pegawai = $this->pegawai->find($id);
-            $pegawai->update($request->all());
-        }
+        return $this->pegawai->create($params);
+    }
+    
+    public function updatePegawai($params, $id)
+    {
+        $pegawai = $this->pegawai->find($id);
+        if ($pegawai) $pegawai->update($params);
         return $pegawai;
     }
 

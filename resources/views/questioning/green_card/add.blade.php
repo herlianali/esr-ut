@@ -1,7 +1,6 @@
 @extends('layout.app')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
 <style>
     .hide {
         display: none;
@@ -15,235 +14,152 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Green Card</h1>
+    <h1>{{ $title }}</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Form Questioning</a></div>
-        <div class="breadcrumb-item">Green Card</div>
+        <div class="breadcrumb-item active"><a href="#">Questioning</a></div>
+        <div class="breadcrumb-item">{{ $title }}</div>
     </div>
 </div>
 <div class="card">
     <div class="card-body">
         <div class="card">
             <div class="card-header">
-                <h4>Green Card Form</h4>
+                <h4>{{ $title }} Form</h4>
             </div>
             <div class="card-body p-0">
-                <div class="container-fluid">
-                    {{-- <form action="" method=""> --}}
-                        <section id="setion_awal">
+                <div class="container-fluid" id="form_input">
+                    <form id="form_green_card" enctype="multipart/form-data">
+                        @csrf
+                        <section class="section" id="section1">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tanggal Laporan</label>
-                                    <input type="text" class="form-control datetimepicker">
+                                    <input type="text" class="form-control datepicker" name="tanggal" value="{{ $green_card->tanggal ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kelompok Jabatan</label>
-                                    <input type="text" class="form-control">
+                                    <x-select class="select2" name="jabatan" :default="'-- Pilih Kelompok Jabatan --'" :options="[ 1 => 'Pengawas / Target 13 PW', 2 => 'Non Pengawas / All Karyawan' ]" :value=" $green_card->jabatan ?? '' "/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Pengawas / Target 13 PW</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="pengawas" value="{{ $green_card->pengawas ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Nama Pengawas</label>
-                                    <select class="form-control select2">
-                                        <option value="1">HERI PRIYO MAHARGYO</option>
-                                        <option value="2">RONIE PERMANA</option>
-                                        <option value="3">AGUS HARIYADI</option>
-                                        <option value="4">HARYONO</option>
-                                        <option value="5">WISNU PURA WIJAYANTO</option>
-                                        <option value="6">ARIWANSA</option>
-                                        <option value="7">SYAMSUL PURNOMO</option>
-                                        <option value="8">JAIMAN</option>
-                                        <option value="9">DENI EKO MUKTI</option>
-                                        <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                        <option value="11">BAGYO SETYANTO</option>
-                                        <option value="12">GANJAR WICAKSONO</option>
-                                        <option value="13">NANO</option>
-                                        <option value="14">SUKRISNO</option>
-                                        <option value="15">AGUNG KRISMANTO</option>
-                                        <option value="16">EKO AGUS PRIBADI</option>
-                                        <option value="17">WAHYU HADI SAFRUDIN</option>
-                                        <option value="18">ADI SETIADI</option>
-                                        <option value="19">TRI MARJUKI</option>
-                                        <option value="20">ALDI SATRIO</option>
-                                    </select>
+                                    <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options=" $list_pengawas " :value=" $green_card->nama_pengawas ?? '' "/>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
-                                {{-- <button class="btn btn-primary mr-1 next-button" >Next</button> --}}
-                                <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                <a class="btn btn-primary mr-1 text-white next" data-next="#section2">Next</a>
                             </div>
                         </section>
-                        <section class="hide">    
+                        <section class="section" id="section2" style="display: none">    
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Non Pengawas / All Karyawan</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="non_pengawas" value="{{ $green_card->non_pengawas ?? '' }}">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Nama Lengkap</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="nama_lengkap" value="{{ $green_card->nama_lengkap ?? '' }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">NRP</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="nrp" value="{{ $green_card->nrp ?? '' }}">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Perusahaan</label>
-                                    <select class="form-control select2">
-                                        <option value="1">BP</option>
-                                        <option value="2">HMU</option>
-                                        <option value="3">KAMAJU</option>
-                                        <option value="4">HARYONO</option>
-                                        <option value="5">NAJ</option>
-                                        <option value="6">NIKMAT</option>
-                                        <option value="7">TPP</option>
-                                        <option value="8">TRAC</option>
-                                        <option value="9">UT</option>
-                                        <option value="10">UTR</option>
-                                        <option value="11">OTHER</option>
-                                    </select>
+                                    <x-select class="select2" name="perusahaan" :default="'-- Pilih Perusahaan --'" :options=" $list_perusahaan " :value=" $green_card->perusahaan ?? '' "/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                     <label class="section-title">Dept / Sektor</label>
-                                    <select class="form-control select2">
-                                        <option value="1">ADM</option>
-                                        <option value="2">ADVISOR</option>
-                                        <option value="3">PART ADARO</option>
-                                        <option value="4">PART TJG</option>
-                                        <option value="5">PSCE</option>
-                                        <option value="6">SVC BUMA</option>
-                                        <option value="7">SVC FMC SCANIA</option>
-                                        <option value="8">SVC FMC SIS MIA4</option>
-                                        <option value="9">SVC NFMC SIS MIA4</option>
-                                        <option value="10">SVC TERITORY</option>
-                                        <option value="11">TC</option>
-                                        <option value="12">BP</option>
-                                        <option value="13">HMU</option>
-                                        <option value="14">KAMAJU</option>
-                                        <option value="15">NAJ</option>
-                                        <option value="16">NIKMAT</option>
-                                        <option value="17">TPP</option>
-                                        <option value="18">TRAC</option>
-                                        <option value="19">UT</option>
-                                        <option value="20">UTR</option>
-                                    </select>
+                                    <x-select class="select2" name="sektor" :default="'-- Pilih Dept / Sektor --'" :options=" $list_sektor1 " :value=" $green_card->sektor ?? '' "/>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                    <a class="btn btn-danger mr-1 text-white back" data-back="#section1">Back</a>
+                                    <a class="btn btn-primary mr-1 text-white next" data-next="#section3">Next</a>
                                 </div>
                             </div>
                         </section>
-                        <section class="hide">
+                        <section class="section" id="section3" style="display: none">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Laporan Bahaya</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="laporan_bahaya" value="{{ $green_card->laporan_bahaya ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Lokasi Ditemukannya Bahaya</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="lokasi_bahaya" value="{{ $green_card->lokasi_bahaya ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Detail Lokasi Ditemukannya Bahaya</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="detail_lokasi" value="{{ $green_card->detail_lokasi ?? '' }}">
                                     <small class="form-text text-muted">Tulis detail lokasi ditemukannya kondisi atau tindakan bahaya. Misal jalan hauling km 68; workshop 35B; warehouse RISA TJS; dll.</small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Dept / Sektor Ditemukannya Bahaya</label>
-                                    <select class="form-control select2">
-                                        <option value="1">ADM</option>
-                                        <option value="2">PART ADARO</option>
-                                        <option value="3">PART TJG</option>
-                                        <option value="4">SVC BUSERT</option>
-                                        <option value="5">SVC SIS KM 35B</option>
-                                        <option value="6">SVC SIS MIA 4</option>
-                                        <option value="7">TC</option>
-                                        <option value="8">BP</option>
-                                        <option value="9">HMU</option>
-                                        <option value="10">KAMAJU</option>
-                                        <option value="11">NAJ</option>
-                                        <option value="12">NIKMAT</option>
-                                        <option value="13">TPP</option>
-                                        <option value="14">TRAC</option>
-                                        <option value="15">UT</option>
-                                        <option value="16">UTR</option>
-                                        <option value="17">Area Customer</option>
-                                        <option value="18">Other</option>
-                                    </select>
+                                    <x-select class="select2" name="sektor_bahaya" :default="'-- Pilih Dept / Sektor --'" :options=" $list_sektor2 " :value=" $green_card->sektor_bahaya ?? '' "/>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan atau Kondisi Bahaya Yang Ditemukan</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="tindakan" value="{{ $green_card->tindakan ?? '' }}">
                                     <small class="form-text text-muted">Jelaskan temuan TTA dan KTA yang anda temukan.</small>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="section-title">Kategori Deviasi</label>
-                                    <select class="form-control select2">
-                                        <option value="1">Prosedur</option>
-                                        <option value="2">APD / Alat Keselamatan</option>
-                                        <option value="3">Alat & Peralatan Kerja</option>
-                                        <option value="4">Fasilitas</option>
-                                        <option value="5">House Keeping</option>
-                                        <option value="6">Lingkungan</option>
-                                        <option value="7">kesehatan</option>
-                                    </select>
+                                    <x-select class="select2" name="ketegori_deviasi" :default="'-- Pilih Ketegori Deviasi --'" :options=" $list_deviasi " :value=" $green_card->ketegori_deviasi ?? '' "/>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Kategori Temuan</label>
-                                    {{-- <div class="row"> --}}
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                KTA (Kondisi Tidak Aman)
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
-                                            <label class="form-check-label" for="exampleRadios2">
-                                                TTA (Tindakan Tidak Aman)
-                                            </label>
-                                        </div>
-                                    {{-- </div> --}}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="kategori_temuan" id="kategoriTemuan1" value="1" @if(!empty($green_card) && $green_card->kategori_temuan === 1 ) checked @endif>
+                                        <label class="form-check-label" for="kategoriTemuan1">
+                                            KTA (Kondisi Tidak Aman)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="kategori_temuan" id="kategoriTemuan2" value="2" @if(!empty($green_card) && $green_card->kategori_temuan === 2 ) checked @endif>
+                                        <label class="form-check-label" for="kategoriTemuan2">
+                                            TTA (Tindakan Tidak Aman)
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                    <a class="btn btn-danger mr-1 text-white back" data-back="#section2">Back</a>
+                                    <a class="btn btn-primary mr-1 text-white next" data-next="#section4">Next</a>
                                 </div>
                             </div>
                         </section>
-                        <section class="hide">
+                        <section class="section" id="section4" style="display: none">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">KTA Lanjut 1</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="kta_lanjut1" value="{{ $green_card->kta_lanjut1 ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah KTA (Kondisi tidak aman) yang ditemukan, ada kontribusi dari TTA (Tindakan tidak aman) ?</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input class="form-check-input" type="radio" name="kontribusi" id="kontribusi1" value="1" @if(!empty($green_card) && $green_card->kontribusi) checked @endif>
+                                        <label class="form-check-label" for="kontribusi1">
                                             YA
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
-                                        <label class="form-check-label" for="exampleRadios2">
+                                        <input class="form-check-input" type="radio" name="kontribusi" id="kontribusi2" value="2" @if(!empty($green_card) && $green_card->kontribusi) checked @endif>
+                                        <label class="form-check-label" for="kontribusi2">
                                             Tidak
                                         </label>
                                     </div>
@@ -251,51 +167,50 @@
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title pb-4">KTA Lanjut 2</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="kta_lanjut2" value="{{ $green_card->kta_lanjut2 ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Jelaskan TTA yang berkontribusi terhadap adanya temuan KTA tersebut !</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="penjelasan" value="{{ $green_card->penjelasan ?? '' }}">
                                 </div>
                             </div>
                             <hr>
                             <div class="text-right">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger mr-1 back-button" >Back</button>
-                                    <button class="btn btn-primary mr-1 next-button" >Next</button>
+                                    <a class="btn btn-danger mr-1 text-white back" data-back="#section3">Back</a>
+                                    <a class="btn btn-primary mr-1 text-white next" data-next="#section5">Next</a>
                                 </div>
                             </div>
                         </section>
-                        <section class="hide">
+                        <section class="section" id="section5" style="display: none">
                             <div class="row">
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Tindakan Perbaikan</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="tindakan_perbaikan" value="{{ $green_card->tindakan_perbaikan ?? '' }}">
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Usulan Tindakan Perbaikan Dari TTA/KTA yang ditemukan !</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="usulan_tindakan" value="{{ $green_card->usulan_tindakan ?? '' }}">
                                     <small class="form-text text-muted">Tuliskan usulan atau saran tindakan perbaikan yang diperlukan untuk menangani kondisi atau tindakan bahaya yang ditemukan.</small>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label for="" class="section-title">Foto Temuan (additional)</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                        <input type="file" class="dropify" id="foto" name="foto" @if(!empty($green_card) && $green_card->foto != '') data-default-file="{{ asset("public/storage/$green_card->foto") }}" @endif>
                                         <small class="form-text text-muted">Jika temuannya dianggap kritikal, maka wajib melampirkan foto.</small>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 col-sm-12">
                                     <label class="section-title">Apakah usulan tindakan perbaikan atas temuan telah dilakukan perbaikan sendiri ?</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input class="form-check-input" type="radio" name="is_perbaikan" id="is_perbaikan1" value="1" @if(!empty($green_card) && $green_card->is_perbaikan === 1) checked @endif>
+                                        <label class="form-check-label" for="is_perbaikan1">
                                             YA
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
-                                        <label class="form-check-label" for="exampleRadios2">
+                                        <input class="form-check-input" type="radio" name="is_perbaikan" id="is_perbaikan2" value="2" @if(!empty($green_card) && $green_card->is_perbaikan === 2) checked @endif>
+                                        <label class="form-check-label" for="is_perbaikan2">
                                             Tidak, karena bukan kompetensi saya/ bukan area kerja saya (dept lain atau cusomer)
                                         </label>
                                     </div>
@@ -305,13 +220,14 @@
                             <hr>
                             <div class="card-footer">
                                 <div class="row justify-content-between">
-                                    <button class="btn btn-danger " onclick="">Kembali</button>
-                                    <button class="btn btn-success mr-1" onclick="add_data()">Simpan</button>
+                                    <a class="btn btn-danger text-white back" data-back="#section4">Back</a>
+                                    <button class="btn btn-success mr-1" type="submit" id="button_submit_green_card" >Save</button>
                                 </div>
                             </div>
                         </section>
-                    {{-- </form> --}}
+                    </form>
                 </div>
+                <div id="detail"> </div>
             </div>
         </div>
     </div>
@@ -319,45 +235,106 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    {{-- <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script> --}}
     <script>
-        $(function(){
-            // init_form_element()
+        init_form_element();
 
-            $('.next-button').on('click', function (e) {
-                var section = $(this).closest("section");
-                var $next = section.next();
-                if($next.length > 0) {
-                    section.addClass('hide');
-                    $next.removeClass('hide');
+        $(document).ready(function(){
+
+            $('.next').click(function() {
+                var nextSection = $(this).data('next');
+                var jabatan = $('#jabatan').val();
+
+                if (nextSection === '#section2' && jabatan === '1') {
+                    nextSection = '#section3';
                 }
+
+                $(this).closest('.section').hide();
+                $(nextSection).show();
             });
 
-            $('.back-button').on('click', function (e) {
-                var section = $(this).closest("section");
-                var $previous = section.prev();
-                if($previous.length > 0) {
-                    section.addClass('hide');
-                    $previous.removeClass('hide');
+            $('.back').click(function() {
+                var backSection = $(this).data('back');
+                var jabatan = $('#jabatan').val();
+
+                if (backSection === '#section2' && jabatan === '1') {
+                    backSection = '#section1';
                 }
+
+                $(this).closest('.section').hide();
+                $(backSection).show();
             });
 
-            $('.batal-button').on('click', function (e) {
-                ;
+            $('#jabatan').change(function() {
+                var jabatan = $(this).val();
+                console.log(jabatan);
+                if (jabatan === '1') {
+                    $('#section2').hide();
+                } else {
+                    $('#section1').hide();
+                    $('#section2').show();
+                }
             });
 
         });
 
-        let add_data = () => {
-            let url = "{{ route('green_card.show') }}";
-
-            // $.get(url, (result) => {
-                window.location.href = url;
-            // }).fail((xhr) => {
-                
-            // });
+        let init_form_green_card = (id = '') =>{
+            let $form_green_card = $('#form_green_card'),
+                $button_submit_green_card = $('#button_submit_green_card');
+                $form_green_card.submit((e) => {
+                    e.preventDefault();
+                    let dataForm = new FormData($form_green_card.get(0));
+                    let url = '{{ route($active_route) }}';
+                    if (id !== '') {
+                        url += ('/' + id);
+                        dataForm.append('_method', 'PUT');
+                    }
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: dataForm,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Green Card data has been saved.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                detail_green_card(response.id);
+                            });
+                        },
+                        error: (xhr) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: xhr.responseText
+                            });
+                        }
+                    });
+                });
         }
+
+        let detail_green_card = (id = '') => {
+            let url = "{{ route($active_route) }}/"+id;
+
+            $.get(url, (result) => {
+                $('#form_input').hide();
+                $('#form_input').html('');
+                $('#detail').html(result);
+            }).fail((xhr) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: xhr.responseText
+                });
+            });
+        }
+
+        init_form_green_card({{ $green_card->id ?? '' }})
     </script>
 @endpush

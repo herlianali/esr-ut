@@ -33,460 +33,173 @@
                 <h4>Form Inspeksi Sarana</h4>
             </div>
             <div class="card-body p-0">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Tanggal Inspeksi / Sidak</label>
-                            <input type="text" class="form-control datetimepicker">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Nama Pengawas</label>
-                            <small class="form-text text-muted">Nama Pengawas Yang Mendapat Target 09 Atau 13 PW</small>
-                            <select class="form-control select2">
-                                <option value="1">HERI PRIYO MAHARGYO</option>
-                                <option value="2">RONIE PERMANA</option>
-                                <option value="3">AGUS HARIYADI</option>
-                                <option value="4">HARYONO</option>
-                                <option value="5">WISNU PURA WIJAYANTO</option>
-                                <option value="6">ARIWANSA</option>
-                                <option value="7">SYAMSUL PURNOMO</option>
-                                <option value="8">JAIMAN</option>
-                                <option value="9">DENI EKO MUKTI</option>
-                                <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                <option value="11">BAGYO SETYANTO</option>
-                                <option value="12">GANJAR WICAKSONO</option>
-                                <option value="13">NANO</option>
-                                <option value="14">SUKRISNO</option>
-                                <option value="15">AGUNG KRISMANTO</option>
-                                <option value="16">EKO AGUS PRIBADI</option>
-                                <option value="17">WAHYU HADI SAFRUDIN</option>
-                                <option value="18">ADI SETIADI</option>
-                                <option value="19">TRI MARJUKI</option>
-                                <option value="20">ALDI SATRIO</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Lokasi Pelaksanaan Inspeksi / Sidak Sarana</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Nomor Lambang Unit Yang Dilakukan Inspeksi / Sidak Sarana</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <label class="section-title">Checklist Inspeksi Sarana / Kendaraan</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>A. Kondisi Kendaraan</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Normal
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Normal
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Roda</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Sabuk Pengaman</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi Kaca-kaca</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi lampu-lampu (depan, belakang, rem, sen, rotary, back alarm, dll)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Terdapat rambu-rambu atau sistem peringatan yang memadai</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem 4 WD</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem rem</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem kemudi</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi radio komunikasi</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi sistem rem</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelengkapan isi kotak P3K</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan APAR</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan Buggy whip</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan kunci-kunci</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Ketersediaan dan kelayakan safety cone / segitiga</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi fisik kendaraan</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi box (untuk mobil box)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
+                <div class="container-fluid" id="form_input">
+                    <form id="form_inspeksi_sarana">
+                        @csrf
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Tanggal Inspeksi / Sidak</label>
+                                <input type="text" class="form-control datepicker" name="tanggal" value="{{ $inspeksi_sarana->tanggal ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Nama Pengawas</label>
+                                <small class="form-text text-muted">Nama Pengawas Yang Mendapat Target 09 Atau 13 PW</small>
+                                <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options=" $list_pengawas " :value=" $inspeksi_sarana->nama_pengawas ?? '' "/>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title pb-4">Lokasi Pelaksanaan Inspeksi / Sidak Sarana</label>
+                                <input type="text" class="form-control" name="lokasi_inspeksi" value="{{ $inspeksi_sarana->lokasi_inspeksi ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title pb-4">Nomor Lambang Unit Yang Dilakukan Inspeksi / Sidak Sarana</label>
+                                <input type="text" class="form-control" name="nomor_lambung" value="{{ $inspeksi_sarana->nomor_lambung ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Checklist Inspeksi Sarana / Kendaraan</label>
+                                <input type="text" class="form-control" name="checklist_inspeksi" value="{{ $inspeksi_sarana->checklist_inspeksi ?? '' }}">
+                            </div>
+                            <div class="container mt-4">
+                                <div class="text-center mb-4">
+                                    <h3>A. Kondisi Kendaraan</h3>
+                                </div>
+                            
+                                <hr style="height:2px;border:none;color:#7c7c7c;background-color:#7c7c7c;">
+                            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="bg-info text-white">No</td>
+                                            <th class="col-12 bg-info"></th>
+                                            <th class="text-center text-white bg-success col-6">Normal</th>
+                                            <th class="text-center text-white bg-danger col-6">Tidak Normal</th>
+                                            <th class="text-center text-white bg-secondary col-6">N/A</th>
+                                        </tr>
+                                        @php($no = 1)
+                                        @foreach ($options_kondisi_kendaraan as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->pertanyaan }}</td>
+                                            <td class="text-center"><input type="radio" name="kondisi_kendaraan_{{$item->identifier}}" value="1" @if(isset($kondisi['kondisi_kendaraan_'.$item->identifier]) && $kondisi['kondisi_kendaraan_'.$item->identifier] == 1) checked @endif></td>
+                                            <td class="text-center"><input type="radio" name="kondisi_kendaraan_{{$item->identifier}}" value="2" @if(isset($kondisi['kondisi_kendaraan_'.$item->identifier]) && $kondisi['kondisi_kendaraan_'.$item->identifier] == 2) checked @endif></td>
+                                            <td class="text-center"><input type="radio" name="kondisi_kendaraan_{{$item->identifier}}" value="3" @if(isset($kondisi['kondisi_kendaraan_'.$item->identifier]) && $kondisi['kondisi_kendaraan_'.$item->identifier] == 3) checked @endif></td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <label class="section-title">Catatan deviasi dari item KONDISI KENDARAAN</label>
-                            <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>B. Driver dan Penumpang</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa KIMPER yang sesuai (driver)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa Mine Permit (penumpang)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Memiliki dan membawa APD lengkap</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Menggunakan sabuk pengaman</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Kondisi kebugaran driver</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Catatan deviasi dari item KONDISI KENDARAAN</label>
+                                <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
+                                <input type="text" class="form-control" name="catatan_kondisi_kendaraan" value="{{ $inspeksi_sarana->catatan_kondisi_kendaraan ?? '' }}">
+                            </div>
+
+                            <div class="container mt-4">
+                                <div class="text-center mb-4">
+                                    <h3>B. Driver dan Penumpang</h3>
+                                </div>
+                            
+                                <hr style="height:2px;border:none;color:#7c7c7c;background-color:#7c7c7c;">
+                            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="bg-info text-white">No</td>
+                                            <th class="col-12 bg-info"></th>
+                                            <th class="text-center text-white bg-success col-6">Normal</th>
+                                            <th class="text-center text-white bg-danger col-6">Tidak Normal</th>
+                                            <th class="text-center text-white bg-secondary col-6">N/A</th>
+                                        </tr>
+                                        @php($no = 1)
+                                        @foreach ($options_driver as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->pertanyaan }}</td>
+                                            <td class="text-center"><input type="radio" name="driver_{{ $item->identifier }}" value="1" @if(isset($driver['driver_'.$item->identifier]) && $driver['driver_'.$item->identifier] == 1) checked @endif></td>
+                                            <td class="text-center"><input type="radio" name="driver_{{ $item->identifier }}" value="2" @if(isset($driver['driver_'.$item->identifier]) && $driver['driver_'.$item->identifier] == 2) checked @endif></td>
+                                            <td class="text-center"><input type="radio" name="driver_{{ $item->identifier }}" value="3" @if(isset($driver['driver_'.$item->identifier]) && $driver['driver_'.$item->identifier] == 3) checked @endif></td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <label class="section-title">Catatan deviasi dari item DRIVER & PENUMPANG</label>
-                            <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="card" >
-                                <div class="card-body ">
-                                    <h5>C. Prosedur & Standar</h5>
-                                    <div class="row">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-2">
-                                            Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            Tidak Lengkap
-                                        </div>
-                                        <div class="col-md-2">
-                                            N/A
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">P2H telah dilaksanakan dan disyahkan</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa formulir JSA</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa pad lock dan danger tag</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-md-6">Membawa dokumen kelengkapan kerja lainnya (job card, form sosialisasi JSA, dll)</label>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="radio">
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Catatan deviasi dari item DRIVER & PENUMPANG</label>
+                                <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
+                                <input type="text" class="form-control" name="catatan_penumpang" value="{{ $inspeksi_sarana->catatan_penumpang ?? '' }}">
+                            </div>
+
+                            <div class="container mt-4">
+                                <div class="text-center mb-4">
+                                    <h3>C. Prosedur & Standar</h3>
+                                </div>
+                            
+                                <hr style="height:2px;border:none;color:#7c7c7c;background-color:#7c7c7c;">
+                            
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="bg-info text-white">No</td>
+                                            <th class="col-12 bg-info"></th>
+                                            <th class="text-center text-white bg-success col-6">Normal</th>
+                                            <th class="text-center text-white bg-danger col-6">Tidak Normal</th>
+                                            <th class="text-center text-white bg-secondary col-6">N/A</th>
+                                        </tr>
+                                        @php($no = 1)
+                                        @foreach ($options_prosedur as $item)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $item->pertanyaan }}</td>
+                                                <td class="text-center">
+                                                    <input type="radio" name="prosedur_{{ $item->identifier }}" value="1" @if(isset($prosedur['prosedur_'.$item->identifier]) && $prosedur['prosedur_'.$item->identifier] == 1) checked @endif>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" name="prosedur_{{ $item->identifier }}" value="2" @if(isset($prosedur['prosedur_'.$item->identifier]) && $prosedur['prosedur_'.$item->identifier] == 2) checked @endif>
+                                                </td>
+                                                <td class="text-center">
+                                                    <input type="radio" name="prosedur_{{ $item->identifier }}" value="3" @if(isset($prosedur['prosedur_'.$item->identifier]) && $prosedur['prosedur_'.$item->identifier] == 3) checked @endif>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <label class="section-title">Catatan deviasi dari item PROSEDUR & STANDAR</label>
-                            <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Pengawas telah memberikan feedback kepada karyawan, dan akan melakukan follow up atas deviasi-deviasi yang ditemukan</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" checked="">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    YA
-                                </label>
+                            {{-- @php(var_dump($prosedur)) --}}
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Catatan deviasi dari item PROSEDUR & STANDAR</label>
+                                <small class="form-text text-muted">Tuliskan deviasi-deviasi yang ditemukan pada item pemeriksaan di atas. Gunakan nomor urut jika ditemukan lebih dari 1 deviasi. Tulis "Tidak Ada Deviasi" jika tidak ditemukan deviasi.</small>
+                                <input type="text" class="form-control" name="catatan_prosedur" value="{{ $inspeksi_sarana->catatan_prosedur ?? '' }}">
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" checked="">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    TIDAK
-                                </label>
+                            
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Pengawas telah memberikan feedback kepada karyawan, dan akan melakukan follow up atas deviasi-deviasi yang ditemukan</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="is_feedback" id="is_feedback1" value="1" @if(!empty($inspeksi_sarana) && $inspeksi_sarana->is_feedback === 1) checked @endif>
+                                    <label class="form-check-label" for="is_feedback1">
+                                        YA
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="is_feedback" id="is_feedback2" value="2" @if(!empty($inspeksi_sarana) && $inspeksi_sarana->is_feedback === 2) checked @endif>
+                                    <label class="form-check-label" for="is_feedback2">
+                                        TIDAK
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12">
+                                <label class="section-title">Catatan Khusus(Jika ada)</label>
+                                <input type="text" class="form-control" name="catatan_khusus" value="{{ $inspeksi_sarana->catatan_khusus ?? '' }}">
                             </div>
                         </div>
-                        <div class="form-group col-md-12 col-sm-12">
-                            <label class="section-title">Catatan Khusus(Jika ada)</label>
-                            <input type="text" class="form-control">
+                        <hr>
+                        <div class="card-footer">
+                            <div class="row justify-content-between">
+                                <button class="btn btn-danger " type="reset">Reset</button>
+                                <button class="btn btn-success mr-1" id="button_submit_inspeksi_sarana" type="submit">Submit</button>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <button class="btn btn-secondary " type="reset">Reset</button>
-                    </div>
+                    </form>
                 </div>
+                <div class="container-fluid" id="detail"> </div>
             </div>
         </div>
     </div>
@@ -494,4 +207,67 @@
 @endsection
 
 @push('js')
+<script>
+    init_form_element();
+
+    let init_form_inspeksi_sarana = (id = '') =>{
+        let $form_inspeksi_sarana = $('#form_inspeksi_sarana'),
+            $button_submit_inspeksi_sarana = $('#button_submit_inspeksi_sarana');
+            $form_inspeksi_sarana.submit((e) => {
+                e.preventDefault();
+                let dataForm = new FormData($form_inspeksi_sarana.get(0));
+                let url = '{{ route($active_route) }}';
+                if (id !== '') {
+                    url += ('/' + id);
+                    dataForm.append('_method', 'PUT');
+                }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: dataForm,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: (response) => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Data Inspeksi Sarana has been saved.',
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            detail_inspeksi_sarana(response.id);
+                        });
+                    },
+                    error: (xhr) => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            footer: xhr.responseText
+                        });
+                    }
+                });
+            });
+    }
+
+    let detail_inspeksi_sarana = (id = '') => {
+        let url = "{{ route($active_route) }}/"+id;
+
+        $.get(url, (result) => {
+            $('#form_input').hide();
+            $('#form_input').html('');
+            $('#detail').html(result);
+        }).fail((xhr) => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: xhr.responseText
+            });
+        });
+    }
+
+    init_form_inspeksi_sarana({{ $green_card->id ?? '' }})
+</script>
 @endpush

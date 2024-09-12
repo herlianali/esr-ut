@@ -27,72 +27,49 @@
                 <h4>P5M Data Form</h4>
             </div>
             <div class="card-body p-0">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Tanggal Pelaksanaan P5M</label>
-                            <input type="text" class="form-control datetimepicker">
+                <div class="container-fluid" id="form_input">
+                    <form id="form_p5m">
+                        @csrf
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Tanggal Pelaksanaan P5M</label>
+                                <input type="text" class="form-control datepicker" name="tanggal" value="{{ $p5m->tanggal ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Shift / Giliran Kerja</label>
+                                <x-select class="select2" name="shift" :default="'-- Pilih Shift --'" :options=" [1 => 'Day / Siang', 2 => 'Night / Malam'] " :value=" $p5m->shift ?? '' "/>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Nama Pengawas</label>
+                                <small class="form-text text-muted">Nama Pengawas Yang Mendapat Target 13 Atau 9 PW</small>
+                                <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options=" $list_pengawas " :value=" $p5m->nama_pengawas ?? '' "/>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title pb-4">Dokumentasi</label>
+                                <input type="text" class="form-control" name="dokumentasi" value="{{ $p5m->dokumentasi ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title pb-4">Nama Pemateri P5M</label>
+                                <input type="text" class="form-control" name="nama_pemateri" value="{{ $p5m->nama_pengawas ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label class="section-title">Materi KPLH Yang Disampaikan </label>
+                                <small class="form-text text-muted">Setiap P5M Harus Ada Penyampaian Materi KPLH</small>
+                                <input type="text" class="form-control" name="materi_kplh" value="{{ $p5m->materi_kplh ?? '' }}">
+                            </div>
+                            <div class="form-group col-md-12 col-12">
+                                <label for="" class="section-title">Foto Dokumentasi Pelaksanaan P5M (foto/absensi)</label>
+                                <input type="file" class="dropify" id="foto" name="foto" @if(!empty($p5m) && $p5m->foto != '') data-default-file="{{ asset("public/storage/$p5m->foto") }}" @endif>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Shift / Giliran Kerja</label>
-                            <select class="form-control select2">
-                                <option value="1">Day / Siang</option>
-                                <option value="2">Night / Malam</option>
-                            </select>
+                        <hr>
+                        <div class="card-footer row justify-content-between">
+                            <button class="btn btn-secondary " type="reset">Reset</button>
+                            <button class="btn btn-primary mr-1" type="submit">Submit</button>
                         </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Nama Pengawas</label>
-                            <small class="form-text text-muted">Nama Pengawas Yang Mendapat Target 13 Atau 9 PW</small>
-                            <select class="form-control select2">
-                                <option value="1">HERI PRIYO MAHARGYO</option>
-                                <option value="2">RONIE PERMANA</option>
-                                <option value="3">AGUS HARIYADI</option>
-                                <option value="4">HARYONO</option>
-                                <option value="5">WISNU PURA WIJAYANTO</option>
-                                <option value="6">ARIWANSA</option>
-                                <option value="7">SYAMSUL PURNOMO</option>
-                                <option value="8">JAIMAN</option>
-                                <option value="9">DENI EKO MUKTI</option>
-                                <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                <option value="11">BAGYO SETYANTO</option>
-                                <option value="12">GANJAR WICAKSONO</option>
-                                <option value="13">NANO</option>
-                                <option value="14">SUKRISNO</option>
-                                <option value="15">AGUNG KRISMANTO</option>
-                                <option value="16">EKO AGUS PRIBADI</option>
-                                <option value="17">WAHYU HADI SAFRUDIN</option>
-                                <option value="18">ADI SETIADI</option>
-                                <option value="19">TRI MARJUKI</option>
-                                <option value="20">ALDI SATRIO</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Dokumentasi</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title pb-4">Nama Pemateri P5M</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6 col-sm-12">
-                            <label class="section-title">Materi KPLH Yang Disampaikan </label>
-                            <small class="form-text text-muted">Setiap P5M Harus Ada Penyampaian Materi KPLH</small>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="" class="section-title">Foto Dokumentasi Pelaksanaan P5M (foto/absensi)</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                              </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="card-footer text-right">
-                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                        <button class="btn btn-secondary " type="reset">Reset</button>
-                    </div>
+                    </form>
                 </div>
+                <div class="container-fluid" id="detail"></div>
             </div>
         </div>
     </div>
@@ -102,5 +79,65 @@
 @push('js')
     <script>
         init_form_element()
+
+        let init_form_p5m = (id = '') =>{
+            let $form_p5m = $('#form_p5m'),
+                $button_submit_p5m = $('#button_submit_p5m');
+                $form_p5m.submit((e) => {
+                    e.preventDefault();
+                    let dataForm = new FormData($form_p5m.get(0));
+                    let url = '{{ route($active_route) }}';
+                    if (id !== '') {
+                        url += ('/' + id);
+                        dataForm.append('_method', 'PUT');
+                    }
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: dataForm,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Data P5M has been saved.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                detail_p5m(response.id);
+                            });
+                        },
+                        error: (xhr) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: xhr.responseText
+                            });
+                        }
+                    });
+                });
+        }
+
+        let detail_p5m = (id = '') => {
+            let url = "{{ route($active_route) }}/"+id;
+
+            $.get(url, (result) => {
+                $('#form_input').hide();
+                $('#form_input').html('');
+                $('#detail').html(result);
+            }).fail((xhr) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: xhr.responseText
+                });
+            });
+        }
+
+        init_form_p5m({{ $p5m->id ?? '' }})
     </script>
 @endpush

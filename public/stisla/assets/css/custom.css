@@ -6,8 +6,12 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
-body {
-    background-color: #dfdfdf;
+html, body {
+    /* background-color: #dfdfdf; */
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 .table-wrapper {
     overflow-x: auto;
@@ -30,4 +34,31 @@ body {
 /* Select2 */
 .select2-container {
     width: 100%!important;
+}
+
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.beep::after {
+    background-color: #0400ff !important;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+  
+  /* Footer should stay at the bottom */
+.main-footer {
+    margin-top: auto;
+}
+
+.border_less {
+    border: 0 !important;
+    width: 100%;
+    box-shadow: none;
+    box-sizing: border-box;
 }

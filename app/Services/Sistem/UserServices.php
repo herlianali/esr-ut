@@ -2,6 +2,8 @@
 
 namespace App\Services\Sistem;
 
+use App\Models\Pegawai;
+use App\Models\Pengawas;
 use App\Models\User;
 use App\Services\Services;
 use Illuminate\Http\Request;
@@ -9,10 +11,12 @@ use Illuminate\Support\Facades\Hash;
 
 class UserServices extends Services 
 {
-    protected $user;
-    public function __construct(User $user)
+    protected $user, $pengawas, $pegawai;
+    public function __construct(User $user, Pengawas $pengawas, Pegawai $pegawai)
     {
         $this->user = $user;
+        $this->pengawas = $pengawas;
+        $this->pegawai = $pegawai;
     }
 
     public function getOne($value, $column = 'id')
@@ -31,6 +35,8 @@ class UserServices extends Services
         if (isset($params['email']) && $params['email'] !== '') {
             $user = $user->where('email', 'like', "%{$params['email']}%");
         }
+
+        $user = $user->orderBy('id', 'desc');
         
         return $this->searchResponse($params, $user);
     }
@@ -51,11 +57,30 @@ class UserServices extends Services
         if (($params['password'] ?? '') === '') unset($params['password']);
         else $params['password'] = Hash::make($params['password']);
 
-        $user = $this->user->find($params);
+        $pegawai = $this->pegawai->where('id', $params['id_pegawai'])->first();
+        if ($pegawai) {
+            $pegawai = $this->pegawai->find($pegawai->id);
+            $pegawai->update($params);
+        }else{
+            $this->pegawai->create($params);
+        }
+
+        if ($params['is_pengawas'] === '1') {
+            $pengawas = $this->pengawas->where('user_id', $id)->first();
+            if ($pengawas) {
+                $pengawas = $this->pengawas->find($pengawas->id);
+                $pengawas->update($params);
+            }else{
+                $this->pengawas->create($params);
+            }
+            
+        }
+
+        $user = $this->user->find($id);
         if ($user) {
             $user->update($params);
-        //     if (!empty($params['role'])) $this->assignUserRole($params['role'], $user);
         }
+
         return $user;
     }
 

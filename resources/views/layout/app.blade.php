@@ -1,25 +1,31 @@
+@php
+use Illuminate\Support\Facades\Auth;
+$user = Auth::user();
+$user_level_id = $user->user_level_id ?? '';
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Ecommerce Dashboard &mdash; Stisla</title>
+  <title>{{ config('app.name') }} &mdash; {{ $title ?? ''}}</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/select2/dist/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/select2/dist/css/select2.min.css') }}">
 
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('public/stisla/assets/modules/dropify/dist/css/dropify.min.css') }}">
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/custom.css') }}">
   @stack('css')
   <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
@@ -35,7 +41,7 @@
 <body class="sidebar-mini">
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
+      <div class="navbar-bg bg-warning"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -67,19 +73,19 @@
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="{{ asset('stisla/assets/img/products/product-3-50.png') }} " alt="product">
+                  <img class="mr-3 rounded" width="30" src="{{ asset('public/stisla/assets/img/products/product-3-50.png') }} " alt="product">
                   oPhone S9 Limited Edition
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="{{ asset('stisla/assets/img/products/product-2-50.png') }}" alt="product">
+                  <img class="mr-3 rounded" width="30" src="{{ asset('public/stisla/assets/img/products/product-2-50.png') }}" alt="product">
                   Drone X2 New Gen-7
                 </a>
               </div>
               <div class="search-item">
                 <a href="#">
-                  <img class="mr-3 rounded" width="30" src="{{ asset('stisla/assets/img/products/product-1-50.png') }}" alt="product">
+                  <img class="mr-3 rounded" width="30" src="{{ asset('public/stisla/assets/img/products/product-1-50.png') }}" alt="product">
                   Headphone Blitz
                 </a>
               </div>
@@ -116,7 +122,7 @@
               <div class="dropdown-list-content dropdown-list-message">
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle">
+                    <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -127,7 +133,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-2.png') }}" class="rounded-circle">
+                    <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-2.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Dedik Sugiharto</b>
@@ -137,7 +143,7 @@
                 </a>
                 <a href="#" class="dropdown-item dropdown-item-unread">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-3.png') }}" class="rounded-circle">
+                    <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-3.png') }}" class="rounded-circle">
                     <div class="is-online"></div>
                   </div>
                   <div class="dropdown-item-desc">
@@ -148,7 +154,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-4.png') }}" class="rounded-circle">
+                    <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-4.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Ardian Rahardiansyah</b>
@@ -158,7 +164,7 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-5.png') }}" class="rounded-circle">
+                    <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-5.png') }}" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
                     <b>Alfa Zulkarnain</b>
@@ -232,9 +238,9 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             {{-- <div class="d-sm-none d-lg-inline-block">Hi, User ESR</div></a> --}}
-            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ $user->nama ?? '' }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -257,7 +263,7 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">13 PW UT Digital</a>
+            <a href="{{ route('dashboard') }}">13 PW UT Digital</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">ESR</a>
@@ -272,45 +278,54 @@
               <li ><a class="nav-link" href="{{ route('surat') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-envelope-open-text"></i> <span>BBSQ </span></a></li>
             @endif
-            @if( $menu === '1') 
-              @if(auth()->user()->user_level_id !== 2) 
-                <li {{ \Route::is('green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('green_card.add') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
+            @if( $menu === '1')
+              @if($user_level_id !== 2) 
+                <li {{ \Route::is('questioning.cuti.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.cuti.index') }}"><i class="fas fa-plane-departure"></i> <span>Cuti </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
-                <li {{ \Route::is('genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('genba.add') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
+              @if($user_level_id !== 2) 
+                <li {{ \Route::is('questioning.green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.green_card.index') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2) 
-                <li {{ \Route::is('bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('bbsq_service.add') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
+              @if($user_level_id === 1 || $user_level_id === 2) 
+                <li {{ \Route::is('questioning.genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.genba.index') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2) 
-                <li {{ \Route::is('bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('bbsq_non_service.add') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
+              @if($user_level_id === 1 || $user_level_id === 2) 
+                <li {{ \Route::is('questioning.bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.bbsq_service.index') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
-                <li {{ \Route::is('personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('personal_contact.add') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
+              @if($user_level_id !== 2) 
+                <li {{ \Route::is('questioning.bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.bbsq_non_service.index') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id === 1 || auth()->user()->user_level_id === 2)
-                <li {{ \Route::is('safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('safety_talk.add') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
+              @if($user_level_id !== 2) 
+                <li><a class="nav-link" href="https://ehspantau.unitedtractors.com/Home/LoginN?ReturnUrl=%2FHome%2F"><i class="fas fa-user-shield"></i> <span>EHS Pantau </span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('jsa.add') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
+              @if($user_level_id === 1 || $user_level_id === 2)
+                <li {{ \Route::is('questioning.personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.personal_contact.index') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('p5m.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('p5m.add') }}"><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
+              @if($user_level_id === 1 || $user_level_id === 2)
+                <li {{ \Route::is('questioning.safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.safety_talk.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('inspeksi_sarana.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('inspeksi_sarana.add') }}"><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.jsa.index') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('audit_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('audit_apd.add') }}"><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.p5m.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.p5m.index') }}"><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('inspeksi_tools.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('inspeksi_tools.add') }}"><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.inspeksi_sarana.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.inspeksi_sarana.index') }}"><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('housekeeping.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('housekeeping.add') }}"><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.audit_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.audit_apd.index') }}"><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
               @endif
-              @if(auth()->user()->user_level_id !== 2)
-                <li {{ \Route::is('scml.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('scml.add') }}"><i class="fas fa-users"></i> <span>SCML</span></a></li>
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.inspeksi_tools.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.inspeksi_tools.index') }}"><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
+              @endif
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.housekeeping.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.housekeeping.index') }}"><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
+              @endif
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.scml.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.scml.index') }}"><i class="fas fa-users"></i> <span>SCML</span></a></li>
+              @endif
+              @if($user_level_id !== 2)
+                <li {{ \Route::is('questioning.flpg.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.flpg.index') }}"><i class="fas fa-user-tie"></i> <span>FLPG</span></a></li>
               @endif
             @endif
             @if( $menu === '2') 
@@ -362,11 +377,14 @@
             </li>
             @endif
             @if($menu === '4')
-              <li {{ \Route::is('employee.user.*') || \Route::is('employee.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.user.index') }}"><i class="fas fa-user-cog"></i> <span>Management User</span></a></li>
-              <li {{ \Route::is('employee.fitur.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('employee.fitur.index') }}"><i class="fab fa-elementor"></i> <span>Management Menu</span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
+              <li {{ \Route::is('sistem.user.*') || \Route::is('sistem.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.user.index') }}"><i class="fas fa-user-cog"></i> <span>Data User</span></a></li>
+              <li {{ \Route::is('sistem.pengawas.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.pengawas.index') }}"><i class="fas fa-user-shield"></i> <span>Data Pengawas</span></a></li>
+              <li {{ \Route::is('sistem.sektor.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.sektor.index') }}"><i class="fas fa-building"></i> <span>Data Sektor</span></a></li>
+              <li {{ \Route::is('sistem.plan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.plan.index') }}"><i class="far fa-calendar-alt"></i> <span>Data Plan</span></a></li>
+              <li {{ \Route::is('sistem.fitur.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.fitur.index') }}"><i class="fab fa-elementor"></i> <span>Management Menu</span></a></li>
+              <li {{ \Route::is('sistem.user_level.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.user_level.index') }}"><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Management Projects</span></a></li>
-              
+              <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Questioning Options Setting</span></a></li>
             @endif
 
           </aside>
@@ -381,48 +399,77 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="">ESR UT</a>
+          &copy; {{ date('Y') }} <a href="#">TIM ESR UT TANJUNG</a>
         </div>
         <div class="footer-right">
-          
+          2.3.0
         </div>
       </footer>
     </div>
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('stisla/assets/modules/jquery.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/popper.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/tooltip.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/moment.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/js/stisla.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/jquery.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/popper.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/tooltip.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/moment.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/js/stisla.js')}}"></script>
   
   <!-- JS Libraies -->
-  <script src="{{ asset('stisla/assets/modules/jquery.sparkline.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/chart.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/owlcarousel2/dist/owl.carousel.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
-  <script src="{{ asset('stisla/assets/modules/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/jquery.sparkline.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/chart.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/owlcarousel2/dist/owl.carousel.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/chocolat/dist/js/jquery.chocolat.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
   
   <!-- Page Specific JS File -->
-  <script src="{{ asset('stisla/assets/js/page/index.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/page/bootstrap-modal.js') }}"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+  <script src="{{ asset('public/stisla/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('public/stisla/assets/modules/dropify/dist/js/dropify.min.js') }}"></script><!-- Page Specific JS File -->
+  <script src="{{ asset('public/stisla/assets/js/page/index.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/page/bootstrap-modal.js') }}"></script>
+  {{-- document.addEventListener("DOMContentLoaded", function() {
+      // Show the loading alert
+      Swal.fire({
+          title: 'Loading...',
+          text: 'Please wait while the page is loading.',
+          imageUrl: '{{ asset("public/img/logo_obor.png") }}',
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Loading',
+          showConfirmButton: false,
+          allowOutsideClick: false,
+          timer: 1000,
+          timerProgressBar: true,
+          backdrop: `
+              rgba(0,0,0,0.4)
+              left top
+              no-repeat
+          `,
+          didOpen: () => {
+              Swal.showLoading()
+          },
+          willClose: () => {
+              console.log('Alert is closing');
+          }
+      });
+  }); --}}
   <script>
-    // let init_form_element = () => {
-        // $(".select2").select2();
-        // $('.datepicker').datepicker({
-        //     format: 'dd-mm-yyyy',
-        //     autoclose: true
-        // });
+
+    let init_form_element = () => {
+        $(".select2").select2();
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true
+        });
         // $(".summernote").summernote({
         //     height: 300,
         // });
-        // $('.dropify').dropify();
-    // }
+        $('.dropify').dropify();
+    }
     let getFormData = ($form) => {
         let unindexed_array = $form.serializeArray();
         let indexed_array = {};
@@ -430,6 +477,13 @@
             indexed_array[n['name']] = n['value'];
         });
         return indexed_array;
+    }
+    let getData = ($form) => {
+      let formData = new FormData($form.get(0));
+      let serializedData = [...formData.entries()];
+
+      data = Object.fromEntries(entriesArray);
+      return serializedData;
     }
     function add_commas(nStr) {
         nStr += '';
@@ -446,11 +500,12 @@
         nStr = nStr.replace(/\./g,'');
         return nStr;
     }
+
   </script>
   @stack('js')
   <!-- Template JS File -->
-  <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/custom.js') }}"></script>
   
 </body>
 </html>

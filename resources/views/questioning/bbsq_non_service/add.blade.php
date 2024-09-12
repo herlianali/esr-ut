@@ -1,62 +1,34 @@
-@extends('layout.navTop')
+@extends('layout.app')
 
 @push('css')
 @endpush
 
 @section('content')
 <div class="section-header">
-    <h1>BBSQ Non Service</h1>
+    <h1>{{ $title }}</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Components</a></div>
-        <div class="breadcrumb-item">Table</div>
+        <div class="breadcrumb-item active"><a href="#">Form Questioning</a></div>
+        <div class="breadcrumb-item">{{ $title }}</div>
     </div>
 </div>
 <div class="container">
     <form action="" method="">
         <div class="card">
             <div class="card-header">
-                <a href="{{ url()->previous() }}" class="btn btn-icon">
-                    <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
-                </a>
-                <h4>Add Form</h4>
+                <h4>{{ $title }} Data Form</h4>
             </div>
             <div class="card-body">
                 <div class="card">
-                    {{-- <div class="card-header"> --}}
-                        {{-- <h4>Tambah Surat</h4> --}}
-                    {{-- </div> --}}
                     <div class="card-body p-0">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label class="section-title">Tanggal Pelaksanaan Genba</label>
-                                    <input type="text" class="form-control datetimepicker">
+                                    <input type="text" class="form-control datepicker">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="section-title">Nama Pengawas</label>
-                                    <select class="form-control select2">
-                                        <option value="1">HERI PRIYO MAHARGYO</option>
-                                        <option value="2">RONIE PERMANA</option>
-                                        <option value="3">AGUS HARIYADI</option>
-                                        <option value="4">HARYONO</option>
-                                        <option value="5">WISNU PURA WIJAYANTO</option>
-                                        <option value="6">ARIWANSA</option>
-                                        <option value="7">SYAMSUL PURNOMO</option>
-                                        <option value="8">JAIMAN</option>
-                                        <option value="9">DENI EKO MUKTI</option>
-                                        <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                        <option value="11">BAGYO SETYANTO</option>
-                                        <option value="12">GANJAR WICAKSONO</option>
-                                        <option value="13">NANO</option>
-                                        <option value="14">SUKRISNO</option>
-                                        <option value="15">AGUNG KRISMANTO</option>
-                                        <option value="16">EKO AGUS PRIBADI</option>
-                                        <option value="17">WAHYU HADI SAFRUDIN</option>
-                                        <option value="18">ADI SETIADI</option>
-                                        <option value="19">TRI MARJUKI</option>
-                                        <option value="20">ALDI SATRIO</option>
-                                    </select>
+                                    <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options=" $list_pengawas " :value=" $bbsq_non_service->nama_pengawas ?? '' "/>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="section-title">Nama Karyawan Yang Diobservasi</label>
@@ -70,18 +42,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="section-title">Perusahaan Karyawan Yang Diobservasi</label>
-                                    <select class="form-control select2">
-                                        <option value="1">BP</option>
-                                        <option value="2">HMU</option>
-                                        <option value="3">KAMAJU</option>
-                                        <option value="4">NAJ</option>
-                                        <option value="5">NIKMAT</option>
-                                        <option value="6">TPP</option>
-                                        <option value="7">TRAC</option>
-                                        <option value="8">UT</option>
-                                        <option value="9">UTE</option>
-                                        <option value="10">OTHER</option>
-                                    </select>
+                                    <x-select class="select2" name="perusahaan" :default="'-- Pilih Nama Perusahaan --'" :options=" $list_perusahaan " :value=" $bbsq_non_service->perusahaan ?? '' "/>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="section-title">Jenis Pekerjaan Yang Sedang Dilakukan</label>
@@ -90,15 +51,8 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
-                                    <label class="section-title">Area Genba</label>
-                                    <select class="form-control select2">
-                                        <option value="1">office</option>
-                                        <option value="2">workshop</option>
-                                        <option value="3">field</option>
-                                        <option value="4">warehouse</option>
-                                        <option value="5">catering</option>
-                                        <option value="6">mess</option>
-                                    </select>
+                                    <label class="section-title">Lokasi / Area Kerja</label>
+                                    <x-select class="select2" name="area" :default="'-- Pilih Area Kerja --'" :options=" $list_area " :value=" $bbsq_non_service->area ?? '' "/>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,6 @@
 @extends('layout.app')
 
 @push('css')
-    <style>
-        .hide {
-            display: none;
-        }
-    </style>
 @endpush
 
 @section('menu')
@@ -14,78 +9,48 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Genba</h1>
+    <h1>{{ $title }}</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Genba</a></div>
-        <div class="breadcrumb-item">Add</div>
+        <div class="breadcrumb-item active"><a href="#"></a>Questioning</div>
+        <div class="breadcrumb-item">{{ $title }}</div>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        <a href="{{ url()->previous() }}" class="btn btn-icon">
-            <i class="fas fa-arrow-circle-left" style="font-size:30px;"></i>
-        </a>
-        <h4>Tambah Data Genba</h4>
+        <h4>Tambah Data {{ $title }}</h4>
     </div>
     <div class="card-body">
-        <div class="container">   
-            {{-- <form action=""> --}}
-                <section>
+        <div class="container-fluid" id="form_input">
+            <form id="form_genba" enctype="multipart/form-data">
+                @csrf
+                <section class="section" id="section1">
                     <div class="row normalTopPadding">
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Tanggal Pelaksanaan Genba <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control datetimepicker" name="tanggal" required>
+                            <input type="text" class="form-control datepicker" name="tanggal" value="{{ $genba->tanggal ?? '' }}" required>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Area Genba <span class="text-danger">*</span></label>
-                            <select class="form-control select2" name="area" required>
-                                <option value="office">office</option>
-                                <option value="workshop">workshop</option>
-                                <option value="field">field</option>
-                                <option value="warehouse">warehouse</option>
-                                <option value="catering">catering</option>
-                                <option value="mess">mess</option>
-                        </select>
+                            <x-select class="select2" name="area" :default="'-- Pilih Area Genba --'" :options=" $list_area " :value=" $genba->area ?? '' "/>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Lokasi Pelaksanaan <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="lokasi" required>
+                            <input type="text" class="form-control" name="lokasi" value="{{ $genba->lokasi ?? '' }}" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Nama Pengawas<span class="text-danger">*</span></label>
-                            <select class="form-control select2" name="pengawas" required>
-                                <option value="1">HERI PRIYO MAHARGYO</option>
-                                <option value="2">RONIE PERMANA</option>
-                                <option value="3">AGUS HARIYADI</option>
-                                <option value="4">HARYONO</option>
-                                <option value="5">WISNU PURA WIJAYANTO</option>
-                                <option value="6">ARIWANSA</option>
-                                <option value="7">SYAMSUL PURNOMO</option>
-                                <option value="8">JAIMAN</option>
-                                <option value="9">DENI EKO MUKTI</option>
-                                <option value="10">ACHMAD MAULANA SYAHRIL</option>
-                                <option value="11">BAGYO SETYANTO</option>
-                                <option value="12">GANJAR WICAKSONO</option>
-                                <option value="13">NANO</option>
-                                <option value="14">SUKRISNO</option>
-                                <option value="15">AGUNG KRISMANTO</option>
-                                <option value="16">EKO AGUS PRIBADI</option>
-                                <option value="17">WAHYU HADI SAFRUDIN</option>
-                                <option value="18">ADI SETIADI</option>
-                                <option value="19">TRI MARJUKI</option>
-                                <option value="20">ALDI SATRIO</option>
-                            </select>
+                            <x-select class="select2" name="nama_pengawas" :default="'-- Pilih Nama Pengawas --'" :options=" $list_pengawas " :value=" $genba->nama_pengawas ?? '' "/>
                         </div>
                     </div>
                     <hr>
                     <div class="text-right">
                         {{-- <button class="btn btn-primary mr-1 next-button" >next</button> --}}
-                        <button class="btn btn-primary mr-1 next-button" >Selanjutnya</button>
+                        <a class="btn btn-primary text-white mr-1 next" data-next="#section2">Selanjutnya</a>
                     </div>
                 </section>
-                <section class="hide">
+                <section class="section" id="section2" style="display: none">
                     {{-- <div class="row normalTopPadding"> --}}
                         <div class="row">
                             <div class="text-center col-sm-12 col-xs-12">
@@ -98,53 +63,35 @@
                         <div class="row">
                             <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Deskripsi Temuan / Deviasi TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="deskripsi_tindakan" value="{{ $genba->deskripsi_tindakan ?? '' }}" required >
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Kategori Temuan / Deviasi TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
-                                <select class="form-control select2" required>
-                                    <option value="1">Prosedur</option>
-                                    <option value="2">APD / Alat Kesehatan</option>
-                                    <option value="3">Alat & Peralatan Kerja</option>
-                                    <option value="4">Fasilitas</option>
-                                    <option value="5">House Keeping</option>
-                                    <option value="6">Lingkungan</option>
-                                    <option value="7">Kesehatan</option>
-                            </select>
+                                <x-select class="select2" name="kategori_tindakan" :default="'-- Pilih Kategori Tindakan --'" :options=" $list_kategori " :value=" $genba->kategori_tindakan ?? '' "/>
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-12">
                                 <label class="section-title">Usulan Tindakan / Rekomendasi Perbaikan atas TINDAKAN Tidak Aman<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" class="form-control" name="usulan_tindakan" value="{{ $genba->usulan_tindakan ?? '' }}" required >
                             </div>
                         </div>
                     {{-- </div> --}}
                     <div class="row">
-                        
-                        <div class="form-group col-md-4 col-sm-12 col-12">
+                        <div class="form-group col-md-8 col-sm-12 col-12">
                             <label for="" class="section-title">Foto Temuan TINDAKAN Tidak Aman (jika ada)</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                            <input type="file" class="dropify" id="foto_tindakan" name="foto_tindakan" @if(!empty($genba) && $genba->foto_tindakan != '') data-default-file="{{ asset("public/storage/$genba->foto_tindakan") }}" @endif>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Apa follow up yang sudah anda lakukan atas TINDAKAN Tidak Aman ?<span class="text-danger">*</span></label>
-                            <select class="form-control select2" required>
-                                <option value="1">Personal Contact</option>
-                                <option value="2">Sanksi Surat Peringatan</option>
-                                <option value="3">Sanksi Pelubangan sesuai SPDK</option>
-                                <option value="4">Melaporkan ke PIC terkait karena bukan kewenangan saya</option>
-                                <option value="5">Tidak Dilakukan Tindakan</option>
-                        </select>
+                            <x-select class="select2" name="follow_up_tindakan" :default="'-- Pilih Followup Tindakan --'" :options=" $list_follow_up " :value=" $genba->follow_up_tindakan ?? '' "/>
                         </div>
                     </div>
                     <hr>
                     <div class="row justify-content-between">
-                        <button class="btn btn-danger mr-1 back-button" >Kembali</button>
-                        <button class="btn btn-primary mr-1 next-button" >Selanjutnya</button>
+                        <a class="btn btn-danger text-white mr-1 back" data-back="#section1">Kembali</a>
+                        <a class="btn btn-primary text-white mr-1 next" data-next="#section3">Selanjutnya</a>
                     </div>
                 </section>
-                <section class="hide">
+                <section class="section" id="section3" style="display: none">
                     <div class="row normalTopPadding">
                         <div class="text-center col-sm-12 col-xs-12">
                             <h3>Laporan Genba KONDISI Tidak Aman (KTA)</h3>
@@ -154,114 +101,136 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6 col-sm-12 col-12">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Deskripsi Temuan /Deviasi KONDISI Tidak Aman<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="deskripsi_kondisi" value="{{ $genba->deskripsi_kondisi ?? '' }}" required>
                         </div>
-                        <div class="form-group col-md-6 col-sm-12 col-12">
+                        <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Kategori Temuan /Deviasi KONDISI Tidak Aman<span class="text-danger">*</span></label>
-                            <select class="form-control select2" required>
-                                <option value="1">Prosedur</option>
-                                <option value="2">APD / Alat Kesehatan</option>
-                                <option value="3">Alat & Peralatan Kerja</option>
-                                <option value="4">Fasilitas</option>
-                                <option value="5">House Keeping</option>
-                                <option value="6">Lingkungan</option>
-                                <option value="7">Kesehatan</option>
-                            </select>
+                            <x-select class="select2" name="kategori_kondisi" :default="'-- Pilih Kategori Kondisi --'" :options=" $list_kategori " :value=" $genba->kategori_kondisi ?? '' "/>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-12 col-12">
+                            <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas KONDISI Tidak Aman<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="usulan_kondisi" value="{{ $genba->usulan_tindakan ?? '' }}" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-4 col-sm-12 col-12">
-                            <label class="section-title">Usulan Tindakan/Rekomendasi Perbaikan atas KONDISI Tidak Aman<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-4 col-sm-12 col-12">
+                        <div class="form-group col-md-8 col-sm-12 col-12">
                             <label for="" class="section-title pb-md-4">Foto Temuan KONDISI Tidak Aman<span class="text-danger">*</span></label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile" required>
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                            <input type="file" class="dropify" id="foto_kondisi" name="foto_kondisi" @if(!empty($genba) && $genba->foto_kondisi != '') data-default-file="{{ asset("public/storage/$genba->foto_kondisi") }}" @endif>
                         </div>
                         <div class="form-group col-md-4 col-sm-12 col-12">
                             <label class="section-title">Apa follow up yang sudah anda lakukan KONDISI Tidak Aman ?<span class="text-danger">*</span></label>
-                            <select class="form-control select2">
-                                <option value="1">Personal Contact</option>
-                                <option value="2">Sanksi Surat Peringatan</option>
-                                <option value="3">Sanksi Pelubangan sesuai SPDK</option>
-                                <option value="4">Melaporkan ke PIC terkait karena bukan kewenangan saya</option>
-                                <option value="5">Tidak Dilakukan Tindakan</option>
-                          </select>
+                            <x-select class="select2" name="follow_up_kondisi" :default="'-- Pilih Followup Kondisi --'" :options=" $list_follow_up " :value=" $genba->follow_up_kondisi ?? '' "/>
                         </div>
                     </div>
+                    <hr>
+                    <div class="row justify-content-between">
+                        <a class="btn btn-danger text-white mr-1 back" data-back="#section2">Kembali</a>
+                        <a class="btn btn-primary text-white mr-1 next" data-next="#section4">Selanjutnya</a>
+                    </div>
+                </section>
+                <section class="section" id="section4" style="display: none">
                     <div class="row">
-                        <div class="form-group col-md-4 col-sm-12 col-12">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label class="section-title pb-md-4">Keikutsertaan Genba Management</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="keikutsertaan"  value="{{ $genba->keikutsertaan ?? '' }}"required>
                         </div>
-                        <div class="form-group col-md-4 col-sm-12 col-12">
+                        <div class="form-group col-md-6 col-sm-12 col-12">
                             <label class="section-title pb-md-4">Penyelenggara Genba<span class="text-danger">*</span></label>
-                            <select class="form-control select2">
-                                <option value="1">Genba Internal UT</option>
-                                <option value="2">Genba Intrenal Mitra Kerja</option>
-                                <option value="3">Genba Bersama KTT & PJO Mitra Utama</option>
-                                <option value="4">Genba Bersama Customer</option>
-                          </select>
+                            <x-select class="select2" name="penyelenggara" :default="'-- Pilih Penyelenggara --'" :options=" $list_penyelenggara " :value=" $genba->penyelenggara ?? '' "/>
                         </div>
-                        <div class="form-group col-md-4 col-sm-12 col-12">
+                        <div class="form-group col-md-12 col-sm-12 col-12">
                             <label for="" class="section-title">Dokumentasi Keikutsertaan Genba (additional)</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                            <input type="file" class="dropify" id="dokumentasi" name="dokumentasi" @if(!empty($genba) && $genba->dokumentasi != '') data-default-file="{{ asset("public/storage/$genba->dokumentasi") }}" @endif>
                         </div>
                     </div>
                     <div class="card-footer">
                         <div class="row justify-content-between">
-                            <button class="btn btn-danger back-button">Kembali</button>
-                            <button class="btn btn-success" type="submit" onclick="add_data()">Simpan</button>
-                            {{-- <button class="btn btn-secondary" type="reset">Reset</button> --}}
+                            <a class="btn btn-danger text-white back" data-back="#section3">Kembali</a>
+                            <button class="btn btn-success" type="submit">Simpan</button>
                         </div>
                     </div>
                 </section>
-                
-            {{-- </form> --}}
+            </form>
         </div>
+        <div class="container-fluid" id="detail"> </div>
     </div>
 </div>
 @endsection
 
 @push('js')
-    <script src="{{ asset('stisla/assets/js/page/forms-advanced-forms.js') }}"></script>
     <script>
-        $(function(){
-            $('.next-button').on('click', function (e) {
-                var section = $(this).closest("section");
-                var $next = section.next();
-                console.log($next)
-                if($next.length>0) {  // check condition first and then hide current section and show next
-                    section.addClass('hide');
-                    $next.removeClass('hide');
-                }
-            });
-            $('.back-button').on('click', function (e) {
-                var section = $(this).closest("section");
-                var $previous = section.prev();
-                console.log($previous)
-                if($previous.length>0) {  // check condition first and then hide current section and show previous
-                    section.addClass('hide');
-                    $previous.removeClass('hide');
-                }
-            });
-        });
-        let add_data = () => {
-            let url = "{{ route('genba.show') }}";
+        init_form_element()
+        $(document).ready(function(){
 
-            // $.get(url, (result) => {
-                window.location.href = url;
-            // }).fail((xhr) => {
-                
-            // });
+            $('.next').click(function() {
+                var nextSection = $(this).data('next');
+                $(this).closest('.section').hide();
+                $(nextSection).show();
+            });
+
+            $('.back').click(function() {
+                var backSection = $(this).data('back');
+                $(this).closest('.section').hide();
+                $(backSection).show();
+            });
+
+        });
+
+        let init_form_genba = (id = '') =>{
+            let $form_genba = $('#form_genba'),
+                $button_submit_genba = $('#button_submit_genba');
+                $form_genba.submit((e) => {
+                    e.preventDefault();
+                    let dataForm = new FormData($form_genba.get(0));
+                    let url = '{{ route($active_route) }}';
+                    if (id !== '') {
+                        url += ('/' + id);
+                        dataForm.append('_method', 'PUT');
+                    }
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: dataForm,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Data Genba has been saved.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                detail_genba(response.id);
+                            });
+                        },
+                        error: (xhr) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: xhr.responseText
+                            });
+                        }
+                    });
+                });
         }
+
+        let detail_genba = (id = '') => {
+            let url = "{{ route($active_route) }}/"+id;
+
+            $.get(url, (result) => {
+                $('#form_input').hide();
+                $('#form_input').html('');
+                $('#detail').html(result);
+            }).fail((xhr) => {
+                $user_table.html(xhr.responseText);
+            });
+        }
+
+        init_form_genba({{ $genba->id ?? '' }})
     </script>
 @endpush

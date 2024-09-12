@@ -1,20 +1,26 @@
+@php
+use Illuminate\Support\Facades\Auth;
+$user = Auth::user() ?? '';
+$user_level_id = $user->user_level_id ?? '';
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
+  <title>{{ config('app.name') }} &mdash; {{ $title ?? '' }}</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/modules/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" />
   @stack('css')
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/custom.css') }}">
-  <link rel="stylesheet" href="{{ asset('stisla/assets/css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('public/stisla/assets/css/components.css') }}">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -28,21 +34,21 @@
 
 <body class="layout-3">
   <div id="app">
-    <div class="main-wrapper ">
-      <div class="navbar-bg"></div>
+    <div class="main-wrapper">
+      <div class="navbar-bg bg-warning"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <a href="index.html" class="navbar-brand sidebar-gone-hide">13 PW UT Digital</a>
-        {{-- <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a> --}}
-        {{-- <div class="nav-collapse">
-          <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
+        <div class="nav-collapse">
+          <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars fa-3x"></i></a>
+          {{-- <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <ul class="navbar-nav">
             <li class="nav-item active"><a href="#" class="nav-link">Application</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li>
-          </ul>
-        </div> --}}
+          </ul> --}}
+        </div>
         <form class="form-inline ml-auto">
           <ul class="navbar-nav">
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
@@ -242,8 +248,8 @@
             </div>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ asset('stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div></a>
+            <img alt="image" src="{{ asset('public/stisla/assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ $user->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -256,7 +262,7 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -267,22 +273,114 @@
       <nav class="navbar navbar-secondary navbar-expand-lg">
         <div class="container">
           <ul class="navbar-nav">
-              @if (!Route::is('dashboard'))                
-                {{-- <li class="nav-item dropdown">
-                  <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                  <ul class="dropdown-menu">
-                      <li class="nav-item"><a href="index-0.html" class="nav-link">General Dashboard</a></li>
-                      <li class="nav-item"><a href="index.html" class="nav-link">Ecommerce Dashboard</a></li>
-                  </ul>
-                </li> --}}
-                <li class="nav-item active">
+              @if (!Route::is('dashboard'))
+                <li class="nav-item">
+                  <a href="#" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+                </li>
+                <li class="nav-item">
                   <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="fas fa-plane-departure"></i><span>Cuti</span></a>
+                  <ul class="dropdown-menu">
+                      <li class="nav-item"><a href="{{ route('report.cuti.index') }}" class="nav-link">Result</a></li>
+                      <li class="nav-item"><a href="{{ route('report.plan.index') }}" class="nav-link">Plan</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link"><i class="fas fa-poll"></i><span>Summary 13 PW</span></a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link"><i class="fas fa-chart-bar"></i><span>Follow Up Genba</span></a>
+                </li>
+                <li class="nav-item dropdown {{ \Route::is('report.*') ? 'class=active' : '' }}">
+                  <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="far fa-clipboard"></i><span>Questioning</span></a>
+                  <ul class="dropdown-menu">
+                      <li class="nav-item dropdown {{ \Route::is('report.green_card.*') ? 'class=active' : '' }}"><a href="#" class="nav-link has-dropdown">Green Card</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item {{ \Route::is('report.green_card.index') ? 'class=active' : '' }}"><a href="{{ route('report.green_card.index') }}" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item {{ \Route::is('report.green_card.plan') ? 'class=active' : '' }}"><a href="{{ route('report.green_card.plan') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Genba</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">BBSQ Non Service</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">BBSQ Service</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Personal Contact</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Safety Talk</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="{{ route('report.safety_talk.index') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">JSA</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="{{ route('report.jsa.index') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">P5M</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="{{ route('report.p5m.index') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">FLPG</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="{{ route('report.flpg.index') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Sidak Sarana</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Sidak APD</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Report KO</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">HouseKeeping</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="{{ route('report.housekeeping.index') }}" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                      <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">SCML</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="" class="nav-link">Questioning Result</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Plan</a></li>
+                        </ul>
+                      </li>
+                  </ul>
                 </li>
                 {{-- <li class="nav-item dropdown">
                   <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="far fa-clone"></i><span>Multiple Dropdown</span></a>
@@ -311,18 +409,22 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          {{-- <div class="section-header">
-            <h1>Top Navigation</h1>
+          <div class="section-header sidebar-gone-show" id="navigation">
             <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Layout</a></div>
-              <div class="breadcrumb-item">Top Navigation</div>
+              <div class="breadcrumb-item active m-3">
+                {{-- <a href="#">Dashboard</a> --}}
+                {{-- Dashboard --}}
+                Hi, {{ $user->nama ?? '' }}
+              </div>
+              {{-- <div class="breadcrumb-item"><a href="#">Layout</a></div>
+              <div class="breadcrumb-item">Top Navigation</div> --}}
             </div>
           </div>
 
-          <div class="section-body"> --}}
+          <div class="section-body">
             @yield('content')
-          {{-- </div> --}}
+            @yield('modals')
+          </div>
         </section>
       </div>
       <footer class="main-footer bg-white">
@@ -340,21 +442,60 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{ asset('stisla/assets/modules/jquery.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/popper.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/tooltip.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/modules/moment.min.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/jquery.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/popper.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/tooltip.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/moment.min.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/stisla.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/modules/sweetalert/sweetalert.min.js') }}"></script>
   
   <!-- JS Libraies -->
-  @stack('js')
+  <script src="{{ asset('public/stisla/assets/modules/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+  
 
   <!-- Page Specific JS File -->
   
   <!-- Template JS File -->
-  <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Show the loading alert
+        Swal.fire({
+            title: 'Loading...',
+            text: 'Please wait while the page is loading.',
+            imageUrl: '{{ asset("public/img/logo_obor.png") }}',
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Loading',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            timer: 1000,
+            timerProgressBar: true,
+            backdrop: `
+                rgba(0,0,0,0.4)
+                left top
+                no-repeat
+            `,
+            didOpen: () => {
+                Swal.showLoading()
+            },
+            willClose: () => {
+                console.log('Alert is closing');
+            }
+        });
+    });
+    let getFormData = ($form) => {
+        let unindexed_array = $form.serializeArray();
+        let indexed_array = {};
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+        return indexed_array;
+    }
+  </script>
+  @stack('js')
+  <script src="{{ asset('public/stisla/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/custom.js') }}"></script>
 </body>
 </html>

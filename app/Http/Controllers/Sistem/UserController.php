@@ -5,22 +5,31 @@ namespace App\Http\Controllers\Sistem;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserLevel;
+use App\Services\Sistem\PengawasServices;
 use App\Services\Sistem\UserLevelServices;
 use App\Services\Sistem\UserServices;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $userServices;
-    public function __construct(UserServices $userServices, UserLevelServices $userLevel)
+    protected $userServices, $pengawasServices;
+    public function __construct(
+            UserServices $userServices, 
+            UserLevelServices $userLevel, 
+            PengawasServices $pengawasServices,
+        )
     {
         // $this->middleware('auth', 'fitur_program');
-        $this->userServices = $userServices;
+        $this->userServices     = $userServices;
+        $this->pengawasServices = $pengawasServices;
+
         view()->share([
-            'title' => 'User',
-            'active_route' => 'employee.user.index',
-            'user_level' => $userLevel->searchUserLevel(new Request())
-                ->pluck('nama', 'id')->toArray()
+            'title'         => 'User',
+            'active_route'  => 'sistem.user.index',
+            'user_level'    => $userLevel->searchUserLevel(new Request())
+                                ->pluck('nama', 'id')->toArray(),
+            'list_target'   => $pengawasServices->listKelompokTarget(),
+            'list_sektor'   => $pengawasServices->listSektor(),
         ]);
     }
 
@@ -42,9 +51,10 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $create = 0;
-        $user = $this->userServices->getOne($id);
-        return view('sistem.user._info', compact('user', 'create'));
+        $create   = 0;
+        $user     = $this->userServices->getOne($id);
+        $pengawas = $this->pengawasServices->searchPengawas(['user_id' => $id, 'first' => 0]);
+        return view('sistem.user._info', compact('user', 'pengawas', 'create'));
     }
     
     public function store(Request $request)
@@ -54,7 +64,15 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $this->userServices->updateUser($request, $id);
+        $foto = $this->save_file($request, 'foto_profile', 'foto');
+        if($foto != '') $request->merge(['foto' => $foto]);
+        $params = $request->request->all();
+        return $this->userServices->updateUser($params, $id);
+    }
+
+    public function testUpload(Request $request)
+    {
+        dd($request->file('foto'), $request->file('profile_foto'));
     }
 
     public function search(Request $request)

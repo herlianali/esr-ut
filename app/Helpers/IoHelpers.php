@@ -307,6 +307,14 @@ function format_date($date, $divider = "-")
     return join($divider, [$date[2], $date[1], $date[0]]);
 }
 
+function format_mount($date, $divider = "-")
+{
+    if ($date === null) return null;
+    if ($date === "") return "";
+    $date = explode("-", date('Y-m-d', strtotime($date)));
+    return join($divider, [$date[0], $date[1]]);
+}
+
 function format_time($time, $short = true)
 {
     if ($time === null) return null;
@@ -421,4 +429,28 @@ function unformat_number($number)
     $number = str_replace(".", "", $number);
     $number = str_replace(",", ".", $number);
     return $number;
+}
+
+function date_now_sum($mount)
+{
+    if($mount === null) return date('m');
+    if($mount === "") return date('m');
+    $date = explode('-', date('m-Y', strtotime($mount)));
+    $result = cal_days_in_month(CAL_GREGORIAN, $date[0], $date[1]);
+    return $result;
+}
+
+function paginate($data)
+{
+    $lengthAwarePaginator = Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
+    $resultCollection = collect($data);
+    $currentPage      = $lengthAwarePaginator;
+    $perPage          = 10;
+    $currentPageItems = $resultCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
+
+    $paginatedResult  = new Illuminate\Pagination\LengthAwarePaginator($currentPageItems, $resultCollection->count(), $perPage, $currentPage, [
+        'path' => $lengthAwarePaginator,
+    ]);
+    
+    return $paginatedResult;
 }

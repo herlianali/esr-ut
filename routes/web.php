@@ -15,49 +15,15 @@ Route::get('surat', [App\Http\Controllers\SuratController::class, 'index'])->nam
 
 Route::get('dash2', function () { return view('layout.app2'); });
 
+Route::get('testUplad', function () {return view('sistem.user.testupload');});
+Route::post('testUpload', [\App\Http\Controllers\Sistem\UserController::class, 'testUpload'])->name('testUpload');
+
 Route::name('inventaris')->prefix('inventaris')->group(__DIR__.'/inventaris.php');
 Route::name('surat')->prefix('surat')->group(__DIR__.'/surat.php');
-Route::name('employee')->prefix('employee')->group(__DIR__.'/employee.php');
+Route::name('sistem')->prefix('sistem')->group(__DIR__.'/sistem.php');
 Route::name('esr_corner')->prefix('esr_corner')->group(__DIR__.'/esr_corner.php');
 Route::name('mobile')->prefix('mobile')->group(__DIR__.'/mobile.php');
+Route::name('questioning')->prefix('questioning')->group(__DIR__.'/questioning.php');
+Route::name('report')->prefix('report')->group(__DIR__.'/report.php');
 
-Route::get('genba', function () { return view('questioning.genba.index'); });
-Route::get('genba/add', function () { return view('questioning.genba.add'); })->name('genba.add');
-Route::get('genba/show', function () { return view('questioning.genba.detail'); })->name('genba.show');
-
-Route::get('bbsq_service', function () { return view('questioning.bbsq_service.index'); });
-Route::get('bbsq_service/add', function () { return view('questioning.bbsq_service.add'); })->name('bbsq_service.add');
-
-Route::get('bbsq_non_service', function () { return view('questioning.bbsq_non_service.index'); });
-Route::get('bbsq_non_service/add', function () { return view('questioning.bbsq_non_service.add'); })->name('bbsq_non_service.add');
-
-Route::get('green_card', function () { return view('questioning.green_card.index'); });
-Route::get('green_card/add', function () { return view('questioning.green_card.add'); })->name('green_card.add');
-Route::get('green_card/show', function () { return view('questioning.green_card.detail'); })->name('green_card.show');
-
-Route::get('safety_talk', function () { return view('questioning.safety_talk.index'); });
-Route::get('safety_talk/add', function () { return view('questioning.safety_talk.add'); })->name('safety_talk.add');
-
-Route::get('personal_contact', function () { return view('questioning.personal_contact.index'); });
-Route::get('personal_contact/add', function () { return view('questioning.personal_contact.add'); })->name('personal_contact.add');
-
-Route::get('jsa', function () { return view('questioning.jsa.index'); });
-Route::get('jsa/add', function () { return view('questioning.jsa.add'); })->name('jsa.add');
-
-Route::get('p5m', function () { return view('questioning.p5m.index'); });
-Route::get('p5m/add', function () { return view('questioning.p5m.add'); })->name('p5m.add');
-
-Route::get('inspeksi_sarana', function () { return view('questioning.inspeksi_sarana.index'); });
-Route::get('inspeksi_sarana/add', function () { return view('questioning.inspeksi_sarana.add'); })->name('inspeksi_sarana.add');
-
-Route::get('audit_apd', function () { return view('questioning.audit_apd.index'); });
-Route::get('audit_apd/add', function () { return view('questioning.audit_apd.add'); })->name('audit_apd.add');
-
-Route::get('inspeksi_tools', function () { return view('questioning.inspeksi_tools.index'); });
-Route::get('inspeksi_tools/add', function () { return view('questioning.inspeksi_tools.add'); })->name('inspeksi_tools.add');
-
-Route::get('housekeeping', function () { return view('questioning.housekeeping.index'); });
-Route::get('housekeeping/add', function () { return view('questioning.housekeeping.add'); })->name('housekeeping.add');
-
-Route::get('scml', function () { return view('questioning.scml.index'); });
-Route::get('scml/add', function () { return view('questioning.scml.add'); })->name('scml.add');
+Route::get('csrf', function () {echo csrf_token();});

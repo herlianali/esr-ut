@@ -21,12 +21,12 @@ return new class extends Migration
             $table->string('kategori_tindakan');
             $table->text('usulan_tindakan');
             $table->string('foto_tindakan');
-            $table->string('folow_up_tindakan');
+            $table->string('follow_up_tindakan');
             $table->text('deskripsi_kondisi');
             $table->text('kategori_kondisi');
             $table->text('usulan_kondisi');
             $table->string('foto_kondisi');
-            $table->string('folow_up_kondisi');
+            $table->string('follow_up_kondisi');
             $table->string('keikutsertaan');
             $table->string('penyelenggara');
             $table->string('dokumentasi');

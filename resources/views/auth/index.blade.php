@@ -6,16 +6,16 @@
   <title>Login &mdash; Stisla</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{asset('stisla/assets/modules/bootstrap/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{asset('stisla/assets/modules/fontawesome/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/modules/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/modules/fontawesome/css/all.min.css')}}">
 
   <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{asset('stisla/assets/modules/bootstrap-social/bootstrap-social.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/modules/bootstrap-social/bootstrap-social.css')}}">
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('stisla/assets/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('stisla/assets/css/components.css')}}">
-  <link rel="stylesheet" href="{{asset('stisla/assets/css/custom.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{asset('public/stisla/assets/css/custom.css')}}">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -34,10 +34,10 @@
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="login-brand">
-              <img src="{{asset('img/logo_obor.png')}}" alt="logo" width="120" class="shadow-light rounded-circle bg-white">
+              <img src="{{asset('public/img/logo_obor.png')}}" alt="logo" width="120" class="shadow-light rounded-circle bg-white">
             </div>
 
-            <div class="card card-primary">
+            <div class="card card-warning">
               <div class="card-header"><h4>Login</h4></div>
 
               <div class="card-body">
@@ -73,7 +73,14 @@
                         </a>
                       </div>
                     </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                      <div class="input-group">
+                          <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                          <div class="input-group-append">
+                              <button type="button" class="btn btn-outline-light" id="togglePassword">
+                                  <i class="fa fa-eye text-dark"></i>
+                              </button>
+                          </div>
+                      </div>
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
@@ -87,7 +94,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button type="submit" class="btn btn-warning btn-lg btn-block" tabindex="4">
                       Login
                     </button>
                   </div>
@@ -96,30 +103,48 @@
 
               </div>
             </div>
+            
             <div class="simple-footer">
-              Copyright &copy; ESR UT
+              <img src="{{asset('public/img/Logo_ehs.png')}}" alt="logo" width="200" class="img-fluid" style="border-radius: 45%">
+              {{-- Copyright &copy; ESR UT --}}
             </div>
+            
           </div>
         </div>
       </div>
+      
     </section>
   </div>
 
   <!-- General JS Scripts -->
-  <script src="{{asset('stisla/assets/modules/jquery.min.js')}}"></script>
-  <script src="{{asset('stisla/assets/modules/popper.js')}}"></script>
-  <script src="{{asset('stisla/assets/modules/tooltip.js')}}"></script>
-  <script src="{{asset('stisla/assets/modules/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('stisla/assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
-  <script src="{{asset('stisla/assets/modules/moment.min.js')}}"></script>
-  <script src="{{asset('stisla/assets/js/stisla.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/jquery.min.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/popper.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/tooltip.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/modules/moment.min.js')}}"></script>
+  <script src="{{asset('public/stisla/assets/js/stisla.js')}}"></script>
   
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
-  
+  <script>
+    document.getElementById('togglePassword').addEventListener('click', function (e) {
+        var password = document.getElementById('password');
+        var icon = this.querySelector('i');
+        if (password.type === 'password') {
+            password.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            password.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+  </script>
   <!-- Template JS File -->
-  <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/scripts.js') }}"></script>
+  <script src="{{ asset('public/stisla/assets/js/custom.js') }}"></script>
 </body>
 </html>

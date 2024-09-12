@@ -9,7 +9,7 @@ class DashController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['auth', 'fitur_program']);
+        $this->middleware(['auth']);
     }
     public function index() 
     {
