@@ -1,6 +1,63 @@
 @extends('layout.navTop')
 
 @push('css')
+<style>
+    .table-container {
+        display: flex;
+        overflow-x: auto; /* Allows horizontal scrolling for the whole container */
+        width: 100%;
+    }
+
+    .fixed-column {
+        flex: 0 0 auto; /* Fixed width for the left column */
+        background-color: #f8f9fa; /* Optional: Background color */
+        border-right: 1px solid #dee2e6; /* Border between the fixed and scrollable sections */
+        z-index: 1; /* Ensures the fixed column stays on top */
+    }
+
+    .scrollable-column {
+        overflow-x: auto; /* Enables horizontal scrolling for the right side */
+        width: 100%;
+    }
+
+    .scrollable-column table {
+        min-width: 100%; /* Ensure the table takes full width */
+    }
+
+    @media (max-width: 768px) {
+        .fixed-column {
+            display: none; /* Hide the fixed column on smaller screens */
+        }
+        .scrollable-column {
+            width: 100%; /* Expand the scrollable column to full width on mobile */
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 990px) {
+        .table-container {
+            display: flex;
+            overflow-x: auto; /* Allows horizontal scrolling for the whole container */
+            width: 100%;
+        }
+
+        .fixed-column {
+            flex: 0 0 auto; /* Fixed width for the left column */
+            background-color: #f8f9fa; /* Optional: Background color */
+            border-right: 1px solid #dee2e6; /* Border between the fixed and scrollable sections */
+            z-index: 1; /* Ensures the fixed column stays on top */
+        }
+
+        .scrollable-column {
+            overflow-x: auto; /* Enables horizontal scrolling for the right side */
+            width: 100%;
+        }
+
+        .scrollable-column table {
+            min-width: 100%; /* Ensure the table takes full width */
+        }
+
+    }
+</style>
 @endpush
 
 @section('content')
@@ -10,11 +67,11 @@
             <h4>{{ $title }}</h4>
         </div>
         <div class="card-body">
-            <div class="card" id="cuti_info"></div>
-            <div class="card" id="card_cuti">
+            <div class="card" id="summary_info"></div>
+            <div class="card" id="card_summary">
                 <div class="card-header">
                     <h4>{{ $title }}</h4>
-                    <div class="card-header-form" id="cuti_search">
+                    <div class="card-header-form" id="summary_search">
                         <form id="search_form">
                             @csrf
                             <div class="row">
@@ -51,7 +108,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="table-responsive" id="cuti_table"></div>
+                <div class="table-responsive" id="summary_table"></div>
             </div>
         </div>
     </div>
@@ -60,10 +117,8 @@
     
 @push('js')
 <script>
-    init_form_element()
-    
     let $search_form = $('#search_form'),
-        $cuti_table = $('#cuti_table'),
+        $summary_table = $('#summary_table'),
         $form_filter = $('#form_filter'),
         _token = '{{ csrf_token() }}';
 
@@ -76,27 +131,27 @@
 
     $form_filter.submit((e) => {
         e.preventDefault();
-        search_cuti();
+        search_summary();
     });
 
     let select_page = 1;
         $search_form = $('#search_form'),
         $form_filter = $('#form_filter')
-        search_cuti = (page = 1) => {
-            $cuti_table.html('Loading ...');
+        search_summary = (page = 1) => {
+            $summary_table.html('Loading ...');
             if (page.toString() === '+1') select_page++;
             else if (page.toString() === '-1') select_page--;
             else select_page = page;
 
             let data = getFormData($form_filter);
             data.paginate = 10;
-            $.post("{{ route('report.cuti.search') }}?page=" + select_page, data, (result) => {
-                $cuti_table.html(result);
+            $.post("{{ route('report.summary.search') }}?page=" + select_page, data, (result) => {
+                $summary_table.html(result);
             }).fail((xhr) => {
-                $cuti_table.html(xhr.responseText);
+                $summary_table.html(xhr.responseText);
             });
         }
         
-    search_cuti();
+    search_summary();
 </script>
 @endpush

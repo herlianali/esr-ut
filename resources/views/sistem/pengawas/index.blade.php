@@ -158,7 +158,7 @@
                 }).fail((xhr) => {
                     $pengawas_table.html(xhr.responseText);
                 });
-            }
+            }   
         
         search_pengawas();
 
