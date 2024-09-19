@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('pengawas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pengawas');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sektor_id');
+            $table->string('kelompok_target');
+            $table->string('jabatan');
             $table->timestamps();
         });
     }
