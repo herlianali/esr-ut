@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('genba', function (Blueprint $table) {
             $table->id();
-            $table->datetimes('tanggal');
+            $table->date('tanggal');
             $table->string('area');
             $table->string('lokasi');
             $table->string('nama_pengawas');
