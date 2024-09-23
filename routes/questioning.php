@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::name('.')->group(function() {
+    Route::get('/', [\App\Http\Controllers\DashController::class, 'questioningDash'])->name('index');
     Route::prefix('cuti')->name('cuti.')->group(function() {
         Route::resource('/', \App\Http\Controllers\Questioning\CutiController::class)->parameter('','id');
     });

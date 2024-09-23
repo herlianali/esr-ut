@@ -9,10 +9,10 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Users</h1>
+    <h1>Sistem</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="#">Employee</a></div>
-        <div class="breadcrumb-item">Users</div>
+        <div class="breadcrumb-item active"><a href="{{ route('sistem.index') }}">Sistem</a></div>
+        <div class="breadcrumb-item">Management Users</div>
     </div>
 </div>
 <div class="card">

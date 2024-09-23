@@ -4,21 +4,27 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\PersonalContactServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class PersonalContactController extends Controller
 {
     protected $personalContactServices;
-    public function __construct(PersonalContactServices $personalContactServices, PengawasServices $pengawasServices)
+    public function __construct(
+            PersonalContactServices $personalContactServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->personalContactServices = $personalContactServices;
         view()->share([
-            'title' => 'Personal Contact',
-            'active_route' => 'questioning.personal_contact.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_perusahaan' => $personalContactServices->listPerusahaan(),
+            'title'             => 'Personal Contact',
+            'active_route'      => 'questioning.personal_contact.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_perusahaan'   => $personalContactServices->listPerusahaan(),
         ]);
     }
     

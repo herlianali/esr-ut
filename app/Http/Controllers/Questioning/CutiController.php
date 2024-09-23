@@ -4,20 +4,22 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\CutiServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
 {
     protected $cutiServices;
-    public function __construct(CutiServices $cutiServices, PengawasServices $pengawasServices)
+    public function __construct(CutiServices $cutiServices, PengawasServices $pengawasServices, FiturProgramServices $fiturProgramServices)
     {
         $this->middleware('auth');
         $this->cutiServices = $cutiServices;
         view()->share([
-            'title' => 'Cuti',
-            'active_route' => 'questioning.cuti.index',
+            'title'         => 'Cuti',
+            'active_route'  => 'questioning.cuti.index',
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
         ]);
     }
 

@@ -8,11 +8,17 @@ use App\Services\Sistem\FiturProgramServices;
 
 class FiturProgramController extends Controller
 {
-    protected $fiturProgram;
-    public function __construct(FiturProgramServices $fiturProgram)
+    protected $fiturProgramService;
+    public function __construct(FiturProgramServices $fiturProgramService, FiturProgramServices $fiturProgramServices)
     {
         // $this->middleware(['auth', 'fitur_program']);
-        $this->fiturProgram = $fiturProgram;
+        $this->fiturProgramService = $fiturProgramService;
+        
+        view()->share([
+            'title'         => 'Fitur Program',
+            'active_route'  => 'sistem.fitur.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '05']),
+        ]);
     }
 
     public function index()
@@ -20,16 +26,38 @@ class FiturProgramController extends Controller
         return view('sistem.fitur_program.index');
     }
 
+    public function create()
+    {
+        return view('sistem.fitur_program._info');
+    }
+
+    public function show($id)
+    {
+        $getOne = $this->fiturProgramService->getOne($id);
+        return $getOne;
+    }
+
+    public function edit($id)
+    {
+        $create = 0;
+        $fitur_program = $this->show($id);
+        return view('sistem.fitur_program._info', compact('fitur_program', 'create'));
+    }
+    
+    public function store(Request $request)
+    {
+        return $this->fiturProgramService->saveFiturProgram($request);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->merge(['id' => $id]);
+        return $this->fiturProgramService->saveFiturProgram($request);
+    }
+
     public function search(Request $request)
     {
-        $parent_kode = $request->input('parent_kode') ?? '#';
-        $fitur_program = $this->fiturProgram->searchFiturProgram($request->all());
-        foreach ($fitur_program as $key => $value) {
-            $fitur_program[$key]->text = $value->nama;
-        }
-        $fitur_program = $this->fiturProgram->nested_data($fitur_program, $parent_kode);
-        // dd($fitur_program);
-        if ($request->has('ajax')) return $fitur_program;
-        return view('sistem.fitur_program._treeview', compact('fitur_program'));
+        $fitur_program = $this->fiturProgramService->searchFiturProgram($request->all());
+        return view('sistem.fitur_program._table', compact('fitur_program'));
     }
 }

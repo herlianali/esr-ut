@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\BbsqServiceServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use App\Services\Sistem\QuestioningOptionsServices;
 use Illuminate\Http\Request;
@@ -14,18 +15,19 @@ class BbsqServiceController extends Controller
     public function __construct(
             BbsqServiceServices $bbsqServiceServices, 
             PengawasServices $pengawasServices,
-            QuestioningOptionsServices $questioningOptionsServices
+            QuestioningOptionsServices $questioningOptionsServices, 
+            FiturProgramServices $fiturProgramServices
         ) 
     {
         $this->questioningOptionsServices = $questioningOptionsServices;
         $this->middleware('auth');
         view()->share([
-            'title' => 'BBSQ Service',
-            'active_route' => 'questioning.bbsq_service.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_perusahaan' => $bbsqServiceServices->listPerusahaan(),
-            'list_rintangan' => $bbsqServiceServices->listRintangan(),
-            // 'options_audit' => $bbsqServiceServices->optionChecklist(),
+            'title'             => 'BBSQ Service',
+            'active_route'      => 'questioning.bbsq_service.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_perusahaan'   => $bbsqServiceServices->listPerusahaan(),
+            'list_rintangan'    => $bbsqServiceServices->listRintangan(),
         ]);
     }
 

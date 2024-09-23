@@ -4,19 +4,25 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\HousekeepingServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class HousekeepingController extends Controller
 {
     protected $housekeepingServices;
-    public function __construct(HousekeepingServices $housekeepingServices, PengawasServices $pengawasServices)
+    public function __construct(
+            HousekeepingServices $housekeepingServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->housekeepingServices = $housekeepingServices;
         view()->share([
-            'title' => 'House Keeping',
-            'active_route' => 'questioning.housekeeping.index',
+            'title'         => 'House Keeping',
+            'active_route'  => 'questioning.housekeeping.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
         ]);
         

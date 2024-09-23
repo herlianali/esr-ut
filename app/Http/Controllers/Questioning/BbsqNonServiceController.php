@@ -4,22 +4,29 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\BbsqNonServiceServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class BbsqNonServiceController extends Controller
 {
     protected $bbsqNonServiceServices;
-    public function __construct(BbsqNonServiceServices $bbsqNonServiceServices, PengawasServices $pengawasServices)
+    public function __construct(
+            BbsqNonServiceServices $bbsqNonServiceServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->bbsqNonServiceServices = $bbsqNonServiceServices;
         view()->share([
-            'title' => 'Safety Talk',
-            'menu' => '1',
-            'active_route' => 'questioning.bbsq_non_service.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            // 'list_lokasi' => $safetyTalkServices->listLokasi(),
+            'title'             => 'Safety Talk',
+            'menu'              => '1',
+            'active_route'      => 'questioning.bbsq_non_service.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_perusahaan'   => $bbsqNonServiceServices->listPerusahaan(),
+            'list_area'         => $bbsqNonServiceServices->listArea(),
         ]);
         
     }

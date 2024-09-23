@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sistem;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserLevel;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use App\Services\Sistem\UserLevelServices;
 use App\Services\Sistem\UserServices;
@@ -17,15 +18,17 @@ class UserController extends Controller
             UserServices $userServices, 
             UserLevelServices $userLevel, 
             PengawasServices $pengawasServices,
+            FiturProgramServices $fiturProgramServices
         )
     {
-        // $this->middleware('auth', 'fitur_program');
+        $this->middleware('auth');
         $this->userServices     = $userServices;
         $this->pengawasServices = $pengawasServices;
 
         view()->share([
             'title'         => 'User',
             'active_route'  => 'sistem.user.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '05']),
             'user_level'    => $userLevel->searchUserLevel(new Request())
                                 ->pluck('nama', 'id')->toArray(),
             'list_target'   => $pengawasServices->listKelompokTarget(),

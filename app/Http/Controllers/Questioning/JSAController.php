@@ -4,19 +4,25 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\JSAServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class JSAController extends Controller
 {
     protected $jsaServices;
-    public function __construct(JSAServices $jsaServices, PengawasServices $pengawasServices)
+    public function __construct(
+            JSAServices $jsaServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->jsaServices = $jsaServices;
         view()->share([
-            'title' => 'Safety Talk',
-            'active_route' => 'questioning.safety_talk.index',
+            'title'         => 'Safety Talk',
+            'active_route'  => 'questioning.safety_talk.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
         ]);
         

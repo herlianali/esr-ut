@@ -4,24 +4,30 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\GreencardServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class GreencardController extends Controller
 {
     protected $greencardServices;
-    public function __construct(GreencardServices $greencardServices, PengawasServices $pengawasServices)
+    public function __construct(
+            GreencardServices $greencardServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->greencardServices = $greencardServices;
         view()->share([
-            'title' => 'Green Card',
-            'active_route' => 'questioning.green_card.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_perusahaan' => $greencardServices->listPerusahaan(),
-            'list_sektor1' => $greencardServices->listSektor1(),
-            'list_sektor2' => $greencardServices->listSektor2(),
-            'list_deviasi' => $greencardServices->listDeviasi(),
+            'title'             => 'Green Card',
+            'active_route'      => 'questioning.green_card.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_perusahaan'   => $greencardServices->listPerusahaan(),
+            'list_sektor1'      => $greencardServices->listSektor1(),
+            'list_sektor2'      => $greencardServices->listSektor2(),
+            'list_deviasi'      => $greencardServices->listDeviasi(),
         ]);
         
     }

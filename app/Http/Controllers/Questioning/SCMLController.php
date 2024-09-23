@@ -4,19 +4,25 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\SCMLServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class SCMLController extends Controller
 {
     protected $scmlServices;
-    public function __construct(SCMLServices $scmlServices, PengawasServices $pengawasServices)
+    public function __construct(
+            SCMLServices $scmlServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->scmlServices = $scmlServices;
         view()->share([
-            'title' => 'SCML 2',
-            'active_route' => 'questioning.scml.index',
+            'title'         => 'SCML 2',
+            'active_route'  => 'questioning.scml.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
             // 'list_lokasi' => $scmlServices->listLokasi(),
         ]);

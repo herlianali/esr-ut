@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::name('.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\DashController::class, 'settingDash'])->name('index');
     Route::prefix('user')->name('user.')->group(function () {
         Route::resource('/', App\Http\Controllers\Sistem\UserController::class)->parameter('','id');
         Route::post('search', [App\Http\Controllers\Sistem\UserController::class, 'search'])->name('search');

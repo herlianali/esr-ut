@@ -4,24 +4,30 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\GenbaServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class GenbaController extends Controller
 {
     protected $genbaServices;
-    public function __construct(GenbaServices $genbaServices, PengawasServices $pengawasServices)
+    public function __construct(
+            GenbaServices $genbaServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices,
+        )
     {
         $this->middleware('auth');
         $this->genbaServices = $genbaServices;
         view()->share([
-            'title' => 'Genba',
-            'active_route' => 'questioning.genba.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_area' => $genbaServices->listArea(),
-            'list_kategori' => $genbaServices->listKategori(),
-            'list_follow_up' => $genbaServices->listFollowUp(),
-            'list_penyelenggara' => $genbaServices->listPenyelenggara(),
+            'title'                 => 'Genba',
+            'active_route'          => 'questioning.genba.index',
+            'fitur'                 => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'         => $pengawasServices->listNamaPengawas(),
+            'list_area'             => $genbaServices->listArea(),
+            'list_kategori'         => $genbaServices->listKategori(),
+            'list_follow_up'        => $genbaServices->listFollowUp(),
+            'list_penyelenggara'    => $genbaServices->listPenyelenggara(),
         ]);
         
     }

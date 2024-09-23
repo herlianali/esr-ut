@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\CutiServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
 {
     protected $cutiService, $pengawasServices;
-    public function __construct(CutiServices $cutiService, PengawasServices $pengawasServices)
+    public function __construct(CutiServices $cutiService, PengawasServices $pengawasServices, FiturProgramServices $fiturProgramServices)
     {
         $this->middleware('auth');
         $this->cutiService = $cutiService;
@@ -18,7 +19,8 @@ class CutiController extends Controller
         view()->share([
             'title' => "Report Cuti",
             'active_route' => "report.green_card.index",
-            'list_pengawas' => $pengawasServices->listNamaPengawas()
+            'list_pengawas' => $pengawasServices->listNamaPengawas(),
+            'fitur' => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
         ]);
     }
 

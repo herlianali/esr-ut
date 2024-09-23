@@ -4,22 +4,28 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\AuditAPDServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class AuditAPDController extends Controller
 {
     protected $auditApd;
-    public function __construct(AuditAPDServices $auditApd, PengawasServices $pengawasServices)
+    public function __construct(
+            AuditAPDServices $auditApd, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->auditApd = $auditApd;
         view()->share([
-            'title' => 'Audit APD',
-            'active_route' => 'questioning.audit_apd.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_perusahaan' => $auditApd->listPerusahaan(),
-            'options_audit' => $auditApd->optionChecklist(),
+            'title'             => 'Audit APD',
+            'active_route'      => 'questioning.audit_apd.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_perusahaan'   => $auditApd->listPerusahaan(),
+            'options_audit'     => $auditApd->optionChecklist(),
         ]);
     }
     

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserLevel extends Model
 {
     use HasFactory;
-
     protected $table = "user_level";
     protected $fillable = [
         'nama',
-        'keterangan'
+        'keterangan',
+        'akses_menu'
     ];
 }

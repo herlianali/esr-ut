@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('hak_akses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_level_id');
-            $table->unsignedBigInteger('fitur_program_id');
+            $table->longText('fitur_program');
             $table->timestamps();
             $table->foreign('user_level_id')->references('id')
                 ->on('user_level')->onDelete('cascade');
-            $table->foreign('fitur_program_id')->references('id')
-                ->on('fitur_program')->onDelete('cascade');
         });
     }
 

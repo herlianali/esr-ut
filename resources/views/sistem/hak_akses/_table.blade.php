@@ -3,23 +3,22 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
-                <th>Email / Username</th>
-                <th>User Level</th>
-                <th>Foto</th>
+                <th>Nama User Level</th>
+                <th>Keterangan</th>
+                <th>Role / Akses Menu</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @if (method_exists($hakAksess, 'links'))
+            @if (method_exists($hak_akses, 'links'))
                 @php
-                    $hakAksess = $hakAksess ?? null;
-                    $no = (($hakAksess->currentPage()-1) * $hakAksess->perPage()) + 1
+                    $hak_akses = $hak_akses ?? null;
+                    $no = (($hak_akses->currentPage()-1) * $hak_akses->perPage()) + 1
                 @endphp
             @else
                 @php($no = 1)
             @endif
-            @foreach ($hakAksess as $item)
+            @foreach ($hak_akses as $item)
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $item->nama }}</td>
@@ -40,6 +39,6 @@
         </tbody>
     </table>
 </div>
-@if(method_exists($hakAksess, 'links'))
-    {{ $hakAksess->links('vendor.pagination.custom', ['function' => 'search_hak_akses']) }}
+@if(method_exists($hak_akses, 'links'))
+    {{ $hak_akses->links('vendor.pagination.custom', ['function' => 'search_hak_akses']) }}
 @endif

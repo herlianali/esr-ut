@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 $user = Auth::user();
 $user_level_id = $user->user_level_id ?? '';
+$ehs_pantau = 'https://ehspantau.unitedtractors.com/Home/';
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -270,124 +271,77 @@ $user_level_id = $user->user_level_id ?? '';
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>
-            <li ><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-home"></i> <span>Home </span></a></li>
+            <li >
+              <a class="nav-link" href="{{ route('dashboard') }}">
+                <i class="fas fa-home"></i> <span>Home </span>
+              </a>
+            </li>
             @yield('menu')
+            @foreach ($fitur as $item)
+                <li class="{{ cek_aktif_sidebar($item->url) }}"><a class="nav-link"  href="{{ $item->url == $ehs_pantau ? $ehs_pantau : route($item->url) }}">{!! $item->icon !!} <span>{{ $item->nama }}</span></a></li>
+            @endforeach
+            {{-- <li><a href=""></a></li> --}}
+            {{-- 
             
-            @if( !$menu === '1' )
-              <li {{ \Route::is('dashboard') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-th"></i> <span>Dashboard</span></a></li>
-              <li ><a class="nav-link" href="{{ route('surat') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
-              <li ><a class="nav-link" href=""><i class="fas fa-envelope-open-text"></i> <span>BBSQ </span></a></li>
-            @endif
-            @if( $menu === '1')
-              @if($user_level_id !== 2) 
-                <li {{ \Route::is('questioning.cuti.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.cuti.index') }}"><i class="fas fa-plane-departure"></i> <span>Cuti </span></a></li>
-              @endif
-              @if($user_level_id !== 2) 
-                <li {{ \Route::is('questioning.green_card.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.green_card.index') }}"><i class="fas fa-address-card"></i> <span>Green Card </span></a></li>
-              @endif
-              @if($user_level_id === 1 || $user_level_id === 2) 
-                <li {{ \Route::is('questioning.genba.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.genba.index') }}"><i class="fas fa-envelope-open-text"></i> <span>Genba </span></a></li>
-              @endif
-              @if($user_level_id === 1 || $user_level_id === 2) 
-                <li {{ \Route::is('questioning.bbsq_service.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.bbsq_service.index') }}"><i class="fas fa-user-check"></i> <span>BBSQ Service </span></a></li>
-              @endif
-              @if($user_level_id !== 2) 
-                <li {{ \Route::is('questioning.bbsq_non_service.*') ? 'class=active' : '' }} ><a class="nav-link" href="{{ route('questioning.bbsq_non_service.index') }}"><i class="fas fa-clipboard-check"></i> <span>BBSQ Non Service </span></a></li>
-              @endif
-              @if($user_level_id !== 2) 
-                <li><a class="nav-link" href="https://ehspantau.unitedtractors.com/Home/LoginN?ReturnUrl=%2FHome%2F"><i class="fas fa-user-shield"></i> <span>EHS Pantau </span></a></li>
-              @endif
-              @if($user_level_id === 1 || $user_level_id === 2)
-                <li {{ \Route::is('questioning.personal_contact.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.personal_contact.index') }}"><i class="fas fa-people-carry"></i> <span>Personal Contact</span></a></li>
-              @endif
-              @if($user_level_id === 1 || $user_level_id === 2)
-                <li {{ \Route::is('questioning.safety_talk.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.safety_talk.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Safety Talk</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.jsa.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.jsa.index') }}"><i class="fas fa-file-signature"></i> <span>JSA</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.p5m.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.p5m.index') }}"><i class="fas fa-chart-line"></i> <span>P5M</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.inspeksi_sarana.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.inspeksi_sarana.index') }}"><i class="fas fa-truck-pickup"></i> <span>Inspeksi / Sidak Sarana</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.audit_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.audit_apd.index') }}"><i class="fas fa-clipboard-list"></i> <span>Audit APD</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.inspeksi_tools.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.inspeksi_tools.index') }}"><i class="fas fa-toolbox"></i> <span>Inspeksi Tools</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.housekeeping.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.housekeeping.index') }}"><i class="fas fa-person-booth"></i> <span>Housekeeping</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.scml.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.scml.index') }}"><i class="fas fa-users"></i> <span>SCML</span></a></li>
-              @endif
-              @if($user_level_id !== 2)
-                <li {{ \Route::is('questioning.flpg.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('questioning.flpg.index') }}"><i class="fas fa-user-tie"></i> <span>FLPG</span></a></li>
-              @endif
-            @endif
             @if( $menu === '2') 
-            <li class="dropdown {{ \Route::is('esr_corner.*') ? 'active' : '' }}">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-md"></i><span>SAPA ESR</span></a>
-              <ul class="dropdown-menu">
-                <li {{ \Route::is('esr_corner.monitoring_cof.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_cof.index') }}">Monitoring COF</a></li>
-                <li {{ \Route::is('esr_corner.monitoring_laporan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_laporan.index') }}">Monitoring Lapangan</a></li>
-                <li {{ \Route::is('esr_corner.monitoring_permit.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_permit.index') }}">Monitoring PERMIT</a></li>
-                <li {{ \Route::is('esr_corner.rekap_link.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.rekap_link.index') }}" style="margin-top: 18px; margin-bottom: 18px">Rekap Link & Email Support</a></li>
-                <li {{ \Route::is('esr_corner.monitoring_program.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_program.index') }}">Monitoring Program SDA</a></li>
-              </ul>
-            </li>
-            <li class="dropdown ">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-folder-open"></i><span>Rekap Dokumen KPLH</span></a>
-              <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="">Persyaratan SIM-T</a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Persyaratan ijin masuk</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item"><a href="#" class="nav-link">Adaro</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Balangan Coal</a></li>
-                  </ul>
-                </li>
-                <li ><a class="nav-link" href="" style="margin-top: 18px; margin-bottom: 18px">persyaratan Perubahan Permit</a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Dokumen SOP</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item"><a href="#" class="nav-link">Internal</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">External</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            
-            <li class="dropdown ">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-shield"></i><span>ESR Update</span></a>
-              <ul class="dropdown-menu">
-                <li ><a class="nav-link" href="">Materi Safety Talk</a></li>
-                <li ><a class="nav-link" href="">Materi Campaign KPLH</a></li>
-                <li ><a class="nav-link" href="">Rekap Buletin ESG</a></li>
-                <li ><a class="nav-link" href="">Roster Cuti</a></li>
-              </ul>
-            </li>
-            <li {{ \Route::is('surat') || \Route::is('surat.permohonan_surat.*')  ? 'class=active' : '' }}><a class="nav-link" href="{{ route('surat.permohonan_surat.index') }}"><i class="fas fa-envelope-open-text"></i> <span>Surat</span></a></li>
-            <li class="dropdown {{ \Route::is('inventaris.*') ? 'active' : '' }}">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-boxes"></i><span>Inventaris</span></a>
-              <ul class="dropdown-menu">
-                <li {{ \Route::is('inventaris.peminjaman_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{route('inventaris.peminjaman_apd.index')}}">APD</a></li>
-              </ul>
-            </li>
+              <li class="dropdown {{ \Route::is('esr_corner.*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-md"></i><span>SAPA ESR</span></a>
+                <ul class="dropdown-menu">
+                  <li {{ \Route::is('esr_corner.monitoring_cof.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_cof.index') }}">Monitoring COF</a></li>
+                  <li {{ \Route::is('esr_corner.monitoring_laporan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_laporan.index') }}">Monitoring Lapangan</a></li>
+                  <li {{ \Route::is('esr_corner.monitoring_permit.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_permit.index') }}">Monitoring PERMIT</a></li>
+                  <li {{ \Route::is('esr_corner.rekap_link.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.rekap_link.index') }}" style="margin-top: 18px; margin-bottom: 18px">Rekap Link & Email Support</a></li>
+                  <li {{ \Route::is('esr_corner.monitoring_program.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('esr_corner.monitoring_program.index') }}">Monitoring Program SDA</a></li>
+                </ul>
+              </li>
+              <li class="dropdown ">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-folder-open"></i><span>Rekap Dokumen KPLH</span></a>
+                <ul class="dropdown-menu">
+                  <li ><a class="nav-link" href="">Persyaratan SIM-T</a></li>
+                  <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Persyaratan ijin masuk</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a href="#" class="nav-link">Adaro</a></li>
+                      <li class="nav-item"><a href="#" class="nav-link">Balangan Coal</a></li>
+                    </ul>
+                  </li>
+                  <li ><a class="nav-link" href="" style="margin-top: 18px; margin-bottom: 18px">persyaratan Perubahan Permit</a></li>
+                  <li class="nav-item dropdown"><a href="#" class="nav-link has-dropdown">Dokumen SOP</a>
+                    <ul class="dropdown-menu">
+                      <li class="nav-item"><a href="#" class="nav-link">Internal</a></li>
+                      <li class="nav-item"><a href="#" class="nav-link">External</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="dropdown ">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-shield"></i><span>ESR Update</span></a>
+                <ul class="dropdown-menu">
+                  <li ><a class="nav-link" href="">Materi Safety Talk</a></li>
+                  <li ><a class="nav-link" href="">Materi Campaign KPLH</a></li>
+                  <li ><a class="nav-link" href="">Rekap Buletin ESG</a></li>
+                  <li ><a class="nav-link" href="">Roster Cuti</a></li>
+                </ul>
+              </li>
+              <li {{ \Route::is('surat') || \Route::is('surat.permohonan_surat.*')  ? 'class=active' : '' }}><a class="nav-link" href="{{ route('surat.permohonan_surat.index') }}"><i class="fas fa-envelope-open-text"></i> <span>Surat</span></a></li>
+              <li class="dropdown {{ \Route::is('inventaris.*') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-boxes"></i><span>Inventaris</span></a>
+                <ul class="dropdown-menu">
+                  <li {{ \Route::is('inventaris.peminjaman_apd.*') ? 'class=active' : '' }}><a class="nav-link" href="{{route('inventaris.peminjaman_apd.index')}}">APD</a></li>
+                </ul>
+              </li>
             @endif
             @if($menu === '4')
               <li {{ \Route::is('sistem.user.*') || \Route::is('sistem.karyawan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.user.index') }}"><i class="fas fa-user-cog"></i> <span>Data User</span></a></li>
               <li {{ \Route::is('sistem.pengawas.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.pengawas.index') }}"><i class="fas fa-user-shield"></i> <span>Data Pengawas</span></a></li>
               <li {{ \Route::is('sistem.sektor.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.sektor.index') }}"><i class="fas fa-building"></i> <span>Data Sektor</span></a></li>
-              <li {{ \Route::is('sistem.plan.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.plan.index') }}"><i class="far fa-calendar-alt"></i> <span>Data Plan</span></a></li>
               <li {{ \Route::is('sistem.fitur.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.fitur.index') }}"><i class="fab fa-elementor"></i> <span>Management Menu</span></a></li>
               <li {{ \Route::is('sistem.user_level.*') ? 'class=active' : '' }}><a class="nav-link" href="{{ route('sistem.user_level.index') }}"><i class="fas fa-users-cog"></i> <span>Management Hak Akses</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Management Projects</span></a></li>
               <li ><a class="nav-link" href=""><i class="fas fa-tasks"></i> <span>Questioning Options Setting</span></a></li>
-            @endif
-
-          </aside>
+            @endif --}}
+          </ul>
+        </aside>
       </div>
 
       <!-- Main Content -->

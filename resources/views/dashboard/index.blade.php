@@ -63,7 +63,7 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-            <a href="{{ route('dash.show', 1) }}" class="text-dark">
+            <a href="{{ route('questioning.index') }}" class="text-dark">
                 <div class="card" style="background-color:rgb(255, 248, 146); border-radius: 50%; margin: 0px 0px 10px 0px">
                     <div class="card body text-center m-md-4 m-3" style="background-color:rgb(226, 210, 119); border-radius: 50%">
                         <img src="{{ asset('public/img/dash_menu_1_3d.png') }}" class="img-fluid" width="100%" alt="">
@@ -111,7 +111,7 @@
             </a>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-4 col-4">
-            <a href="{{ route('dash.show', 4) }}" class="text-dark">
+            <a href="{{ route('sistem.index') }}" class="text-dark">
                 <div class="card" style="background-color:rgb(255, 248, 146); border-radius: 50%; margin: 0px 0px 10px 0px">
                     <div class="card body text-center m-md-4 m-3" style="background-color:rgb(226, 210, 119); border-radius: 50%">
                         <img src="{{ asset('public/img/dash_menu_4_3d.png') }}" class="img-fluid" width="100%" alt="">

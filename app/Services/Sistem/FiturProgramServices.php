@@ -25,6 +25,14 @@ class FiturProgramServices extends Services
         
         $nama = $params['nama'] ?? '';
         if ($nama !== '') $fiturProgram = $fiturProgram->where('nama', 'like', "%$nama%");
+        
+        $parent_kode = $params['parent_kode'] ?? '';
+        if ($parent_kode !== '') $fiturProgram = $fiturProgram->where('parent_kode', '=', $parent_kode);
+
+        $query_in = $params['query_in'] ?? '';
+        if ($query_in !== '') $fiturProgram = $fiturProgram->whereIn('id', $query_in);
+
+        $fiturProgram = $fiturProgram->orderBy('kode', 'asc');
 
         return $this->searchResponse($params, $fiturProgram);
     }

@@ -1,13 +1,7 @@
 @extends('layout.app')
 
 @push('css')
-<style>
-    @media (max-width: 575.98px) {
-        .table-responsive table{
-            min-width: 400px;
-        }
-    }
-</style>
+
 @endpush
 
 @section('menu')
@@ -70,7 +64,6 @@
             $user_level_info.html('');
             $card_user_level.show();
             $discard_data.hide();
-            $('#add_data').show();
             search_user_level();
         }
 
@@ -100,63 +93,20 @@
                 $button_submit_user_level = $('#button_submit_user_level');
                 $form_user_level.submit((e) => {
                     e.preventDefault();
-                    let dataForm = new FormData($form_user_level.get(0));
+
+                    let data = getFormData($form_user_level);
                     let url = '{{ route($active_route) }}';
                     if (id !== '') {
                         url += ('/' + id);
-                        dataForm.append('_method', 'PUT');
+                        data._method = 'put';
                     }
-                    $.ajax({
-                        url: url,
-                        type: 'POST',
-                        data: dataForm,
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        success: (response) => {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: 'Data User Level has been saved.',
-                                timer: 2000,
-                                showConfirmButton: false
-                            }).then(() => {
-                                init_user_level();
-                            });
-                        },
-                        error: (xhr) => {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Something went wrong!',
-                                footer: xhr.responseText
-                            });
-                        }
-                    });
-                });
-        }
-
-        let confirm_delete = (id) => {
-            Swal.fire({
-                title: 'Anda yakin ?',
-                text: "Anda akan menghapus data yg dipilih",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Hapus'
-            }).then((result) => {
-                console.log(result);
-                if (result.value === true) {
-                    delete_user_level(id);
-                }
-            })
-        }
-        let delete_user_level = (id) => {
-            let data = {_token: '{{ csrf_token() }}', _method: 'DELETE', id};
-            $.post("{{ url('sistem/user_level') }}/"+id, data, () => {
-                search_user_level(selected_page);
-            }).fail((xhr) => {
-                console.log(xhr.responseText);
-            });
+                    $.post(url, data, () => {
+                        init_user_level();
+                    }).fail((xhr) => {
+                        error_handle(xhr.responseText);
+                        console.log(xhr.responseText);
+                    })
+                })
         }
 
         $search_form.submit((e) => {

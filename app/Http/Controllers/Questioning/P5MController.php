@@ -4,19 +4,25 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\P5MServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class P5MController extends Controller
 {
     protected $p5MServices;
-    public function __construct(P5MServices $p5MServices, PengawasServices $pengawasServices)
+    public function __construct(
+            P5MServices $p5MServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->p5MServices = $p5MServices;
         view()->share([
-            'title' => 'P5M',
-            'active_route' => 'questioning.p5m.index',
+            'title'         => 'P5M',
+            'active_route'  => 'questioning.p5m.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas()
         ]);
         

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_level', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('keterangan')->nullable();
-            $table->longText('akses_menu');
-            $table->timestamps();
+        Schema::table('user_level', function (Blueprint $table) {
+            $table->longText('akses_menu')->after('keterangan');
         });
     }
 
@@ -25,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_level');
+        //
     }
 };

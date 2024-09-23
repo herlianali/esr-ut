@@ -4,22 +4,28 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\SafetyTalkServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class SafetyTalkController extends Controller
 {
     protected $safetyTalkServices;
-    public function __construct(SafetyTalkServices $safetyTalkServices, PengawasServices $pengawasServices)
+    public function __construct(
+            SafetyTalkServices $safetyTalkServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices,
+        )
     {
         $this->middleware('auth');
         $this->safetyTalkServices = $safetyTalkServices;
         view()->share([
-            'title' => 'Safety Talk',
-            'active_route' => 'questioning.safety_talk.index',
-            'form_route' => 'questioning.safety_talk.create',
+            'title'         => 'Safety Talk',
+            'active_route'  => 'questioning.safety_talk.index',
+            'form_route'    => 'questioning.safety_talk.create',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_lokasi' => $safetyTalkServices->listLokasi(),
+            'list_lokasi'   => $safetyTalkServices->listLokasi(),
         ]);
         
     }

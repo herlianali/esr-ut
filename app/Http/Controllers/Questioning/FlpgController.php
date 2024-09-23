@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\FlpgServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use App\Services\Sistem\QuestioningOptionsServices;
 use Illuminate\Http\Request;
@@ -16,16 +17,18 @@ class FlpgController extends Controller
             FlpgServices $flpgServices, 
             PengawasServices $pengawasServices,
             QuestioningOptionsServices $questioningOptionsServices,
+            FiturProgramServices $fiturProgramServices
         )
     {
         $this->middleware('auth');
         $this->flpgServices = $flpgServices;
         $this->questioningOptionsServices = $questioningOptionsServices;
         view()->share([
-            'title' => 'FLPG',
-            'active_route' => 'questioning.flpg.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_aktivitas' => $flpgServices->listAktivitas(),
+            'title'             => 'FLPG',
+            'active_route'      => 'questioning.flpg.index',
+            'fitur'             => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'     => $pengawasServices->listNamaPengawas(),
+            'list_aktivitas'    => $flpgServices->listAktivitas(),
         ]);
     }
 

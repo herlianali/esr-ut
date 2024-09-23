@@ -62,7 +62,5 @@ class PengawasController extends Controller
         $pengawas = $this->pengawasServices->searchPengawas($request->all());
         return view('sistem.pengawas._table', compact('pengawas'));
     }
-
-    
     
 }

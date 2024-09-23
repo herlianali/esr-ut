@@ -4,23 +4,29 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\InspeksiSaranaServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class InspeksiSaranaController extends Controller
 {
     protected $inspeksiSaranaServices;
-    public function __construct(InspeksiSaranaServices $inspeksiSaranaServices, PengawasServices $pengawasServices)
+    public function __construct(
+            InspeksiSaranaServices $inspeksiSaranaServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->inspeksiSaranaServices = $inspeksiSaranaServices;
         view()->share([
-            'title' => 'Inspeksi Sarana',
-            'active_route' => 'questioning.inspeksi_sarana.index',
-            'list_pengawas' => $pengawasServices->listNamaPengawas(),
+            'title'                     => 'Inspeksi Sarana',
+            'active_route'              => 'questioning.inspeksi_sarana.index',
+            'fitur'                     => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
+            'list_pengawas'             => $pengawasServices->listNamaPengawas(),
             'options_kondisi_kendaraan' => $inspeksiSaranaServices->optionsKondisiKendaran(),
-            'options_driver' => $inspeksiSaranaServices->optionsDriver(),
-            'options_prosedur' => $inspeksiSaranaServices->optionsProsedur(),
+            'options_driver'            => $inspeksiSaranaServices->optionsDriver(),
+            'options_prosedur'          => $inspeksiSaranaServices->optionsProsedur(),
         ]);
         
     }

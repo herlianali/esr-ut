@@ -4,21 +4,27 @@ namespace App\Http\Controllers\Questioning;
 
 use App\Http\Controllers\Controller;
 use App\Services\Questioning\InspeksiToolsServices;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\PengawasServices;
 use Illuminate\Http\Request;
 
 class InspeksiToolsController extends Controller
 {
     protected $inspeksiToolsServices;
-    public function __construct(InspeksiToolsServices $inspeksiToolsServices, PengawasServices $pengawasServices)
+    public function __construct(
+            InspeksiToolsServices $inspeksiToolsServices, 
+            PengawasServices $pengawasServices, 
+            FiturProgramServices $fiturProgramServices
+        )
     {
         $this->middleware('auth');
         $this->inspeksiToolsServices = $inspeksiToolsServices;
         view()->share([
-            'title' => 'Inspeksi Tools',
-            'active_route' => 'questioning.inspeksi_tools.index',
+            'title'         => 'Inspeksi Tools',
+            'active_route'  => 'questioning.inspeksi_tools.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '01']),
             'list_pengawas' => $pengawasServices->listNamaPengawas(),
-            'list_posisi' => $inspeksiToolsServices->listPosisi(),
+            'list_posisi'   => $inspeksiToolsServices->listPosisi(),
         ]);
     }
     

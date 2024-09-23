@@ -2,46 +2,6 @@
 
 // Template
 
-function check_review($verifikasi)
-{
-    $jabatan_unit_kerja = $verifikasi->jabatan_unit_kerja;
-    if (empty($jabatan_unit_kerja)) $verifikasi = $verifikasi->last_pending;
-    $jabatan_aktif = get_jabatan_aktif() ?? [];
-    $check_jabatan = $jabatan_unit_kerja->unit_kerja_id == ($jabatan_aktif['unit_kerja_id'] ?? '') && $jabatan_unit_kerja->jenis_jabatan_id == ($jabatan_aktif['jenis_jabatan_id'] ?? '');
-    $belum_verif = $verifikasi->status === null || $verifikasi->status === 0;
-    $last_position = empty($verifikasi->last_pending) || ($verifikasi->id ?? '') === ($verifikasi->last_pending->id ?? '');
-    return $belum_verif === true && $check_jabatan === true && $last_position === true;
-}
-
-function proceed_user_credentials($menus, $credentials, $current_menu = null, $current_menu_header = null)
-{
-    $menu_allowed = false;
-    $sugested_menu = [];
-    foreach ($menus as $key => $menu) {
-        $allowed = $credentials[$key]['allowed'] ?? false;
-        if ($allowed === true) $menus[$key]['allowed'] = $allowed;
-
-        foreach (($menu['side_menus'] ?? []) as $side_key => $side_menu) {
-            if (!empty($credentials[$key]['side_menus'][$side_key])) {
-                $allowed = $credentials[$key]['side_menus'][$side_key]['allowed'];
-                if ($allowed === true) {
-                    $menus[$key]['side_menus'][$side_key]['allowed'] = $allowed;
-                    if ($current_menu !== null && $side_menu['url'] === ($current_menu['url'] ?? '')) $menu_allowed = true;
-                    if ($current_menu_header !== null && ($current_menu_header['url'] ?? '') === $menu['url'] && empty($sugested_menu)) $sugested_menu = $side_menu;
-
-                    foreach (($side_menu['actions'] ?? []) as $action_key => $action) $menus[$key]['side_menus'][$side_key]['actions'][$action_key]['allowed'] = $credentials[$key]['side_menus'][$side_key]['actions'][$action_key]['allowed'] ?? false;
-                }
-            }
-        }
-    }
-    if ($current_menu === null) return $menus;
-    return [
-        'menus' => $menus,
-        'menu_allowed' => $menu_allowed,
-        'sugested_menu' => $sugested_menu,
-    ];
-}
-
 function list_tahun()
 {
     $min = date('Y', strtotime('-10 years'));
@@ -97,71 +57,6 @@ function array_bulan(): array
     foreach (months() as $value) $result[$no++] = $value;
     return $result;
 }
-
-function unit_kerja_direktur_utama(): int
-{
-    return 5;
-}
-
-function divisi_keuangan_akuntansi(): int
-{
-    return 7;
-}
-
-function departemen_umum(): int
-{
-    return 12;
-}
-
-function departemen_keuangan(): int
-{
-    return 8;
-}
-
-function departemen_accounting(): int
-{
-    return 9;
-}
-
-function unit_kerja_sekretaris_utama(): int
-{
-    return 23;
-}
-
-function jenis_staff(): int
-{
-    return 8;
-}
-
-function jenis_punya_staff(): array
-{
-    return [6, 7];
-}
-
-function list_catatan(): array
-{
-    return ['Mohon Diperhatikan', 'Undangan Harus Hadir', 'Pemberitahuan'];
-}
-
-function list_catatan_keluar(): array
-{
-    return ['Format Surat Salah', 'Tujuan Tidak Sesuai'];
-}
-
-function get_jabatan_aktif(): array
-{
-    $jabatan_aktif = [];
-    $karyawan = auth()->user()->karyawan ?? [];
-    if (!empty($karyawan)) {
-        $jabatan_aktif = array_filter($karyawan->jabatan->toArray(), function ($item) {
-            return $item['id'] == session('jabatan_aktif');
-        });
-        $jabatan_aktif = count($jabatan_aktif) > 0 ? head($jabatan_aktif) : [];
-    }
-    return $jabatan_aktif;
-}
-
-// =====================================================================================================================
 
 function array_between_date($start, $end)
 {
@@ -442,15 +337,26 @@ function date_now_sum($mount)
 
 function paginate($data)
 {
-    $lengthAwarePaginator = Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
-    $resultCollection = collect($data);
-    $currentPage      = $lengthAwarePaginator;
-    $perPage          = 10;
-    $currentPageItems = $resultCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
+    $lengthAwarePaginator   = Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
+    $resultCollection       = collect($data);
+    $currentPage            = $lengthAwarePaginator;
+    $perPage                = 10;
+    $currentPageItems       = $resultCollection->slice(($currentPage - 1) * $perPage, $perPage)->values();
 
     $paginatedResult  = new Illuminate\Pagination\LengthAwarePaginator($currentPageItems, $resultCollection->count(), $perPage, $currentPage, [
         'path' => $lengthAwarePaginator,
     ]);
     
     return $paginatedResult;
+}
+
+function cek_aktif_sidebar($url_db)
+{
+    $split_url_db = explode('.', $url_db);
+    if($split_url_db[1] == collect(request()->segments())->last()) {
+        $result = "active";
+    } else {
+        $result = "";
+    }
+    return $result;
 }
