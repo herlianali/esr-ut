@@ -129,7 +129,8 @@
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: 'Something went wrong!',
-                                footer: xhr.responseText
+                                footer: 'call admin to fixing this!'
+                                // footer: xhr.responseText
                             });
                         }
                     });
@@ -144,18 +145,32 @@
                 showCancelButton: true,
                 confirmButtonText: 'Hapus'
             }).then((result) => {
-                console.log(result);
                 if (result.value === true) {
                     delete_user_level(id);
                 }
             })
         }
+
         let delete_user_level = (id) => {
             let data = {_token: '{{ csrf_token() }}', _method: 'DELETE', id};
             $.post("{{ url('sistem/user_level') }}/"+id, data, () => {
-                search_user_level(selected_page);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Data User Level has been deleted.',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    search_user_level();
+                });
             }).fail((xhr) => {
-                console.log(xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: 'call admin to fixing this!'
+                    // footer: xhr.responseText
+                });
             });
         }
 

@@ -31,7 +31,7 @@
     <div class="carousel-inner">
         <div class="carousel-item active" data-interval="10000">
             <div class="card card-slider m-md-5" style="border-radius: 10px; padding: 0%;">
-                <div class="card-body p-2">
+                <div class="card-body p-2 text-center">
                     <img src="{{asset('public/slider/slide1.png')}}" class="img-fluid" alt="">
                 </div>
             </div>

@@ -130,12 +130,62 @@
                         data._method = 'put';
                     }
                     $.post(url, data, () => {
-                        init_sektor();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Data User Level has been saved.',
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => {
+                            init_sektor();
+                        });
                     }).fail((xhr) => {
-                        error_handle(xhr.responseText);
-                        console.log(xhr.responseText);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            footer: 'call admin to fixing this!'
+                            // footer: xhr.responseText
+                        });
                     })
                 })
+        }
+
+        let confirm_delete = (id) => {
+            Swal.fire({
+                title: 'Anda yakin ?',
+                text: "Anda akan menghapus data yg dipilih",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.value === true) {
+                    delete_sektor(id);
+                }
+            })
+        }
+
+        let delete_sektor = (id) => {
+            let data = {_token: '{{ csrf_token() }}', _method: 'DELETE', id};
+            $.post("{{ url('sistem/sektor') }}/"+id, data, () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Data User Level has been deleted.',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    search_sektor();
+                });
+            }).fail((xhr) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: 'call admin to fixing this!'
+                    // footer: xhr.responseText
+                });
+            });
         }
 
         $search_form.submit((e) => {

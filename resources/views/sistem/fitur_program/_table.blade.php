@@ -42,7 +42,7 @@
                     <td>
                         <div class="row">
                             <button id="edit" onclick="info_fitur({{ $item->id}})" class="btn btn-sm m-1 btn-success">Edit</button>
-                            <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                            <a href="javascript:void(0)" onclick="confirm_delete({{ $item->id }})" class="btn btn-sm m-1 btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>

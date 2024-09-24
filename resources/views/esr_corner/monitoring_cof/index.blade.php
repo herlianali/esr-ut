@@ -84,9 +84,9 @@
                                 <td class="text-dark"></td>
                                 <td class="fit">
                                     {{-- <div class="row"> --}}
-                                        <a href="" class="btn btn-sm m-1 btn-primary">Detail</a>
+                                        <a href="javascript:void(0)" class="btn btn-sm m-1 btn-primary">Detail</a>
                                         <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
-                                        <a href="#" class="btn btn-sm m-1 btn-danger">Delete</a>
+                                        <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                                     {{-- </div> --}}
                                 </td>
                             </tr>

@@ -366,7 +366,7 @@ $user_level_id = $user->user_level_id ?? '';
 
         </div>
         <div class="footer-left">
-          Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="">ESR UT</a>
+          Copyright &copy; 2024 <div class="bullet"></div> Design By <a href="javascript:void(0)">ESR UT</a>
         </div>
         <div class="footer-right">
           

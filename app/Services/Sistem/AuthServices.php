@@ -34,12 +34,15 @@ class AuthServices
 
     public function save_login($user)
     {
-        return $this->userLog->create([
-            'user_id' => $user->id,
-            'method' => 'auth',
-            'url' => 'login',
-            'request_data' => Str::random(32)
-        ]);
+        
+            $user_log = $this->userLog->create([
+                'user_id' => $user->id,
+                'method' => 'auth',
+                'url' => 'login',
+                'request_data' => Str::random(32)
+            ]);
+
+        return $user_log;
     } 
 
     public function set_auth($user, $remember)
@@ -52,8 +55,15 @@ class AuthServices
         return $this->userLog->where('request_data', $token)->first();
     }
 
-    public function logout()
+    public function logout($id)
     {
+        $user_log = $this->userLog->find($id);
+        if ($user_log) {
+            $user_log->update([
+                'url' => 'logout',
+                'request_data' => Str::random(32)
+            ]);
+        }
         Auth::logout();
     }
 

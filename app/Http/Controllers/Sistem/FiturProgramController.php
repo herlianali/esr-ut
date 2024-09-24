@@ -60,4 +60,9 @@ class FiturProgramController extends Controller
         $fitur_program = $this->fiturProgramService->searchFiturProgram($request->all());
         return view('sistem.fitur_program._table', compact('fitur_program'));
     }
+
+    public function destroy($id)
+    {
+        return $this->fiturProgramService->deleteFiturProgram($id);
+    }
 }

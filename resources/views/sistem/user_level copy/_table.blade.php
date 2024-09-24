@@ -38,7 +38,7 @@
                     <td>
                         <div class="row">
                             <button id="edit" onclick="info_hak_akses({{ $item->id}})" class="btn btn-sm m-1 btn-success">Edit</button>
-                            <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                            <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>

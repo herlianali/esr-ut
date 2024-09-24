@@ -44,36 +44,6 @@
         </div>
     </div>
 </div>
-<form class="modal-part" id="edit_form">
-    <div class="form-group">
-      <label>Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fas fa-envelope"></i>
-          </div>
-        </div>
-        <input type="text" class="form-control" placeholder="Email" name="email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fas fa-lock"></i>
-          </div>
-        </div>
-        <input type="password" class="form-control" placeholder="Password" name="password">
-      </div>
-    </div>
-    <div class="form-group mb-0">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-        <label class="custom-control-label" for="remember-me">Remember Me</label>
-      </div>
-    </div>
-</form>
 @endsection
 
 @push('js')
@@ -90,6 +60,7 @@
         $discard_data.hide();
         
         let init_fitur = () => {
+            location.reload();
             $fitur_info.html('');
             $('#add_data').show();
             $card_fiture.show();
@@ -124,19 +95,72 @@
                 $form_fitur.submit((e) => {
                     e.preventDefault();
 
-                    let data = getFormData($form_fitur);
+                    let data = new FormData($form_fitur.get(0));
                     let url = '{{ route($active_route) }}';
                     if (id !== '') {
                         url += ('/' + id);
-                        data._method = 'put';
+                        data.append('_method', 'PUT');
                     }
-                    $.post(url, data, () => {
-                        init_fitur();
-                    }).fail((xhr) => {
-                        error_handle(xhr.responseText);
-                        console.log(xhr.responseText);
-                    })
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: (response) => {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Data Safety Talk has been saved.',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(() => {
+                                init_fitur();
+                            });
+                        },
+                        error: (xhr) => {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                footer: xhr.responseText
+                            });
+                        }
+                    });
                 })
+        }
+
+        let confirm_delete = (id) => {
+            Swal.fire({
+                title: 'Anda yakin ?',
+                text: "Anda akan menghapus data yg dipilih",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus'
+            }).then((result) => {
+                console.log(result);
+                if (result.value === true) {
+                    delete_fitur(id);
+                }
+            })
+        }
+
+        let delete_fitur = (id) => {
+            let data = {_token: '{{ csrf_token() }}', _method: 'DELETE', id};
+            $.post("{{ url('sistem/fitur') }}/"+id, data, () => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Data Safety Talk has been deleted.',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    search_fitur();
+                });
+            }).fail((xhr) => {
+                console.log(xhr.responseText);
+            });
         }
 
         $search_form.submit((e) => {

@@ -24,7 +24,7 @@
                 <div class="row">
                     <a href="{{ route('surat.permohonan_surat.show', 1) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
                     <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
-                    <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                 </div>
             </td>
         </tr>
@@ -42,7 +42,7 @@
                 <div class="row">
                     <a href="{{ route('surat.permohonan_surat.show', 1) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
                     <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
-                    <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                 </div>
             </td>
         </tr>
@@ -60,7 +60,7 @@
                 <div class="row">
                     <a href="{{ route('surat.permohonan_surat.show', 1) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
                     <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
-                    <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                 </div>
             </td>
         </tr>
@@ -78,7 +78,7 @@
                 <div class="row">
                     <a href="{{ route('surat.permohonan_surat.show', 1) }}" class="btn btn-sm m-1 btn-primary">Detail</a>
                     <button id="edit" class="btn btn-sm m-1 btn-success">Edit</button>
-                    <a href="" class="btn btn-sm m-1 btn-danger">Delete</a>
+                    <a href="javascript:void(0)" class="btn btn-sm m-1 btn-danger">Delete</a>
                 </div>
             </td>
         </tr>
