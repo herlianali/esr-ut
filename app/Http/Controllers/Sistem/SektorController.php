@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Sistem;
 
 use App\Http\Controllers\Controller;
+use App\Services\Sistem\FiturProgramServices;
 use App\Services\Sistem\SektorServices;
 use Illuminate\Http\Request;
 
 class SektorController extends Controller
 {
     protected $sektorServices;
-    public function __construct(SektorServices $sektorServices) {
+    public function __construct(SektorServices $sektorServices, FiturProgramServices $fiturProgramServices) {
         $this->middleware('auth');
         $this->sektorServices = $sektorServices;
         view()->share([
             'title'        => 'Sektor',
             'active_route' => 'sistem.sektor.index',
+            'fitur'         => $fiturProgramServices->searchFiturProgram(['parent_kode' => '05']),
         ]);
     }
 
@@ -56,5 +58,10 @@ class SektorController extends Controller
     {
         $sektor = $this->sektorServices->searchSektor($request->all());
         return view('sistem.sektor._table', compact('sektor'));
+    }
+
+    public function destroy($id)
+    {
+        return $this->sektorServices->deleteSektor($id);
     }
 }

@@ -152,7 +152,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'Data Safety Talk has been deleted.',
+                    text: 'Data fitur program has been deleted.',
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {

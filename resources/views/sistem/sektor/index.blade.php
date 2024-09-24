@@ -171,7 +171,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'Data User Level has been deleted.',
+                    text: 'Data sektor has been deleted.',
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
