@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Services\DashServices;
 use App\Services\Sistem\FiturProgramServices;
-use Illuminate\Http\Request;
 
 class DashController extends Controller
 {
-    protected $fiturProgramServices;
-    public function __construct(FiturProgramServices $fiturProgramServices)
+    protected $fiturProgramServices, $dashServices;
+    public function __construct(
+            FiturProgramServices $fiturProgramServices,
+            DashServices $dashServices
+        )
     {
         $this->middleware(['auth']);
         $this->fiturProgramServices = $fiturProgramServices;
+        $this->dashServices = $dashServices;
+
         view()->share(['title' => 'Dashboard']);
     }
     public function index() 
@@ -49,7 +54,8 @@ class DashController extends Controller
     {
         $title = 'Setting';
         $fitur = $this->fiturProgramServices->searchFiturProgram(['parent_kode' => '05']);
-        return view('dashboard.setting', compact('title', 'fitur'));
+        $data  = $this->dashServices->dashSistem();
+        return view('dashboard.setting', compact('title', 'fitur', 'data'));
     }
 
     public function dash2()

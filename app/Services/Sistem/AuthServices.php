@@ -34,13 +34,26 @@ class AuthServices
 
     public function save_login($user)
     {
-        
+        $user_log = $this->userLog->find($user->id) ?? 0;
+
+        if (isset($user_log) || $user_log->count() <= 0) {
             $user_log = $this->userLog->create([
                 'user_id' => $user->id,
                 'method' => 'auth',
                 'url' => 'login',
                 'request_data' => Str::random(32)
             ]);
+        } else {
+            $user_log = $this->userLog->find($user->id);
+            if ($user_log) {
+                $user_log->update([
+                    'method' => 'reAuth',
+                    'url' => 'login',
+                    'request_data' => Str::random(32)
+                ]);
+            }
+        }
+        
 
         return $user_log;
     } 
@@ -60,6 +73,7 @@ class AuthServices
         $user_log = $this->userLog->find($id);
         if ($user_log) {
             $user_log->update([
+                'method' => 'logout',
                 'url' => 'logout',
                 'request_data' => Str::random(32)
             ]);

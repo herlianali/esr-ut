@@ -31,6 +31,10 @@ class UserServices extends Services
         if (isset($params['nama']) && $params['nama'] !== '') {
             $user = $user->where('nama', 'like', "%{$params['nama']}%");
         }
+
+        if (isset($params['user_level_id']) && $params['user_level_id'] !== '') {
+            $user = $user->where('user_level_id', $params['user_level_id']);
+        }
     
         if (isset($params['email']) && $params['email'] !== '') {
             $user = $user->where('email', 'like', "%{$params['email']}%");

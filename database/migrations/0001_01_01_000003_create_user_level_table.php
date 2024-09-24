@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('keterangan')->nullable();
-            $table->longText('akses_menu');
             $table->timestamps();
         });
     }

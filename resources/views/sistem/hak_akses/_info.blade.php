@@ -8,8 +8,10 @@
             {{-- <input type="text" class="form-control" name="nama" value="{{ $hak_akses->nama ?? '' }}"> --}}
         </div>
         <div class="form-group col-md-6">
-            <label class="section-title">Keterangan</label>
-            <input type="text" class="form-control" name="keterangan" value="{{ $hak_akses->keterangan ?? '' }}">
+            <label class="section-title">Akses Menu</label>
+            <x-select class="select2" name="user_level_id" :default="'-- Pilih User Level --'" :options="$user_level" :value=" $hak_akses->user_level_id ?? '' " />
+
+            {{-- <input type="text" class="form-control" name="keterangan" value="{{ $hak_akses->keterangan ?? '' }}"> --}}
         </div>
     </div>
     <div class="card-footer text-right">
