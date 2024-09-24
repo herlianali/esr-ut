@@ -29,6 +29,13 @@ class QuestioningOptionsServices extends Services
         $title = $params['title'] ?? '';
         if ($title !== '') $questioningOptions = $questioningOptions->where('title', $title);
         
+        $menu = $params['menu'] ?? '';
+        if ($menu !== '') $questioningOptions = $questioningOptions->where('menu', $menu);
+
+        $identifier = $params['identifier'] ?? '';
+        if ($identifier !== '') $questioningOptions = $questioningOptions->where('identifier', $identifier);
+        
+        
         return $this->searchResponse($params, $questioningOptions);
     }
 

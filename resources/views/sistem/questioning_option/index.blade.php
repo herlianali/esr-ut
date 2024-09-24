@@ -9,25 +9,24 @@
 
 @section('content')
 <div class="section-header">
-    <h1>Questioning</h1>
+    <h1>Sistem</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">Employee</div>
-        <div class="breadcrumb-item"><a href="#">Sistem</a></div>
-        <div class="breadcrumb-item">Questioning Options</div>
+        <div class="breadcrumb-item active"><a href="{{ route('sistem.index') }}">Sistem</a></div>
+        <div class="breadcrumb-item">Management {{ $title }}</div>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        <h4>Data Questioning</h4>
-        <a id="add_data" onclick="info_questioning()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
-        <a id="discard_data" onclick="discard_info_questioning()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-arrow-alt-circle-left"style='font-size:30px; padding-top:5px'></i></a>
+        <h4>Data {{ $title }}</h4>
+        <a id="add_data" onclick="info_questioning_option()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-plus-circle" style='font-size:30px; padding-top:5px'></i></a>
+        <a id="discard_data" onclick="discard_info_questioning_option()" class="btn btn-icon btn-lg" style="margin-left: auto"><i class="fas fa-arrow-alt-circle-left"style='font-size:30px; padding-top:5px'></i></a>
 
     </div>
     <div class="card-body">
-        <div class="card" id="questioning_info"></div>
-        <div class="card" id="card_questioning">
+        <div id="questioning_option_info"></div>
+        <div class="card" id="card_questioning_option">
             <div class="card-header">
-                <h4>List Questioning</h4>
+                <h4>List {{ $title }}</h4>
                 <div class="card-header-form" id="questionings_search">
                     <form id="search_form">
                         @csrf
@@ -40,40 +39,10 @@
                     </form>
                 </div>
             </div>
-            <div class="card-body p-0" id="questioning_table"></div>
+            <div class="card-body p-0" id="questioning_option_table"></div>
         </div>
     </div>
 </div>
-<form class="modal-part" id="edit_form">
-    <div class="form-group">
-      <label>Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fas fa-envelope"></i>
-          </div>
-        </div>
-        <input type="text" class="form-control" placeholder="Email" name="email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <i class="fas fa-lock"></i>
-          </div>
-        </div>
-        <input type="password" class="form-control" placeholder="Password" name="password">
-      </div>
-    </div>
-    <div class="form-group mb-0">
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" name="remember" class="custom-control-input" id="remember-me">
-        <label class="custom-control-label" for="remember-me">Remember Me</label>
-      </div>
-    </div>
-</form>
 @endsection
 
 @push('js')
@@ -81,56 +50,56 @@
         // init_form_element();
 
         let $search_form = $('#search_form'),
-            $questioning_table = $('#questioning_table'),
-            $questioning_info = $('#questioning_info'),
-            $card_questioning = $('#card_questioning'),
+            $questioning_option_table = $('#questioning_option_table'),
+            $questioning_option_info = $('#questioning_option_info'),
+            $card_questioning_option = $('#card_questioning_option'),
             $discard_data = $('#discard_data'),
             _token = '{{ csrf_token() }}';
         
         $discard_data.hide();
         
-        let init_questioning = () => {
-            $questioning_info.html('');
-            $card_questioning.show();
+        let init_questioning_option = () => {
+            $questioning_option_info.html('');
+            $card_questioning_option.show();
             $discard_data.hide();
-            search_questioning();
+            search_questioning_option();
         }
 
-        let info_questioning = (id = '') => {
+        let info_questioning_option = (id = '') => {
             let url = "{{ route($active_route) }}";
             url += (id === '' ? '/create' : ('/' + id + '/edit'));
 
             $.get(url, (result) => {
-                $questioning_info.html(result);
-                $card_questioning.hide();
+                $questioning_option_info.html(result);
+                $card_questioning_option.hide();
                 $discard_data.show();
                 $('#add_data').hide();
             }).fail((xhr) => {
-                $questioning_table.html(xhr.responseText);
+                $questioning_option_table.html(xhr.responseText);
             });
         }
 
-        let discard_info_questioning = () => {
-            $questioning_info.html('');
+        let discard_info_questioning_option = () => {
+            $questioning_option_info.html('');
             $discard_data.hide();
             $('#add_data').show();
-            $card_questioning.show();
+            $card_questioning_option.show();
         }
 
-        let init_form_questioning = (id = '') =>{
-            let $form_questioning = $('#form_questioning'),
-                $button_submit_questioning = $('#button_submit_questioning');
-                $form_questioning.submit((e) => {
+        let info_form_questioning_option = (id = '') =>{
+            let $form_questioning_option = $('#form_questioning_option'),
+                $button_submit_questioning_option = $('#button_submit_questioning_option');
+                $form_questioning_option.submit((e) => {
                     e.preventDefault();
 
-                    let data = getFormData($form_questioning);
+                    let data = getFormData($form_questioning_option);
                     let url = '{{ route($active_route) }}';
                     if (id !== '') {
                         url += ('/' + id);
                         data._method = 'put';
                     }
                     $.post(url, data, () => {
-                        init_questioning();
+                        init_questioning_option();
                     }).fail((xhr) => {
                         error_handle(xhr.responseText);
                         console.log(xhr.responseText);
@@ -140,27 +109,27 @@
 
         $search_form.submit((e) => {
             e.preventDefault();
-            search_questioning();
+            search_questioning_option();
         });
 
         let select_page = 1;
         $search_form = $('#search_form')
-        search_questioning = (page = 1) => {
-            $questioning_table.html('Loading ...');
+        search_questioning_option = (page = 1) => {
+            $questioning_option_table.html('Loading ...');
             if (page.toString() === '+1') select_page++;
             else if (page.toString() === '-1') select_page--;
             else select_page = page;
 
             let data = getFormData($search_form);
             data.paginate = 10;
-            $.post("{{ route('employee.questioning.search') }}?page=" + select_page, data, (result) => {
-                $questioning_table.html(result);
+            $.post("{{ route('sistem.questioning_option.search') }}?page=" + select_page, data, (result) => {
+                $questioning_option_table.html(result);
             }).fail((xhr) => {
-                $questioning_table.html(xhr.responseText);
+                $questioning_option_table.html(xhr.responseText);
             });
         }
         
-        search_questioning();
+        search_questioning_option();
 
     </script>
 @endpush

@@ -24,7 +24,7 @@ Route::name('.')->group(function () {
         Route::post('search', [App\Http\Controllers\Sistem\FiturProgramController::class, 'search'])->name('search');
     });
 
-    Route::prefix('questioning_options')->name('questioning_options.')->group(function () {
+    Route::prefix('questioning_option')->name('questioning_option.')->group(function () {
         Route::resource('/', App\Http\Controllers\Sistem\QuestioningOptionController::class)->parameter('', 'id');
         Route::post('search', [App\Http\Controllers\Sistem\QuestioningOptionController::class, 'search'])->name('search');
     });
