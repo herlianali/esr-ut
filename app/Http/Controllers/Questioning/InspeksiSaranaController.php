@@ -56,7 +56,6 @@ class InspeksiSaranaController extends Controller
         $kondisi = json_decode($inspeksi_sarana->kondisi_kendaraan, true);
         $driver = json_decode($inspeksi_sarana->driver_dan_penumpang, true);
         $prosedur = json_decode($inspeksi_sarana->prosedur_standar, true);
-        dd($kondisi);
         return view('questioning.inspeksi_sarana.add', compact('inspeksi_sarana', 'kondisi', 'driver', 'prosedur'));
     }
 

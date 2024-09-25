@@ -4,14 +4,16 @@ namespace App\Services\Questioning;
 
 use App\Models\Questioning\BbsqNonService;
 use App\Services\Services;
+use App\Services\Sistem\QuestioningOptionsServices;
 use Illuminate\Http\Request;
 
 class BbsqNonServiceServices extends Services 
 {
-    protected $bbsqNonService;
-    public function __construct(BbsqNonService $bbsqNonService)
+    protected $bbsqNonService, $questioningOptionsServices;
+    public function __construct(BbsqNonService $bbsqNonService, QuestioningOptionsServices $questioningOptionsServices)
     {
         $this->bbsqNonService = $bbsqNonService;
+        $this->questioningOptionsServices = $questioningOptionsServices;
     }
 
     public function getOne($value, $column = 'id')
@@ -31,6 +33,34 @@ class BbsqNonServiceServices extends Services
 
     public function createBbsqNonService($params)
     {
+        $prosedur = [];
+        $peralatan = [];
+        $lingkungan_kerja = [];
+        $karyawan = [];
+
+        foreach ($params as $key => $value) {
+            if (str_starts_with($key, 'prosedur_')) {
+                $prosedur[$key] = $value;
+            }
+            if (str_starts_with($key, 'peralatan_')) {
+                $peralatan[$key] = $value;
+            }
+            if (str_starts_with($key, 'lingkungan_kerja_')) {
+                $lingkungan_kerja[$key] = $value;
+            }
+            if (str_starts_with($key, 'karyawan_')) {
+                $karyawan[$key] = $value;
+            }
+        }
+
+        $params = array_merge($params, [
+            'tanggal' => unformat_date($params['tanggal']),
+            'prosedur' => json_encode($prosedur),
+            'peralatan' => json_encode($peralatan),
+            'lingkungan_kerja' => json_encode($lingkungan_kerja),
+            'karyawan' => json_encode($karyawan)
+        ]);
+
         return $this->bbsqNonService->create($params);
     }
 
@@ -51,21 +81,49 @@ class BbsqNonServiceServices extends Services
 
     public function listPerusahaan()
     {
-        return $this->bbsqNonService::LIST_PERUSAHAN;
+        $result = [];
+        foreach($this->bbsqNonService::LIST_PERUSAHAN as $value) $result[$value] = $value;
+        return $result;
     }
 
     public function listArea()
     {
-        return $this->bbsqNonService::LIST_AREA;
+        $result = [];
+        foreach($this->bbsqNonService::LIST_AREA as $value) $result[$value] = $value;
+        return $result;
     }
 
     public function listKategori()
     {
-        return $this->bbsqNonService::LIST_KATEGORI;
+        $result = [];
+        foreach($this->bbsqNonService::LIST_KATEGORI as $value) $result[$value] = $value;
+        return $result;
     }
 
     public function listFolowup()
     {
-        return $this->bbsqNonService::LIST_FOLOWUP;
+        $result = [];
+        foreach($this->bbsqNonService::LIST_FOLOWUP as $value) $result[$value] = $value;
+        return $result;
+    }
+
+    public function optionPosedur()
+    {
+        return $this->questioningOptionsServices->searchQuestioningOptions(['menu' => 'bbsq_non_service', 'title' => 'prosedur']);
+    }
+
+    public function optionAlatPeralatan()
+    {
+        return $this->questioningOptionsServices->searchQuestioningOptions(['menu' => 'bbsq_non_service', 'title' => 'alat_peralatan']);
+    }
+
+    public function optionLingkunganKerja()
+    {
+        return $this->questioningOptionsServices->searchQuestioningOptions(['menu' => 'bbsq_non_service', 'title' => 'lingkungan_kerja']);
+    }
+
+    public function optionKaryawan()
+    {
+        return $this->questioningOptionsServices->searchQuestioningOptions(['menu' => 'bbsq_non_service', 'title' => 'karyawan']);
     }
 }
