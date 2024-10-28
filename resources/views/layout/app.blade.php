@@ -267,7 +267,7 @@ $ehs_pantau = 'https://ehspantau.unitedtractors.com/Home/';
             <a href="{{ route('dashboard') }}">13 PW UT Digital</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">ESR</a>
+            <a href="{{ route('dashboard') }}">ESR</a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>

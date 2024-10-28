@@ -1,11 +1,25 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/check_online', function(){
+    $user = Auth::user();
+    if (is_user_online($user)) {
+        echo 'User is online';
+    } else {
+        echo 'User is offline'.Auth::check().explode(' ', $user->last_seen)[1].'|'.explode(' ', now())[1].'|'.now().'</br>';
+        var_dump(explode(' ', $user->last_seen)[1]);
+    }
+});
 
 Route::get('/', [App\Http\Controllers\Sistem\AuthController::class, 'login'])->name('login');
 Route::get('logout', [App\Http\Controllers\Sistem\AuthController::class, 'logout'])->name('logout');
 Route::post('login_process', [App\Http\Controllers\Sistem\AuthController::class, 'login_proses'])->name('login_proses');
-Route::get('dashboard', [App\Http\Controllers\DashController::class, 'index'])->name('dashboard');
+Route::group(['middleware' => ['auth', 'UpdateLastSeen']], function () {
+    Route::get('dashboard', [App\Http\Controllers\DashController::class, 'index'])->name('dashboard');
+});
+
 Route::get('dash/{id}', [App\Http\Controllers\DashController::class, 'dash1'])->name('dash.show');
 Route::get('reportDash', [App\Http\Controllers\DashController::class, 'dash2'])->name('reportDash');
 Route::get('surat', [App\Http\Controllers\SuratController::class, 'index'])->name('surat');

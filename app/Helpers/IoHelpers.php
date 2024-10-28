@@ -1,5 +1,27 @@
 <?php
 
+function is_user_online($user)
+{
+    $last_seen = $user->last_seen;
+    $timeout = now()->subMinute(5);
+    return $last_seen > $timeout;
+}
+
+function format_is_user_online($last_seen)
+{
+    $now = now();
+    $diff = $now->diffInMinutes($last_seen);
+
+    if($diff < 1) {
+        return "Online";
+    } elseif ($diff < 60) {
+        return 'Logged in ' . $diff . ' minute' . ($diff > 1 ? 's' : '') . ' ago';
+    } elseif ($diff < 1440) {
+        return 'Logged in ' . floor($diff / 60) . ' hour' . (floor($diff / 60) > 1 ? 's' : '') . ' ago';
+    } else {
+        return 'Logged in ' . floor($diff / 1440) . ' day' . (floor($diff / 1440) > 1 ? 's' : '') . ' ago';
+    }
+}
 // Template
 
 function list_tahun()

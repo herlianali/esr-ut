@@ -44,8 +44,8 @@ Route::name('.')->group(function () {
         Route::post('search', [App\Http\Controllers\Sistem\SektorController::class, 'search'])->name('search');
     });
 
-    Route::prefix('plan')->name('plan.')->group(function () {
-        Route::resource('/', App\Http\Controllers\Sistem\PlanController::class)->parameter('', 'id');
-        Route::post('search', [App\Http\Controllers\Sistem\PlanController::class, 'search'])->name('search');
+    Route::prefix('plan_target')->name('plan_target.')->group(function () {
+        Route::resource('/', App\Http\Controllers\Sistem\PlanTargetController::class)->parameter('', 'id');
+        Route::post('search', [App\Http\Controllers\Sistem\PlanTargetController::class, 'search'])->name('search');
     });
 });

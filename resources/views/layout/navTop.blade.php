@@ -297,20 +297,20 @@ $user_level_id = $user->user_level_id ?? '';
                 <li class="nav-item dropdown {{ \Route::is('report.scml.*') ? 'active' : '' }} {{ \Route::is('report.housekeeping.*') ? 'active' : '' }} {{ \Route::is('report.report_ko.*') ? 'active' : '' }} {{ \Route::is('report.sidak_apd.*') ? 'active' : '' }} {{ \Route::is('report.sidak_sarana.*') ? 'active' : '' }} {{ \Route::is('report.flpg.*') ? 'active' : '' }} {{ \Route::is('report.p5m.*') ? 'active' : '' }} {{ \Route::is('report.jsa.*') ? 'active' : '' }} {{ \Route::is('report.safety_talk.*') ? 'active' : '' }} {{ \Route::is('report.personal_contact.*') ? 'active' : '' }} {{ \Route::is('report.bbsq_service.*') ? 'active' : '' }} {{ \Route::is('report.bbsq_non_service.*') ? 'active' : '' }} {{ \Route::is('report.genba.*') ? 'active' : '' }} {{ \Route::is('report.green_card.*') ? 'active' : '' }}">
                   <a href="#" data-toggle="dropdown" class="nav-link has-dropdown"><i class="far fa-clipboard"></i><span>Questioning</span></a>
                   <ul class="dropdown-menu">
-                      <li class="nav-item {{ \Route::is('report.green_card.*') ? 'active' : '' }}"><a href="{{ route('report.cuti.index') }}" class="nav-link">Green Card</a></li>
-                      <li class="nav-item {{ \Route::is('report.genba.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Genba</a></li>
-                      <li class="nav-item {{ \Route::is('report.bbsq_non_service.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">BBSQ Non Service</a></li>
-                      <li class="nav-item {{ \Route::is('report.bbsq_service.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">BBSQ Service</a></li>
-                      <li class="nav-item {{ \Route::is('report.personal_contact.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Personal Contact</a></li>
-                      <li class="nav-item {{ \Route::is('report.safety_talk.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Safety Talk</a></li>
-                      <li class="nav-item {{ \Route::is('report.jsa.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">JSA</a></li>
-                      <li class="nav-item {{ \Route::is('report.p5m.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">P5M</a></li>
-                      <li class="nav-item {{ \Route::is('report.flpg.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">FLPG</a></li>
-                      <li class="nav-item {{ \Route::is('report.sidak_sarana.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Sidak Sarana</a></li>
-                      <li class="nav-item {{ \Route::is('report.sidak_apd.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Sidak APD</a></li>
-                      <li class="nav-item {{ \Route::is('report.report_ko.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">Report KO</a></li>
-                      <li class="nav-item {{ \Route::is('report.housekeeping.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">HouseKeeping</a></li>
-                      <li class="nav-item {{ \Route::is('report.scml.*') ? 'active' : '' }}"><a href="{{ route('report.plan.index') }}" class="nav-link">SCML</a></li>
+                      <li class="nav-item {{ \Route::is('report.green_card.*') ? 'active' : '' }}"><a href="{{ route('report.green_card.index') }}" class="nav-link">Green Card</a></li>
+                      {{-- <li class="nav-item {{ \Route::is('report.genba.*') ? 'active' : '' }}"><a href="{{ route('report.genba.index') }}" class="nav-link">Genba</a></li> --}}
+                      {{-- <li class="nav-item {{ \Route::is('report.bbsq_non_service.*') ? 'active' : '' }}"><a href="{{ route('report.bbsq_non_service.index') }}" class="nav-link">BBSQ Non Service</a></li> --}}
+                      {{-- <li class="nav-item {{ \Route::is('report.bbsq_service.*') ? 'active' : '' }}"><a href="{{ route('report.bbsq_service.index') }}" class="nav-link">BBSQ Service</a></li> --}}
+                      {{-- <li class="nav-item {{ \Route::is('report.personal_contact.*') ? 'active' : '' }}"><a href="{{ route('report.personal_contact.index') }}" class="nav-link">Personal Contact</a></li> --}}
+                      <li class="nav-item {{ \Route::is('report.safety_talk.*') ? 'active' : '' }}"><a href="{{ route('report.safety_talk.index') }}" class="nav-link">Safety Talk</a></li>
+                      <li class="nav-item {{ \Route::is('report.jsa.*') ? 'active' : '' }}"><a href="{{ route('report.jsa.index') }}" class="nav-link">JSA</a></li>
+                      <li class="nav-item {{ \Route::is('report.p5m.*') ? 'active' : '' }}"><a href="{{ route('report.p5m.index') }}" class="nav-link">P5M</a></li>
+                      <li class="nav-item {{ \Route::is('report.flpg.*') ? 'active' : '' }}"><a href="{{ route('report.flpg.index') }}" class="nav-link">FLPG</a></li>
+                      {{-- <li class="nav-item {{ \Route::is('report.sidak_sarana.*') ? 'active' : '' }}"><a href="{{ route('report.sidak_sarana.index') }}" class="nav-link">Sidak Sarana</a></li> --}}
+                      {{-- <li class="nav-item {{ \Route::is('report.sidak_apd.*') ? 'active' : '' }}"><a href="{{ route('report.sidak_apd.index') }}" class="nav-link">Sidak APD</a></li> --}}
+                      {{-- <li class="nav-item {{ \Route::is('report.report_ko.*') ? 'active' : '' }}"><a href="{{ route('report.report_ko.index') }}" class="nav-link">Report KO</a></li> --}}
+                      <li class="nav-item {{ \Route::is('report.housekeeping.*') ? 'active' : '' }}"><a href="{{ route('report.housekeeping.index') }}" class="nav-link">HouseKeeping</a></li>
+                      {{-- <li class="nav-item {{ \Route::is('report.scml.*') ? 'active' : '' }}"><a href="{{ route('report.scml.index') }}" class="nav-link">SCML</a></li> --}}
                   </ul>
                 </li>
                 <li class="nav-item {{ \Route::is('report.summary.*') ? 'active' : '' }}">
